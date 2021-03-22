@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/student/workshop/cmake-build-debug/program",
+  "command": "/usr/bin/c++   -I/home/student/workshop/program/include -I/home/student/workshop/library/include  -g3 -gdwarf-4   -std=gnu++11 -o CMakeFiles/Program.dir/src/main.cpp.o -c /home/student/workshop/program/src/main.cpp",
+  "file": "/home/student/workshop/program/src/main.cpp"
+},
+{
+  "directory": "/home/student/workshop/cmake-build-debug/program",
+  "command": "/usr/bin/c++   -I/home/student/workshop/program/include -I/home/student/workshop/library/include  -g3 -gdwarf-4   -std=gnu++11 -o CMakeFiles/Program.dir/__/library/src/math_helpers.cpp.o -c /home/student/workshop/library/src/math_helpers.cpp",
+  "file": "/home/student/workshop/library/src/math_helpers.cpp"
+}
+]
