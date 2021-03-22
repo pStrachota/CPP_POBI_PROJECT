@@ -1,1 +1,0 @@
-/usr/bin/c++  -g3 -gdwarf-4   CMakeFiles/Program.dir/src/main.cpp.o CMakeFiles/Program.dir/__/library/src/math_helpers.cpp.o  -o Program  ../library/libLibrary.a 
