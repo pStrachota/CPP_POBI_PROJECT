@@ -5,9 +5,9 @@ project(Program)
 #ustaw we własnej zmiennej SOURCE_FILES zbiór plików źródłowych projektu
 set(SOURCE_FILES
         src/main.cpp
-        ../library/include/math_helpers.h ../library/src/math_helpers.cpp)
+        ../library/include/math_helpers.h ../library/src/math_helpers.cpp ../library/include/model/Client.h ../library/src/model/Client.cpp)
 #włącz powyższy zbiór plików do zbudowania programu wykonywalnego Program
-add_executable(Program ${SOURCE_FILES})
+add_executable(Program ${SOURCE_FILES} ../library/include/model/Client.h ../library/src/model/Client.cpp)
 
 #Określenie zależności pomiędzy projektami Program i Biblioteka
 target_link_libraries(Program Library)
