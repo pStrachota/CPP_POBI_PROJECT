@@ -1,27 +1,31 @@
 #include <iostream>
 #include "math_helpers.h"
 #include "model/Client.h"
-
+#include "model/Address.h"
+#include <boost/date_time.hpp>
+namespace pt = boost::posix_time;
+namespace gr = boost::gregorian;
 using namespace std;
 
 int main() {
 
-    //cout << factorial(5) << endl;
-    Client henryk("henryk", "trombobobob", "NIEtancerz");
-    cout << henryk.getClientInfo() << endl;
-    Client *d = new Client;
-    cout << d->getClientInfo() << endl;
-    delete d;
-    Client piotr("piotr", "strachota", "tancerz");
-    cout << piotr.getClientInfo() << endl;
 
-    cout << piotr.getPersonalID() << endl;
+    pt::ptime test = pt::ptime(gr::date(2021,4,5), pt::hours(9)+pt::minutes(25));
+    Address *a = new Address("Garwolin", "nawetfajna", "1503");
+    Client *client = new Client("Piotr", "Strachota", "7", a);
+    Address b("Garwolin", "nawetfajna", "1503");
+    Vehicle *vehicle = new Vehicle("US3333", 345);
+    Rent rent(1555, client, vehicle, test);
 
-    cout << "00000000000000000000000000000000" << endl;
 
-    henryk.setFirstName("");
-    cout << henryk.getClientInfo() << endl;
-    Client a;
+
+    std::cout << "cena za wypozyczenie przed zmiana: " << rent.getRentCost() << std::endl;
+    unsigned int proba = rent.getRentCost();
+    vehicle->setBasePrice(1);
+    std::cout << "cena za wypozycznie po zmianie: " << rent.getRentCost() << std::endl;
+    std::cout << rent.getRentInfo() << std::endl;
+
+
 
 
     return 0;
