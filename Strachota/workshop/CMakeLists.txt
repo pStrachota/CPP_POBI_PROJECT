@@ -29,4 +29,4 @@ set(CMAKE_VERBOSE_MAKEFILE TRUE)
 add_subdirectory(program)
 #Włączenie testów powoduje pojawienie się celu test w makefiles
 enable_testing()
-set (-Wall -Wpedantic -Wextra)
+set (-Wall -Wpedantic -Wextra -Werror)

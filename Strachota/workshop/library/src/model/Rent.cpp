@@ -5,7 +5,7 @@
 class Client;
 class Rent;
 
-Rent::Rent(const unsigned int &newId, Client *const c, Vehicle *const v, const pt::ptime &begintime):client(c), vehicle(v) {
+Rent::Rent(const unsigned int &newId, ClientPtr const c, VehiclePtr const v, const pt::ptime &begintime):client(c), vehicle(v) {
     id = newId;
     //vehicle = v;
     //client = c;
@@ -24,11 +24,11 @@ const unsigned int &Rent::getId() const {
     return id;
 }
 
-const Client *Rent::getClient() const {
+const ClientPtr Rent::getClient() const {
     return client;
 }
 
-const Vehicle *Rent::getVehicle() const {
+const VehiclePtr Rent::getVehicle() const {
     return vehicle;
 }
 
