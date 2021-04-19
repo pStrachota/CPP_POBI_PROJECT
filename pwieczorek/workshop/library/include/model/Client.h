@@ -23,7 +23,7 @@ public:
     void setFirstName(const std::string & ) ;
     void setLastName(const std::string & ) ;
     const std::string & getFirstName() const;
-    const std::string & geLastName() const;
+    const std::string & getLastName() const;
     const std::string & getPersonalID() const;
 
 };

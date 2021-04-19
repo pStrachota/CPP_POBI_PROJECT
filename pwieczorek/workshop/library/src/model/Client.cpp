@@ -55,7 +55,7 @@ const std::string & Client::getFirstName() const
     return firstName;
 }
 
-const std::string & Client::geLastName() const
+const std::string & Client::getLastName() const
 {
     return lastName;
 }
