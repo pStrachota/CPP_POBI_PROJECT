@@ -1,7 +1,3 @@
-//
-// Created by student on 13.03.2021.
-//
-
 #include "math_helpers.h"
 
 unsigned long long factorial(unsigned int n) {
