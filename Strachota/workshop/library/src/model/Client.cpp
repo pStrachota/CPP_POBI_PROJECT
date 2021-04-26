@@ -11,7 +11,7 @@ Client::Client() {
 }
 
 
-Client::Client(const std::string &imie, const std::string &nazwisko, const std::string &id, Address *caddress) : firstName(imie), lastName(nazwisko), personalID(id), CAddress(caddress){}
+Client::Client(const std::string &imie, const std::string &nazwisko, const std::string &id, AddressPtr caddress) : firstName(imie), lastName(nazwisko), personalID(id), CAddress(caddress){}
 
 
 Client::~Client() {
@@ -41,7 +41,7 @@ void Client::setLastName(const std::string &newLastName) {
     }
 }
 
-void Client::setAddress(Address *newAddress) {
+void Client::setAddress(AddressPtr newAddress) {
     if(newAddress == nullptr) {
         std::cout << "Invalid output. One mustn't pass nullptr as a parameter" << std::endl;
     } else {
@@ -66,7 +66,7 @@ const std::string &Client::getPersonalId() const {
     return personalID;
 }
 
-const Address *Client::getAddress() const {
+const AddressPtr Client::getAddress() const {
     std::string text;
     text = CAddress->getCity() + " " + CAddress->getStreet() + " " + CAddress->getNumber();
     return CAddress;
@@ -74,13 +74,13 @@ const Address *Client::getAddress() const {
 
 
 
-void Client::addRent(Rent *r) {
+void Client::addRent(RentPtr r) {
     currentRents.push_back(r);
 }
 
-std::string Client::allRents() {
+std::string Client::getFullClientInfo() {
     std::string text;
-    for(int i=0; i<currentRents.size(); i++)
+    for(int i=1; i<currentRents.size(); i++)
     {
         text += currentRents[i]->getRentInfo();
         text += '\n';
@@ -88,21 +88,11 @@ std::string Client::allRents() {
     return text;
 }
 
-std::string Client::getFullClientInfo() {
-
-
-    std::string nie_za_maz;
-    nie_za_maz = getClientInfo();
-    std::string taniec;
-    taniec = allRents() + getClientInfo();
-    return taniec;
-}
-
-const Rent *Client::getRent(int number) const {
+const RentPtr Client::getRent(int number) const {
     return currentRents[number];
 }
 
 
-void Client::eraseRent(Rent *r) {
-    remove(currentRents.begin(), currentRents.end(), r);
+void Client::eraseRent(RentPtr r) {
+    currentRents.erase(std::remove(currentRents.begin(), currentRents.end(), r), currentRents.end());
 }
