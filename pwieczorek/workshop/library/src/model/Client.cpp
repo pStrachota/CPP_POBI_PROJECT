@@ -1,6 +1,7 @@
 #include "model/Client.h"
 #include <string>
 #include <algorithm>
+#include "typedefs.h"
 
 Client::Client()
 {
@@ -9,7 +10,7 @@ Client::Client()
     personalID = "initial_personal_ID";
 }
 
-Client::Client(const std::string &firstName, const std::string &lastName, const std::string &personalID, Address *ClientAddress) : firstName(firstName), lastName(lastName), personalID(personalID), ClientAddress(ClientAddress){}
+Client::Client(const std::string &firstName, const std::string &lastName, const std::string &personalID, AddressPtr ClientAddress) : firstName(firstName), lastName(lastName), personalID(personalID), ClientAddress(ClientAddress){}
 
 Client::~Client()
 {
@@ -60,12 +61,12 @@ const std::string & Client::getPersonalID() const
     return personalID;
 }
 
-const Address* Client::getAddress() const
+const AddressPtr Client::getAddress() const
 {
     return ClientAddress;
 }
 
-void Client::setAddress(Address* someAddress)
+void Client::setAddress(AddressPtr someAddress)
 {
     if ( someAddress == nullptr){
         std::cout << " Incorrect address. ";
@@ -76,11 +77,11 @@ void Client::setAddress(Address* someAddress)
     }
 }
 
-const Rent * Client::getRents(unsigned int n) const {
+const RentPtr Client::getRents(unsigned int n) const {
     return currentRents[n];
 }
 
-void Client::newRent(Rent * new_rent) {
+void Client::newRent(RentPtr new_rent) {
     //vector push_back
     currentRents.push_back(new_rent);
 }
@@ -98,6 +99,6 @@ std::string Client::getFullClientInfo()
     return output;
 }
 
-void Client::delRent(Rent *givenRent) {
+void Client::delRent(RentPtr givenRent) {
     std::remove(currentRents.begin(), currentRents.end(), givenRent);
 }

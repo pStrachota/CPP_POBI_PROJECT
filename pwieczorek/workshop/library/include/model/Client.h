@@ -6,6 +6,7 @@
 #include "model/Address.h"
 #include "model/Rent.h"
 #include <vector>
+#include "typedefs.h"
 
 class Rent;
 
@@ -15,25 +16,25 @@ private:
     std::string firstName;
     std::string lastName;
     std::string personalID;
-    Address *ClientAddress;
-    std::vector<Rent*> currentRents;
+    AddressPtr ClientAddress;
+    std::vector<RentPtr> currentRents;
 
 public:
     Client();
-    Client(const std::string &firstName, const std::string &lastName, const std::string &personalID, Address *ClientAddress);
+    Client(const std::string &firstName, const std::string &lastName, const std::string &personalID, AddressPtr ClientAddress);
     ~Client();
     std::string getClientInfo();
     std::string getFullClientInfo();
     void setFirstName(const std::string & ) ;
     void setLastName(const std::string & ) ;
-    void setAddress(Address*);
+    void setAddress(AddressPtr);
     const std::string &getFirstName() const;
     const std::string &getLastName() const;
     const std::string &getPersonalID() const;
-    const Address* getAddress() const;
-    const Rent* getRents(unsigned int) const;
-    void newRent(Rent*);
-    void delRent(Rent*);
+    const AddressPtr getAddress() const;
+    const RentPtr getRents(unsigned int) const;
+    void newRent(RentPtr);
+    void delRent(RentPtr);
 
 };
 

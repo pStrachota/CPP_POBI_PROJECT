@@ -1,7 +1,8 @@
 #include "model/Rent.h"
 #include <string>
+#include "typedefs.h"
 
-Rent::Rent(const unsigned int &rentID, Client *const ptrClient, Vehicle *const ptrVehicle, const pt::ptime initTime) : rentID(rentID), ptrClient(ptrClient), ptrVehicle(ptrVehicle)
+Rent::Rent(const unsigned int &rentID, ClientPtr const ptrClient, VehiclePtr const ptrVehicle, const pt::ptime initTime) : rentID(rentID), ptrClient(ptrClient), ptrVehicle(ptrVehicle)
 {
     ptrClient->newRent(this);
     ptrVehicle->setIsRented(true);
@@ -13,11 +14,11 @@ const unsigned int & Rent::getID() const {
     return rentID;
 }
 
-const Client * Rent::getClient() const {
+const ClientPtr Rent::getClient() const {
     return ptrClient;
 }
 
-const Vehicle * Rent::getVehicle() const {
+const VehiclePtr Rent::getVehicle() const {
     return ptrVehicle;
 }
 

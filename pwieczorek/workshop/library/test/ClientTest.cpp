@@ -5,8 +5,8 @@ struct TestSuiteClientFixture {
     const std::string testFirstName = "Jon";
     const std::string testLastName = "Arbuckle";
     const std::string testPersonalID = "0123456789";
-    Address *testaddress1;
-    Address *testaddress2;
+    AddressPtr testaddress1;
+    AddressPtr testaddress2;
 
     TestSuiteClientFixture() {
         testaddress1 = new Address("London", "Accacia Avenue", "22");
@@ -64,50 +64,3 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClient, TestSuiteClientFixture)
 BOOST_AUTO_TEST_SUITE_END()
 
 
-//korzystamy z fixture
-/*
-BOOST_AUTO_TEST_SUITE(TestSuiteClient)
-
-
-    BOOST_AUTO_TEST_CASE(ConstructorTests)
-    {
-        Address a1("London","Baker","7");
-        Address *a_wsk = &a1;
-
-        Client cl("Jan","Kowalski","007", a_wsk);
-
-        BOOST_TEST(cl.getFirstName() == "Jan");
-        BOOST_TEST(cl.getLastName() == "Kowalski");
-        BOOST_TEST(cl.getPersonalID() == "007");
-        BOOST_TEST(cl.getAddress() == a_wsk);
-
-    }
-
-    BOOST_AUTO_TEST_CASE(SettersTests)
-    {
-        Address a1("London","Baker","7");
-        Address a2("London","Baker","7");
-        Address *a_wsk = &a1;
-
-        Client cl("Jan","Kowalski","007", a_wsk);
-
-        cl.setFirstName("");
-        BOOST_TEST(cl.getFirstName() == "Jan");
-
-        cl.setFirstName("Pawel");
-        BOOST_TEST(cl.getFirstName() == "Pawel");
-
-        cl.setLastName("");
-        BOOST_TEST(cl.getLastName() == "Kowalski");
-
-        cl.setLastName("Nowak");
-        BOOST_TEST(cl.getLastName() == "Nowak");
-        a_wsk = &a2;
-        cl.setAddress(a_wsk);
-        BOOST_TEST(cl.getAddress() == a_wsk);
-
-
-    }
-
-BOOST_AUTO_TEST_SUITE_END()
- */

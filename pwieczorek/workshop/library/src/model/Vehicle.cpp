@@ -4,12 +4,9 @@ Vehicle::Vehicle(const std::string &numerRejestracyjny, const unsigned int &cena
 
 }
 
-Vehicle::Vehicle(){
-    plateNumber = "initialPlate";
-    basePrice = 1;
-}
 
 Vehicle::~Vehicle() {
+    //virtual destructor
 }
 
 const unsigned int & Vehicle::getBasePrice() const {
@@ -42,4 +39,8 @@ const bool Vehicle::isRented() const {
 
 void Vehicle::setIsRented(bool isItRented) {
     rented = isItRented;
+}
+
+double Vehicle::getActualRentalPrice() {
+    return getBasePrice();
 }
