@@ -7,6 +7,7 @@
 #include<iostream>
 #include <boost/date_time.hpp>
 #include "typedefs.h"
+#include <model/ClientType.h>
 namespace pt = boost::posix_time;
 namespace gr = boost::gregorian;
 
@@ -17,7 +18,7 @@ private:
 
     unsigned int id;
     ClientPtr const client;
-    VehiclePtr const vehicle;
+    VehiclePtr vehicle;
     RentPtr r;
     pt::ptime beginTime;
     pt::ptime endTime = pt::not_a_date_time;
@@ -30,7 +31,7 @@ public:
     const pt::ptime &getEndTime() const;
     unsigned int getRentCost();
     unsigned int getRentDays();
-    const VehiclePtr getVehicle() const;
+    VehiclePtr getVehicle();
     void endRent(pt::ptime exampleTime);
     std::string getRentInfo();
 };

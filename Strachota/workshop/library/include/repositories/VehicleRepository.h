@@ -12,6 +12,7 @@ public:
     VehiclePtr getVehicle(unsigned int index);
     void addVehicle(VehiclePtr);
     void removeVehicle(VehiclePtr);
+    VehiclePtr findByPlateNumber(std::string);
     std::string getReport();
     const unsigned int vehicleSize() const;
     std::vector<VehiclePtr> findBy(VehiclePredicate);

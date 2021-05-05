@@ -62,6 +62,50 @@ std::vector<ClientPtr> ClientRepository::findAll() {
     return found;
 }
 
+ClientPtr ClientRepository::findByPersonalId(std::string personalId) {
+
+    //  for (auto i = currentClients.begin(); i != currentClients.end(); ++i) {
+    //    std::cout << "niec" <<std::endl;
+    //  i->
+    //}
+
+    if (currentClients.empty()) {
+        return nullptr;
+    } else {
+        for (auto & currentClient : currentClients) {
+            if(currentClient->getPersonalId() == personalId) {
+                return currentClient;
+            }
+        }
+
+    }
+    return nullptr;
+}
+      //  if(currentClients.)
+        /*
+   for(int i=1; i<currentClients.size(); i++)
+    {
+        if(currentClients[i]->getPersonalId() == personalId) {
+            return currentClients[i];
+        }
+
+    }
+        }
+    }
+    //return nullptr;
+
+    /*
+
+    for(int i = 1; i < currentClients.size(); i++) {
+        if(currentClients.at(i)->getPersonalId() == personalId) {
+            return currentClients.at(i);
+        }
+        return nullptr;
+    }
+*/
+
+
+
 /*
 bool ClientRepository::testId1(const ClientPtr &ptr) {
     return ptr->getPersonalId()==1;

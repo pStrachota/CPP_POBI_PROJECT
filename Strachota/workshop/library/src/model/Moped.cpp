@@ -10,4 +10,4 @@ std::string Moped::getVehicleInfo() {
     return MotorVehicle::getVehicleInfo();
 }
 
-Moped::~Moped() {}
+//Moped::~Moped() {}

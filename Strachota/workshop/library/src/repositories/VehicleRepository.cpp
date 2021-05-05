@@ -59,3 +59,27 @@ std::vector<VehiclePtr> VehicleRepository::findAll() {
     return found;
 }
 
+VehiclePtr VehicleRepository::findByPlateNumber(std::string plateNumber) {
+
+    if (currentVehicles.empty()) {
+        return nullptr;
+    } else {
+        for (auto & currentVehicle : currentVehicles) {
+            if(currentVehicle->getPlateNumber() == plateNumber) {
+                return currentVehicle;
+            }
+        }
+
+    }
+    return nullptr;
+
+    /*
+    for(int i = 1; i < currentVehicles.size(); i++) {
+        if(currentVehicles.at(i)->getPlateNumber() == plateNumber) {
+            return currentVehicles.at(i);
+        }
+        return nullptr;
+    }
+    */
+}
+

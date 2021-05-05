@@ -28,6 +28,7 @@ void Vehicle::setBasePrice(const unsigned int &baseprice) {
     basePrice = baseprice;
 }
 
+/*
 const bool &Vehicle::isRented() const {
     return rented;
 }
@@ -35,8 +36,9 @@ const bool &Vehicle::isRented() const {
 void Vehicle::setRented(const bool &crented) {
     rented = crented;
 }
+*/
 
-Vehicle::~Vehicle() {}
+//Vehicle::~Vehicle() {}
 
 double Vehicle::getActualRentalPrice() {
     return getBasePrice();

@@ -10,6 +10,7 @@ class ClientRepository {
 public:
     ClientPtr getClient(unsigned int index);
     std::vector<ClientPtr> findBy(ClientPredicate);
+    ClientPtr findByPersonalId(std::string);
     std::vector<ClientPtr> findAll();
     bool testId1(const ClientPtr &ptr);
     void addClient(ClientPtr);

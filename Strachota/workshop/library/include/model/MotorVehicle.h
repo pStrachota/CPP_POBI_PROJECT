@@ -7,7 +7,7 @@ class MotorVehicle : public Vehicle {
     int engineDisplacement;
 public:
     MotorVehicle(const int &capacity, const std::string &platenumber, const unsigned int &baseprice);
-    virtual ~MotorVehicle();
+    //virtual ~MotorVehicle();
     virtual double getActualRentalPrice();
     virtual std::string getVehicleInfo();
 };

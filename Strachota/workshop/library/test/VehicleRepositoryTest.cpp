@@ -1,7 +1,7 @@
 #include <boost/test/unit_test.hpp>
 #include <repositories/VehicleRepository.h>
 
-
+/*
 struct TestSuiteVehicleRepositoryFixture {
     const std::string testPlateNumber = "WG420H";
     const unsigned int testBasePrice = 199;
@@ -59,3 +59,4 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteVehicleRepository, TestSuiteVehicleRepositoryF
 
 BOOST_AUTO_TEST_SUITE_END()
 
+*/
