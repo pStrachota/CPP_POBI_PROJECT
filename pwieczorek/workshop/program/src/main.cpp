@@ -1,26 +1,21 @@
-//
-// Created by student on 13.03.2021.
-//
-
 #include <iostream>
 #include "model/Client.h"
+#include "model/Address.h"
 
 using namespace std;
 
 int main(int argc,char **argv)
 {
-    cout << "test obiektów:" << endl;
-    Client c1("Pawel","Kowalski","7770777");
-    Client c2("Gawel","Kowalski","7770777");
+    cout << "running main" << endl;
 
-    Client *wskC = new Client;
-    wskC = &c2;
+    Address a_x;
+    Address* a_wsk1 = &a_x;
 
-    cout << wskC->getClientInfo() << endl;
-    cout << c1.getClientInfo() << endl;
 
-    c1.setFirstName("");
-    c1.setFirstName("NoweImiePawla");
-    cout << c1.getClientInfo();
+    Client *c1 = new Client("pawel", "w","007", a_wsk1);
+    Client *c2 = new Client("pawel", "w","007", a_wsk1);
+
+    cout <<  c1->getClientInfo();
+    cout <<  c2->getClientInfo();
     return 0;
 }

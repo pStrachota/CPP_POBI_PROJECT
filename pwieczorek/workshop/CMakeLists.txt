@@ -31,4 +31,4 @@ add_subdirectory(program)
 add_subdirectory(library)
 #Włączenie testów powoduje pojawienie się celu test w makefiles
 enable_testing()
-set (-Wall -Wpedantic -Wextra)
+set (-Wall -Wpedantic -Wextra -Werror)

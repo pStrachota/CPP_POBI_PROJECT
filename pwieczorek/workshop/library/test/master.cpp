@@ -1,7 +1,3 @@
-//
-// Created by student on 19.04.2021.
-//
-
 #define BOOST_AUTO_TEST_MAIN//root of all tests suites and cases
 #define BOOST_TEST_DYN_LINK //use shared boost library
 #include <boost/test/unit_test.hpp>
