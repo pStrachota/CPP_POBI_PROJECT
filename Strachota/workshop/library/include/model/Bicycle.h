@@ -6,7 +6,7 @@
 class Bicycle : public Vehicle {
 public:
     Bicycle(const std::string &platenumber, const unsigned int &baseprice);
-    virtual ~Bicycle();
+    //virtual ~Bicycle();
     virtual double getActualRentalPrice();
     virtual std::string getVehicleInfo();
 };

@@ -24,7 +24,7 @@ double Car::getActualRentalPrice() {
     return price;
 }
 
-Car::~Car() {}
+//Car::~Car() {}
 
 std::string Car::getVehicleInfo() {
     std::string chain;

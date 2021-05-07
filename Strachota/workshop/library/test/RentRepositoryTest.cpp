@@ -2,7 +2,7 @@
 #include <repositories/RentRepository.h>
 #include <repositories/StorageContainer.h>
 
-
+/*
 
 struct TestSuiteRentRepositoryFixture {
     const unsigned int testId = 1;
@@ -78,3 +78,4 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteRentRepository, TestSuiteRentRepositoryFixture
 
 
 BOOST_AUTO_TEST_SUITE_END()
+ */

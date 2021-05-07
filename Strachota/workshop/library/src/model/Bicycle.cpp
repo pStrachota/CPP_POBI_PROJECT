@@ -10,5 +10,5 @@ std::string Bicycle::getVehicleInfo() {
     return Vehicle::getVehicleInfo();
 }
 
-Bicycle::~Bicycle() {}
+//Bicycle::~Bicycle() {}
 

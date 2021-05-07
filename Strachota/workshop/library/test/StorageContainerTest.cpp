@@ -1,7 +1,7 @@
 #include <boost/test/unit_test.hpp>
 #include <repositories/StorageContainer.h>
 
-
+/*
 struct TestSuiteStorageContainerFixture {
     ClientPtr testClient;
     ClientPtr testClient2;
@@ -137,3 +137,4 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteStorageContainer, TestSuiteStorageContainerFix
 }
 
 BOOST_AUTO_TEST_SUITE_END()
+ */

@@ -1,27 +1,29 @@
 #include <string>
 #include "model/Client.h"
 #include "model/Rent.h"
+#include "model/ClientType.h"
 
 //using namespace std;
-
+/*
 Client::Client() {
     firstName = "exampleFirstName";
     lastName = "exampleLastName";
     personalID = "example personalID";
 }
+*/
 
+Client::Client(const std::string &imie, const std::string &nazwisko,  std::string id, AddressPtr caddress, ClientTypePtr cT) : firstName(imie),
+lastName(nazwisko), personalID(id), CAddress(caddress), clientType(cT){}
 
-Client::Client(const std::string &imie, const std::string &nazwisko, const std::string &id, AddressPtr caddress) : firstName(imie), lastName(nazwisko), personalID(id), CAddress(caddress){}
-
-
+/*
 Client::~Client() {
     //delete CAddress;
 }
-
+*/
 
 std::string Client::getClientInfo() {
     std::string chain;
-    chain = firstName + " " + lastName + " " + personalID + " " + CAddress->getAddressInfo();
+    chain = clientType->getTypeInfo() + " " + firstName + " " + lastName + " " + personalID + " " + CAddress->getAddressInfo();
     return chain;
 }
 
@@ -74,6 +76,30 @@ const AddressPtr Client::getAddress() const {
 
 
 
+int Client::getMaxVehicles() {
+    return clientType->getMaxVehicles();
+}
+
+double Client::applyDiscount(int base){
+
+    return clientType->applyDiscount(base);
+}
+
+void Client::setClientType(ClientTypePtr cT) {
+    clientType = cT;
+}
+
+bool Client::isArchive() const {
+    return archive;
+}
+
+void Client::setArchive(bool archive) {
+    Client::archive = archive;
+}
+
+
+/*
+
 void Client::addRent(RentPtr r) {
     currentRents.push_back(r);
 }
@@ -96,3 +122,4 @@ const RentPtr Client::getRent(int number) const {
 void Client::eraseRent(RentPtr r) {
     currentRents.erase(std::remove(currentRents.begin(), currentRents.end(), r), currentRents.end());
 }
+*/
