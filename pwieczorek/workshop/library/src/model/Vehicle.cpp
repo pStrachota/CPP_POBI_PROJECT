@@ -29,7 +29,7 @@ void Vehicle::setBasePrice(const unsigned int &givenPrice) {
 }
 
 std::string Vehicle::getVehicleInfo() {
-    std::string output = "Car: " + plateNumber + std::to_string(basePrice);
+    std::string output = "Vehicle: " + plateNumber + " base price "+ std::to_string(basePrice);
     return output;
 }
 

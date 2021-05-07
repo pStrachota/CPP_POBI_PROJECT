@@ -12,9 +12,16 @@ private:
     RentRepository rentRep;
 public:
     StorageContainer(VehicleRepository testVehicleRep, ClientRepository testClientRep, RentRepository testRentRep);
-    ClientRepository getClientRep();
-    VehicleRepository getVehicleRep();
-    RentRepository getRentRep();
+
+    ClientRepository & getClientRep();
+    VehicleRepository & getVehicleRep();
+    RentRepository & getRentRep();
+
+    /*
+    ClientRepository* getClientRep();
+    VehicleRepository* getVehicleRep();
+    RentRepository* getRentRep();
+     */
 };
 
 

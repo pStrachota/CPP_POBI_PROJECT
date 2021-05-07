@@ -48,22 +48,30 @@ struct TestSuiteStorageContainerFixture {
 
 BOOST_FIXTURE_TEST_SUITE(TestSuiteStorageContainer, TestSuiteStorageContainerFixture)
 
+
+
     BOOST_AUTO_TEST_CASE(AddObjectsPositiveTest)
     {
-    ClientRepository clientRep;
-    VehicleRepository vehicleRep;
-    RentRepository rentRep;
 
-    clientRep.addClient(testClient1);
-    vehicleRep.addVehicle(testVehicle1);
-    rentRep.addRent(testRent1);
+        ClientRepository clientRep;
+        VehicleRepository vehicleRep;
+        RentRepository rentRep;
 
-    StorageContainer storageCont(vehicleRep,clientRep,rentRep);
+        clientRep.addClient(testClient1);
+        vehicleRep.addVehicle(testVehicle1);
+        rentRep.addRent(testRent1);
 
-    BOOST_TEST(storageCont.getVehicleRep().getVehicle(0) == testVehicle1);
-    BOOST_TEST(storageCont.getClientRep().getClient(0) == testClient1);
-    BOOST_TEST(storageCont.getRentRep().getRent(0) == testRent1);
+        StorageContainer storageCont(vehicleRep,clientRep,rentRep);
+
+        storageCont.getClientRep().addClient(testClient2);
+
+        BOOST_TEST(storageCont.getClientRep().getSize() == 2);
+        BOOST_TEST(storageCont.getVehicleRep().getSize() == 1);
+        BOOST_TEST(storageCont.getRentRep().getSize() == 1);
+
     }
+
+
 
     BOOST_AUTO_TEST_CASE(AddObjectsNegativeTest)
     {
@@ -77,10 +85,15 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteStorageContainer, TestSuiteStorageContainerFix
 
         StorageContainer storageCont(vehicleRep,clientRep,rentRep);
 
+        storageCont.getRentRep().addRent(nullptr);
+        storageCont.getVehicleRep().addVehicle(nullptr);
+        storageCont.getClientRep().addClient(nullptr);
+
         BOOST_TEST(storageCont.getVehicleRep().getSize() == 0);
         BOOST_TEST(storageCont.getClientRep().getSize() == 0);
         BOOST_TEST(storageCont.getRentRep().getSize() == 0);
     }
+
 
     BOOST_AUTO_TEST_CASE(GetSize)
     {

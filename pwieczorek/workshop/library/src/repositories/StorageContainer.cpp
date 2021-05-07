@@ -5,16 +5,14 @@ StorageContainer::StorageContainer(VehicleRepository testVehicleRep, ClientRepos
 
 }
 
-ClientRepository StorageContainer::getClientRep() {
+ClientRepository & StorageContainer::getClientRep() {
     return clientRep;
 }
 
-RentRepository StorageContainer::getRentRep() {
+RentRepository & StorageContainer::getRentRep() {
     return rentRep;
 }
 
-VehicleRepository StorageContainer::getVehicleRep() {
+VehicleRepository & StorageContainer::getVehicleRep() {
     return vehicleRep;
 }
-
-

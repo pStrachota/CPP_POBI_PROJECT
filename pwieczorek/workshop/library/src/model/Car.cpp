@@ -28,7 +28,8 @@ double Car::getActualRentalPrice() {
         param = 1.5;
     }
 
-    return getBasePrice() * param;
+    //return getBasePrice() * param;
+    return MotorVehicle::getActualRentalPrice() * param;
 }
 
 std::string Car::getVehicleInfo() {

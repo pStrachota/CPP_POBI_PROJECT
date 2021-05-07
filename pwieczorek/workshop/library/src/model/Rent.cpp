@@ -39,7 +39,6 @@ unsigned int Rent::getRentDays() {
 
     pt::time_period period(beginTime, endTime);
     if(period.length().hours() == 0 && period.length().minutes() <= 1) return 0;
-    //cout rent ddays
     unsigned  int rentDays = 1;
     unsigned  int moreDays = period.length().hours() % 23;
     rentDays + moreDays;
