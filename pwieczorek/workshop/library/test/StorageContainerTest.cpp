@@ -8,7 +8,7 @@
 
 namespace pt = boost::posix_time;
 namespace gr = boost::gregorian;
-
+/*
 struct TestSuiteStorageContainerFixture {
 
     VehiclePtr testVehicle1;
@@ -23,24 +23,25 @@ struct TestSuiteStorageContainerFixture {
     //pt::ptime date2 = pt::ptime(gr::date(2015,5,13),pt::hours(9)+pt::minutes(25));
 
     TestSuiteStorageContainerFixture () {
-        testVehicle1 = new Vehicle("123",1);
-        testVehicle2 = new Vehicle("321",2);
-        testAddress1 = new Address("london","baker","10");
-        testAddress2 = new Address("london","baker","10");
-        testClient1 = new Client("jan","kowal","123",testAddress1);
-        testClient2 = new Client("jan","kowal","123",testAddress2);
-        testRent1 = new Rent(1,testClient1,testVehicle1,date1);
+        testVehicle1 = std::make_shared<Vehicle>("123",1);
+        testVehicle2 = std::make_shared<Vehicle>("321",2);
+        testAddress1 = std::make_shared<Address>("london","baker","10");
+        testAddress2 = std::make_shared<Address>("london","baker","10");
+        testClient1 = std::make_shared<Client>("jan","kowal","123",testAddress1);
+        testClient2 = std::make_shared<Client>("jan","kowal","123",testAddress2);
+        testRent1 = std::make_shared<Rent>(1,testClient1,testVehicle1,date1);
 
     }
 
     ~TestSuiteStorageContainerFixture () {
-        delete testVehicle1;
-        delete testVehicle2;
-        delete testClient1;
-        delete testClient2;
-        delete testRent1;
-        delete testAddress1;
-        delete testAddress2;
+
+        //delete testVehicle1;
+        //delete testVehicle2;
+        //delete testClient1;
+        //delete testClient2;
+        //delete testRent1;
+        //delete testAddress1;
+        //delete testAddress2;
 
     }
 
@@ -114,3 +115,4 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteStorageContainer, TestSuiteStorageContainerFix
 
 
 BOOST_AUTO_TEST_SUITE_END()
+*/

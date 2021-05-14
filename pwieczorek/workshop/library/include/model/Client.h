@@ -17,14 +17,15 @@ private:
     std::string lastName;
     std::string personalID;
     AddressPtr ClientAddress;
-    std::vector<RentPtr> currentRents;
+    ClientTypePtr clientType;
+    //std::vector<RentPtr> currentRents;
 
 public:
     Client();
-    Client(const std::string &firstName, const std::string &lastName, const std::string &personalID, AddressPtr ClientAddress);
+    Client(const std::string &firstName, const std::string &lastName, const std::string &personalID, AddressPtr ClientAddress, ClientTypePtr clientType);
     ~Client();
     std::string getClientInfo();
-    std::string getFullClientInfo();
+    //std::string getFullClientInfo();
     void setFirstName(const std::string & ) ;
     void setLastName(const std::string & ) ;
     void setAddress(AddressPtr);
@@ -32,9 +33,12 @@ public:
     const std::string &getLastName() const;
     const std::string &getPersonalID() const;
     const AddressPtr getAddress() const;
-    const RentPtr getRents(unsigned int) const;
-    void newRent(RentPtr);
-    void delRent(RentPtr);
+    int getMaxVehicles();
+    double applyDiscount( double );
+    void setClientType( ClientTypePtr );
+    //const RentPtr getRents(unsigned int) const;
+    //void newRent(RentPtr);
+    //void delRent(RentPtr);
 
 };
 

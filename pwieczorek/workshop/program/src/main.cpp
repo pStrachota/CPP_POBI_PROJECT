@@ -8,7 +8,7 @@ using namespace std;
 int main(int argc,char **argv)
 {
     cout << "running main" << endl;
-
+    /*
     Address a_x;
     Address* a_wsk1 = &a_x;
 
@@ -43,6 +43,6 @@ int main(int argc,char **argv)
     cout << sCont.getVehicleRep().getReport() << endl;
     cout << sCont.getRentRep().getReport() << endl;
     cout << sCont.getClientRep().getReport() << endl;
-
+    */
     return 0;
 }
