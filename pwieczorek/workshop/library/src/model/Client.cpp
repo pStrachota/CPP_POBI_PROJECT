@@ -10,7 +10,7 @@ Client::Client()
     personalID = "initial_personal_ID";
 }
 
-Client::Client(const std::string &firstName, const std::string &lastName, const std::string &personalID, AddressPtr ClientAddress) : firstName(firstName), lastName(lastName), personalID(personalID), ClientAddress(ClientAddress){}
+Client::Client(const std::string &firstName, const std::string &lastName, const std::string &personalID, AddressPtr ClientAddress, ClientTypePtr clientType) : firstName(firstName), lastName(lastName), personalID(personalID), ClientAddress(ClientAddress), clientType(clientType){}
 
 Client::~Client()
 {
@@ -76,7 +76,7 @@ void Client::setAddress(AddressPtr someAddress)
         ClientAddress = someAddress;
     }
 }
-
+/*
 const RentPtr Client::getRents(unsigned int n) const {
     return currentRents[n];
 }
@@ -102,3 +102,4 @@ std::string Client::getFullClientInfo()
 void Client::delRent(RentPtr givenRent) {
     std::remove(currentRents.begin(), currentRents.end(), givenRent);
 }
+ */

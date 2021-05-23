@@ -4,8 +4,8 @@
 
 Rent::Rent(const unsigned int &rentID, ClientPtr const ptrClient, VehiclePtr const ptrVehicle, const pt::ptime initTime) : rentID(rentID), ptrClient(ptrClient), ptrVehicle(ptrVehicle)
 {
-    ptrClient->newRent(this);
-    ptrVehicle->setIsRented(true);
+    //ptrClient->newRent(this);
+    //ptrVehicle->setIsRented(true);
     if(initTime == pt::not_a_date_time) beginTime = pt::second_clock::local_time();
     else beginTime = initTime;
 }
@@ -39,7 +39,6 @@ unsigned int Rent::getRentDays() {
 
     pt::time_period period(beginTime, endTime);
     if(period.length().hours() == 0 && period.length().minutes() <= 1) return 0;
-    //cout rent ddays
     unsigned  int rentDays = 1;
     unsigned  int moreDays = period.length().hours() % 23;
     rentDays + moreDays;
@@ -58,8 +57,8 @@ const pt::ptime &Rent::getEndTime() const {
 void Rent::endRent(pt::ptime givenTime) {
     if(endTime == pt::not_a_date_time)
     {
-        ptrVehicle->setIsRented(false);
-        ptrClient->delRent(this);
+        //ptrVehicle->setIsRented(false);
+        //ptrClient->delRent(this);
 
         if (givenTime == pt::not_a_date_time)
         {

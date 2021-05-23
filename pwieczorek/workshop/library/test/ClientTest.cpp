@@ -1,6 +1,6 @@
 #include <boost/test/unit_test.hpp>
 #include "model/Client.h"
-
+/*
 struct TestSuiteClientFixture {
     const std::string testFirstName = "Jon";
     const std::string testLastName = "Arbuckle";
@@ -9,13 +9,14 @@ struct TestSuiteClientFixture {
     AddressPtr testaddress2;
 
     TestSuiteClientFixture() {
-        testaddress1 = new Address("London", "Accacia Avenue", "22");
-        testaddress2 = new Address("London", "Rue Morgue", "13");
+        testaddress1 = std::make_shared<Address>("London", "Accacia Avenue", "22");
+        testaddress2 = std::make_shared<Address>("London", "Rue Morgue", "13");
     }
 
     ~TestSuiteClientFixture() {
-        delete testaddress1;
-        delete testaddress2;
+        // Nie potrzebne: shared_ptr
+       // delete testaddress1;
+       // delete testaddress2;
     }
 
 };
@@ -63,4 +64,4 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClient, TestSuiteClientFixture)
 
 BOOST_AUTO_TEST_SUITE_END()
 
-
+*/

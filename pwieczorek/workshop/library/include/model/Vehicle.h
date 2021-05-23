@@ -8,7 +8,7 @@ class Vehicle {
 private:
     std::string plateNumber;
     unsigned int basePrice;
-    bool rented = false;
+    //bool rented = false;
 public:
     Vehicle(const std::string &numerRejestracyjny, const unsigned int &cenaBazowa);
     virtual ~Vehicle(); // zmienic na abstrakcyjna
@@ -18,7 +18,7 @@ public:
 
     void setPlateNumber(const std::string &);
     void setBasePrice(const unsigned int &);
-    const bool isRented() const;
+    //const bool isRented() const;
     void setIsRented(bool);
 
     virtual std::string getVehicleInfo();
