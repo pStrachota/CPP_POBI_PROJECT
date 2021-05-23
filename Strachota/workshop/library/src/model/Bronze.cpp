@@ -6,12 +6,12 @@ double Bronze::applyDiscount(int base)
     return base;
 }
 
-int Bronze::getMaxVehicles()
+int Bronze::getMaxVehicles() const
 {
     return 2;
 }
 
-std::string Bronze::getTypeInfo()
+std::string Bronze::getTypeInfo() const
 {
     return "BRONZE";
 }

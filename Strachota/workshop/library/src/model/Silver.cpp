@@ -5,11 +5,11 @@ double Silver::applyDiscount(int base) {
     return base;
 }
 
-int Silver::getMaxVehicles() {
+int Silver::getMaxVehicles() const {
     return 3;
 }
 
-std::string Silver::getTypeInfo() {
+std::string Silver::getTypeInfo() const{
     return "SILVER";
 }
 

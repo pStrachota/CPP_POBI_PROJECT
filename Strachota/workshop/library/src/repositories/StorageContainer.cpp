@@ -1,5 +1,6 @@
 #include <repositories/StorageContainer.h>
 
+/*
 VehicleRepository StorageContainer::getVehicleRepo() {
     return vR;
 }
@@ -14,3 +15,4 @@ RentRepository StorageContainer::getRentRepo() {
 
 StorageContainer::StorageContainer(VehicleRepository testV, ClientRepository testC, RentRepository testR) : vR(testV), cR(testC), rR(testR) {}
 
+*/

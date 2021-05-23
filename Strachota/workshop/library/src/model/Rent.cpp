@@ -1,39 +1,39 @@
 #include "model/Rent.h"
 #include "model/Client.h"
 #include <string>
+#include "model/Vehicle.h"
+#include "exceptions/RentException.h"
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_generators.hpp>
+#include <boost/uuid/uuid_io.hpp>
+#include "repositories/Repository.h"
 
-class Client;
-class Rent;
-
-Rent::Rent(const unsigned int &newId, ClientPtr const c, VehiclePtr const v, const pt::ptime &begintime):client(c), vehicle(v) {
-    id = newId;
-    //vehicle = v;
-    //client = c;
-    //client->addRent(this);
-    //vehicle->setRented(true);
-    if(begintime == pt::not_a_date_time) {
-        beginTime = pt::second_clock::local_time();
+Rent::Rent(const ClientPtr &client, const VehiclePtr &vehicle, const pt::ptime &beginTime):id(boost::uuids::random_generator()()), client(client), vehicle(vehicle) {
+    if(beginTime == pt::not_a_date_time) {
+        this->beginTime = pt::second_clock::local_time();
     } else {
-        beginTime = begintime;
+        this->beginTime = beginTime;
     }
 
+    if (client == nullptr) throw RentException(RentException::exceptionClientNullPtr);
+    if (vehicle == nullptr) throw RentException(RentException::exceptionVehicleNullPtr);
+    if (getRentDays() < 0) throw RentException(RentException::exceptionDays);
+
 }
 
 
-const unsigned int &Rent::getId() const {
-    return id;
-}
 
-const ClientPtr Rent::getClient() const {
+const ClientPtr &Rent::getClient() const {
     return client;
 }
 
-VehiclePtr Rent::getVehicle() {
+const VehiclePtr &Rent::getVehicle() const {
     return vehicle;
 }
 
 
-std::string Rent::getRentInfo() {
+std::string Rent::getInfo() const {
+
     std::string text;
     std::stringstream ss;
     std::stringstream ss2;
@@ -41,8 +41,10 @@ std::string Rent::getRentInfo() {
     ss2 << getEndTime();
     std::string text2 = ss.str();
     std::string text3 = ss2.str();
-    text = std::to_string(id) + " " + vehicle->getVehicleInfo() + " " + client->getClientInfo() + text2 + " " + text3;
+    std::string s = boost::lexical_cast<std::string>(id);
+    text = s + " " + ::getInfo(vehicle) + " " + ::getInfo(client) + text2 + " " + text3;
     return text;
+
 }
 
 const pt::ptime &Rent::getBeginTime() const {
@@ -55,8 +57,6 @@ const pt::ptime &Rent::getEndTime() const {
 
 void Rent::endRent(pt::ptime exampleTime) {
     if(endTime == pt::not_a_date_time) {
-        //vehicle->setRented(false);
-        //client->eraseRent(this);
 
         if (exampleTime == pt::not_a_date_time) {
             endTime = pt::second_clock::local_time();
@@ -87,9 +87,16 @@ unsigned int Rent::getRentDays() {
 }
 
 
-unsigned int Rent::getRentCost() {
+unsigned int Rent::getRentCost() const{
     if(rentCost <= 0) return 0;
     //rentCost = client->applyDiscount(rentCost);
-    return client->applyDiscount(rentCost);;
+    return client->applyDiscount(rentCost);
 }
+
+const boost::uuids::uuid &Rent::getId() const {
+    return id;
+}
+
+
+
 

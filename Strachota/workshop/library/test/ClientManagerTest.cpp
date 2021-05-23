@@ -1,20 +1,18 @@
 #include <boost/test/unit_test.hpp>
 #include "managers/ClientManager.h"
 #include <memory>
-#include "model/ClientType.h"
 #include "model/Bronze.h"
 #include <functional>
+#include "model/Address.h"
 
 struct TestSuiteClientManagerFixture {
 
-    ClientTypePtr testClientTypeBronze = std::make_shared<Bronze>();
-
-    AddressPtr testaddress3 = std::make_shared<Address>("London", "Rue Morgue", "13");
-
+    ClientTypePtr testClientTypeBronze;
+    AddressPtr testaddress3;
 
 TestSuiteClientManagerFixture() {
-
-
+    testClientTypeBronze = std::make_shared<Bronze>();
+    testaddress3 = std::make_shared<Address>("London", "Rue Morgue", "13");
 }
 
 ~TestSuiteClientManagerFixture() {

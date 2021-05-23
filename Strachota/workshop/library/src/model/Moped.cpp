@@ -1,13 +1,11 @@
 #include "model/Moped.h"
 
-Moped::Moped(int capacity, const std::string &platenumber, const unsigned int &baseprice) : MotorVehicle(capacity, platenumber, baseprice) {}
+Moped::Moped(const int &engineDisplacement, const std::string &platenumber, const unsigned int &baseprice) : MotorVehicle(engineDisplacement, platenumber, baseprice) {}
 
-double Moped::getActualRentalPrice() {
+double Moped::getActualRentalPrice() const {
     return MotorVehicle::getActualRentalPrice();
 }
 
-std::string Moped::getVehicleInfo() {
-    return MotorVehicle::getVehicleInfo();
+std::string Moped::getInfo() const {
+    return MotorVehicle::getInfo();
 }
-
-//Moped::~Moped() {}

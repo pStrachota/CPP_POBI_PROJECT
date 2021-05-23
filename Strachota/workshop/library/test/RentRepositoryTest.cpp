@@ -1,28 +1,29 @@
 #include <boost/test/unit_test.hpp>
 #include <repositories/RentRepository.h>
-#include <repositories/StorageContainer.h>
+#include <model/Client.h>
+#include "model/Bicycle.h"
+#include "model/Gold.h"
+#include "model/Address.h"
+#include "model/Rent.h"
 
-/*
 
 struct TestSuiteRentRepositoryFixture {
-    const unsigned int testId = 1;
-    ClientPtr testaddress1;
-    VehiclePtr testaddress2;
-    AddressPtr testaddress3;
+    ClientTypePtr testClientTypeGold;;
+    ClientPtr testClient;
+    VehiclePtr testBicycle;
+    AddressPtr testAddress;
     pt::ptime test = pt::ptime(gr::date(2021,4,5), pt::hours(9)+pt::minutes(25));
-
 
     TestSuiteRentRepositoryFixture() {
 
-        testaddress3 = new Address("London", "Rue Morgue", "13");
-        testaddress1 = new Client("Piotr", "Strachota", "420", testaddress3);
-        testaddress2 = new Vehicle("US3333", 345);
+       testAddress = std::make_shared<Address>("London", "Rue Morgue", "13");
+       testClientTypeGold = std::make_shared<Gold>();
+       testClient = std::make_shared<Client>("Piotr", "Strachota", "420", testAddress, testClientTypeGold);
+       testBicycle = std::make_shared<Bicycle>("US3333", 345);
+
     }
 
     ~TestSuiteRentRepositoryFixture() {
-        delete testaddress1;
-        delete testaddress2;
-        delete testaddress3;
     }
 
 };
@@ -31,51 +32,42 @@ struct TestSuiteRentRepositoryFixture {
 BOOST_FIXTURE_TEST_SUITE(TestSuiteRentRepository, TestSuiteRentRepositoryFixture)
 
     BOOST_AUTO_TEST_CASE(AddRentPositivetest) {
-        auto r = new Rent(testId, testaddress1, testaddress2, test);
-        auto *rR = new RentRepository;
-        rR->addRent(r);
-        BOOST_TEST(rR->getRent(1) == r);
-        delete r;
-        delete rR;
+        RentPtr r = std::make_shared<Rent>(testClient, testBicycle, test);
+        RentRepository rR;
+        rR.add(r);
+        BOOST_TEST(rR.getObject(0) == r);
     }
 
+
     BOOST_AUTO_TEST_CASE(AddRentNegativeTest) {
-        auto *rR = new RentRepository;
-        rR->addRent(nullptr);
-        BOOST_TEST(rR->rentSize() == 0);
-        delete rR;
+        RentRepository rR;
+        rR.add(nullptr);
+        BOOST_TEST(rR.objectSize() == 0);
     }
 
     BOOST_AUTO_TEST_CASE(RemoveRentPositiveTest) {
-        auto r = new Rent(testId, testaddress1, testaddress2, test);
-        auto r2 = new Rent(2, testaddress1, testaddress2, test);
-        auto *rR = new RentRepository;
-        rR->addRent(r);
-        rR->addRent(r2);
-        rR->removeRent(r);
-        BOOST_TEST(rR->getRent(1) == r2);
-        delete r2;
-        delete rR;
+        RentPtr r = std::make_shared<Rent>(testClient, testBicycle, test);
+        RentPtr r2 = std::make_shared<Rent>(testClient, testBicycle, test);
+        RentRepository rR;
+        rR.add(r);
+        rR.add(r2);
+        rR.removeObject(r);
+        BOOST_TEST(rR.getObject(0) == r2);
 }
     BOOST_AUTO_TEST_CASE(RemoveRentNegativeTest) {
-        auto r = new Rent(testId, testaddress1, testaddress2, test);
-        auto *rR = new RentRepository;
-        rR->addRent(r);
-        rR->addRent(nullptr);
-        BOOST_TEST(rR->rentSize() == 1);
-        delete r;
-        delete rR;
+        RentPtr r = std::make_shared<Rent>(testClient, testBicycle, test);
+        RentRepository rR;
+        rR.add(r);
+        rR.add(nullptr);
+        BOOST_TEST(rR.objectSize() == 1);
 }
 
     BOOST_AUTO_TEST_CASE(GetRentSize) {
-        auto r = new Rent(testId, testaddress1, testaddress2, test);
-        auto *rR = new RentRepository;
-        rR->addRent(r);
-        BOOST_TEST(rR->rentSize() == 1);
-        delete r;
-        delete rR;
+        RentPtr r = std::make_shared<Rent>(testClient, testBicycle, test);
+        RentRepository rR;
+        rR.add(r);
+        BOOST_TEST(rR.objectSize() == 1);
 }
 
 
 BOOST_AUTO_TEST_SUITE_END()
- */

@@ -45,7 +45,7 @@ SHELL = /bin/sh
 CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E remove -f
+RM = /usr/bin/cmake -E removeObject -f
 
 # Escaping for special characters.
 EQUALS = =

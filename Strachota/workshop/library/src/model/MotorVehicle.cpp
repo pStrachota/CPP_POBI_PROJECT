@@ -1,8 +1,8 @@
 #include <model/MotorVehicle.h>
 
-MotorVehicle::MotorVehicle(const int &capacity, const std::string &platenumber, const unsigned int &baseprice) : engineDisplacement(capacity), Vehicle(platenumber, baseprice) {}
+MotorVehicle::MotorVehicle(const int &engineDisplacement, const std::string &platenumber, const unsigned int &baseprice) : engineDisplacement(engineDisplacement), Vehicle(platenumber, baseprice) {}
 
-double MotorVehicle::getActualRentalPrice() {
+double MotorVehicle::getActualRentalPrice() const {
     float wage = 0;
     float price;
     if (engineDisplacement < 1000)
@@ -26,11 +26,11 @@ double MotorVehicle::getActualRentalPrice() {
     return price;
 }
 
-//MotorVehicle::~MotorVehicle() {}
 
-std::string MotorVehicle::getVehicleInfo() {
+std::string MotorVehicle::getInfo() const {
     std::string chain;
-    chain = Vehicle::getVehicleInfo() + " " + std::to_string(engineDisplacement);
+    chain = Vehicle::getInfo() + " " + std::to_string(engineDisplacement);
     return chain;
 }
+
 

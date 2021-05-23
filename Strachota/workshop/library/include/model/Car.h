@@ -4,6 +4,10 @@
 #include "MotorVehicle.h"
 #include <iostream>
 
+/**
+ * @brief klasa pojazdu dziedziczaca z klasy Vehicle
+ */
+
 enum SegmentType {
     A,
     B,
@@ -15,10 +19,14 @@ enum SegmentType {
 class Car : public MotorVehicle {
     SegmentType segment;
 public:
-    Car(SegmentType test, int capacity, const std::string &platenumber, const unsigned int &baseprice);
-    //virtual ~Car();
-    virtual double getActualRentalPrice();
-    virtual std::string getVehicleInfo();
+    Car(SegmentType test, const int &engineDisplacement, const std::string &platenumber, const unsigned int &baseprice);
+    /**
+     * @brief getActualRentalPrice oblicza cene "uzywania" danego pojazdu,
+     * cena zalezy od typu pojazdu i jego cech
+     * @return cena za korzystanie z pojazdu
+     */
+    double getActualRentalPrice() const override;
+    std::string getInfo() const override;
 };
 
 

@@ -1,6 +1,6 @@
 #include <model/Gold.h>
 
-int Gold::getMaxVehicles() {
+int Gold::getMaxVehicles() const {
     return 4;
 }
 
@@ -9,7 +9,7 @@ double Gold::applyDiscount(int base) {
     return base;
 }
 
-std::string Gold::getTypeInfo() {
+std::string Gold::getTypeInfo() const{
     return "GOLD";
 }
 

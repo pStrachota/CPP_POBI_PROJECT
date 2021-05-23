@@ -1,8 +1,9 @@
 #include <model/Car.h>
 
-Car::Car(SegmentType test, int capacity, const std::string &platenumber, const unsigned int &baseprice) : segment(test), MotorVehicle(capacity, platenumber, baseprice) {}
+Car::Car(SegmentType test, const int &engineDisplacement, const std::string &platenumber, const unsigned int &baseprice) : segment(test),
+MotorVehicle(engineDisplacement, platenumber, baseprice) {}
 
-double Car::getActualRentalPrice() {
+double Car::getActualRentalPrice() const {
     float wage = 0;
     float price;
     if(segment == A) {
@@ -26,9 +27,10 @@ double Car::getActualRentalPrice() {
 
 //Car::~Car() {}
 
-std::string Car::getVehicleInfo() {
+std::string Car::getInfo() const{
     std::string chain;
-    chain = segment + " " + MotorVehicle::getVehicleInfo();
+    chain = segment + " " + MotorVehicle::getInfo();
     return chain;
 }
+
 

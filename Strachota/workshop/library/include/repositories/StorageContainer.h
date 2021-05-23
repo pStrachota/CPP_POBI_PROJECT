@@ -4,6 +4,8 @@
 #include "ClientRepository.h"
 #include "VehicleRepository.h"
 
+/*
+
 class StorageContainer {
     VehicleRepository vR;
     ClientRepository cR;
@@ -15,7 +17,7 @@ public:
     RentRepository getRentRepo();
 
 };
-
+*/
 
 
 

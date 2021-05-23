@@ -5,11 +5,11 @@ double Platinum::applyDiscount(int base) {
     return base;
 }
 
-int Platinum::getMaxVehicles() {
+int Platinum::getMaxVehicles() const {
     return 5;
 }
 
-std::string Platinum::getTypeInfo() {
+std::string Platinum::getTypeInfo() const {
     return "PLATINUM";
 }
 

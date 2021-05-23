@@ -7,11 +7,11 @@ double Diamond::applyDiscount(int price) {
     else return 60.0 / 100.0 * price;
 }
 
-int Diamond::getMaxVehicles() {
+int Diamond::getMaxVehicles() const {
     return 10;
 }
 
-std::string Diamond::getTypeInfo() {
+std::string Diamond::getTypeInfo() const {
     return "DIAMOND";
 }
 

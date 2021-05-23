@@ -11,7 +11,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteVehicle, TestSuiteVehicleFixture)
     BOOST_AUTO_TEST_CASE(ParameterConstrutorTest) {
 
         Vehicle v(testPlateNumber, testBasePrice);
-        BOOST_TEST(testPlateNumber == v.getPlateNumber());
+       BOOST_TEST(testPlateNumber == v.getId());
         BOOST_TEST(testBasePrice == v.getBasePrice());
     }
 
@@ -19,14 +19,14 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteVehicle, TestSuiteVehicleFixture)
 
         Vehicle v(testPlateNumber, testBasePrice);
         v.setPlateNumber("HA320P");
-        BOOST_TEST(v.getPlateNumber() == "HA320P");
+        BOOST_TEST(v.getId() == "HA320P");
     }
 
     BOOST_AUTO_TEST_CASE(SetPlateNumberNegativeTest) {
 
         Vehicle v(testPlateNumber, testBasePrice);
-        v.setPlateNumber("");
-        BOOST_TEST(v.getPlateNumber() == testPlateNumber);
+        BOOST_REQUIRE_THROW(v.setPlateNumber(""), std::logic_error);
+        BOOST_TEST(v.getId() == testPlateNumber);
     }
 
     BOOST_AUTO_TEST_CASE(SetBasePricePositiveTest) {

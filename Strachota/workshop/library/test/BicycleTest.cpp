@@ -2,7 +2,6 @@
 #include "model/Bicycle.h"
 
 
-
 struct TestSuiteBicycleFixture {
     const std::string testPlateNumber = "WW42420";
     const unsigned int testBasePrice = 100;
