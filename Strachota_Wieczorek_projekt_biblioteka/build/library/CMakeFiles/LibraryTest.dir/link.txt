@@ -1,0 +1,1 @@
+/usr/bin/g++     CMakeFiles/LibraryTest.dir/src/model/Client.cpp.o  -o LibraryTest libLibrary.a /usr/lib/x86_64-linux-gnu/libboost_unit_test_framework.so 

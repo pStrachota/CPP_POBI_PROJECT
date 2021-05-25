@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/student/projekt/Strachota_Wieczorek_projekt_biblioteka/build/program",
+  "command": "/usr/bin/g++   -I/home/student/projekt/Strachota_Wieczorek_projekt_biblioteka/program/include  -g3 -gdwarf-4   -std=gnu++11 -o CMakeFiles/Program.dir/src/main.cpp.o -c /home/student/projekt/Strachota_Wieczorek_projekt_biblioteka/program/src/main.cpp",
+  "file": "/home/student/projekt/Strachota_Wieczorek_projekt_biblioteka/program/src/main.cpp"
+}
+]
