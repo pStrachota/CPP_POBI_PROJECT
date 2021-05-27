@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.4)
 project(Library)
 
 set(SOURCE_FILES include/model/Client.h src/model/Client.cpp
-        test/master.cpp)
+        test/master.cpp include/typedefs.h include/model/ClientType.h src/model/ClientType.cpp src/model/Student.cpp include/model/Student.h src/model/Outsider.cpp include/model/Outsider.h src/model/universityEmployee.cpp include/model/universityEmployee.h src/model/Address.cpp include/model/Address.h test/AddressTest.cpp test/ClientTest.cpp src/exceptions/ClientException.cpp include/exceptions/ClientException.h include/repositories/Templates.h src/repositories/ClientRepository.cpp include/repositories/ClientRepository.h test/ClientRepositoryTest.cpp src/managers/ClientManager.cpp include/managers/ClientManager.h test/ClientManagerTest.cpp)
 #utwórz bibliotekę typu STATIC, SHARED albo MODULE ze wskazanych źródeł
 add_library(Library ${SOURCE_FILES} include/model/Client.h src/model/Client.cpp)
 
@@ -16,7 +16,7 @@ include_directories(
         ${Boost_INCLUDE_DIRS}
 )
 
-set(SOURCE_TEST_FILES include/model/Client.h src/model/Client.cpp test/master.cpp) # tu w przyszłości będą dodawane pliki źródłowe testów
+set(SOURCE_TEST_FILES include/model/Client.h src/model/Client.cpp test/master.cpp include/typedefs.h include/model/ClientType.h src/model/ClientType.cpp src/model/Student.cpp include/model/Student.h src/model/Outsider.cpp include/model/Outsider.h src/model/universityEmployee.cpp include/model/universityEmployee.h src/model/Address.cpp include/model/Address.h test/AddressTest.cpp test/ClientTest.cpp src/exceptions/ClientException.cpp include/exceptions/ClientException.h include/repositories/Templates.h src/repositories/ClientRepository.cpp include/repositories/ClientRepository.h test/ClientRepositoryTest.cpp src/managers/ClientManager.cpp include/managers/ClientManager.h test/ClientManagerTest.cpp) # tu w przyszłości będą dodawane pliki źródłowe testów
 
 add_executable (LibraryTest ${SOURCE_TEST_FILES} include/model/Client.h src/model/Client.cpp test/master.cpp)
 
