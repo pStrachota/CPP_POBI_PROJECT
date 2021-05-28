@@ -19,7 +19,7 @@ class ClientType;
 class VehicleRepository;
 class RentRepository;
 class StorageContainer;
-
+class RentableItem;
 
 typedef std::shared_ptr<Client> ClientPtr;
 typedef std::shared_ptr<ClientType> ClientTypePtr;
@@ -27,6 +27,8 @@ typedef std::shared_ptr<Rent> RentPtr;
 typedef std::shared_ptr<Vehicle> VehiclePtr;
 typedef std::shared_ptr<Address> AddressPtr;
 typedef std::shared_ptr<StorageContainer> ContainerPtr;
+
+typedef std::shared_ptr<RentableItem> RentableItemPtr;
 
 //typedef std::shared_ptr<VehicleRepository> VehicleRepoPtr;
 //typedef std::shared_ptr<RentRepository> RentRepoPtr;

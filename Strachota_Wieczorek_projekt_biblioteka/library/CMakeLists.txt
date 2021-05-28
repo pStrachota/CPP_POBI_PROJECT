@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.4)
 project(Library)
 
 set(SOURCE_FILES include/model/Client.h src/model/Client.cpp
-        test/master.cpp include/typedefs.h include/model/ClientType.h src/model/ClientType.cpp src/model/Student.cpp include/model/Student.h src/model/Outsider.cpp include/model/Outsider.h src/model/universityEmployee.cpp include/model/universityEmployee.h src/model/Address.cpp include/model/Address.h test/AddressTest.cpp test/ClientTest.cpp src/exceptions/ClientException.cpp include/exceptions/ClientException.h include/repositories/Templates.h src/repositories/ClientRepository.cpp include/repositories/ClientRepository.h test/ClientRepositoryTest.cpp src/managers/ClientManager.cpp include/managers/ClientManager.h test/ClientManagerTest.cpp)
+        test/master.cpp include/typedefs.h include/model/ClientType.h src/model/ClientType.cpp src/model/Student.cpp include/model/Student.h src/model/Outsider.cpp include/model/Outsider.h src/model/universityEmployee.cpp include/model/universityEmployee.h src/model/Address.cpp include/model/Address.h test/AddressTest.cpp test/ClientTest.cpp src/exceptions/ClientException.cpp include/exceptions/ClientException.h include/repositories/Templates.h src/repositories/ClientRepository.cpp include/repositories/ClientRepository.h test/ClientRepositoryTest.cpp src/managers/ClientManager.cpp include/managers/ClientManager.h test/ClientManagerTest.cpp src/model/RentableItem.cpp include/model/RentableItem.h src/model/Article.cpp include/model/Article.h src/model/Book.cpp include/model/Book.h src/model/Rent.cpp include/model/Rent.h)
 #utwórz bibliotekę typu STATIC, SHARED albo MODULE ze wskazanych źródeł
 add_library(Library ${SOURCE_FILES} include/model/Client.h src/model/Client.cpp)
 
