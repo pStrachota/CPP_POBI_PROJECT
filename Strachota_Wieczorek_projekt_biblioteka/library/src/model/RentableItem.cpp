@@ -12,6 +12,7 @@ std::string RentableItem::getRentableItemInfo() const {
     return output;
 }
 
+
 const std::string & RentableItem::getSerialNumber() const {
     return serialNumber;
 }

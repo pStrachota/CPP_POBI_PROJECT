@@ -15,24 +15,30 @@
 namespace pt = boost::posix_time;
 namespace gr = boost::gregorian;
 
+class Client;
+class RentableItem;
+
 class Rent {
 private:
     boost::uuids::uuid RentId;
     pt::ptime beginTime;
     pt::ptime endTime;
-    int rentCost;
+    float rentCost = 0;
     ClientPtr client;
     RentableItemPtr rentableItem;
 public:
     Rent(pt::ptime beginTime, ClientPtr client, RentableItemPtr rentableItem);
     void endRent(pt::ptime endTime);
-    const std::string &getRentInfo() const;
+    const std::string getRentInfo() const;
     int getRentPenaltyDays() const;
-    ClientPtr getClient();
-    RentableItemPtr getRentableItem();
+    ClientPtr getClient() const;
+    RentableItemPtr getRentableItem() const;
     pt::ptime getBeginTime() const;
     pt::ptime getEndTime() const;
     float getRentCost() const;
+    boost::uuids::uuid getRentId() const;
+    void setRentCost(float);
+    void setEndTime(pt::ptime);
 };
 
 
