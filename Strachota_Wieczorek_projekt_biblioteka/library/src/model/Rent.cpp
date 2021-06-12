@@ -3,6 +3,9 @@
 #include "model/RentableItem.h"
 #include <math.h>
 
+
+//zmienic client i renetableItem na referencje (pisze zeby nie zapomniec)
+
 Rent::Rent(pt::ptime rentBeginTime, ClientPtr client, RentableItemPtr rentableItem) : client(client), rentableItem(rentableItem) {
     this->rentCost = 0;
     //this->ended = false;

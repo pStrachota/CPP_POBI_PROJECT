@@ -9,13 +9,22 @@
 #include <iostream>
 #include <vector>
 #include "typedefs.h"
+#include <memory>
 
 
 class Rent;
 class Address;
 class ClientType;
 
-class Client {
+
+class Observer {
+
+public:
+    virtual void notify(ClientPtr) = 0;
+};
+
+
+class Client : public std::enable_shared_from_this<Client> {
 
 private:
     std::string name;
@@ -24,10 +33,10 @@ private:
     AddressPtr address;
     ClientTypePtr clientType;
     bool archive = false;
-
+    ObserverPtr observer;
 public:
     Client(const std::string &name, const std::string &surname, const std::string &personalId,
-           const AddressPtr &address, const ClientTypePtr &clientType);
+           const AddressPtr &address, const ClientTypePtr &clientType, const ObserverPtr &observer);
     const std::string &getName() const;
     void setClientType(const ClientTypePtr &clientType);
     std::string getInfo() const;

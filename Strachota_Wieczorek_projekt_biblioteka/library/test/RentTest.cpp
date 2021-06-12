@@ -25,8 +25,8 @@ struct TestSuiteRentFixture{
     pt::ptime testDate5 = pt::ptime(gr::date(2021,3,1), pt::hours(12) + pt::minutes(31));
     pt::ptime testDate6 = pt::ptime(gr::date(2021,4,1), pt::hours(12) + pt::minutes(31));
 
-    ClientPtr client1 = std::make_shared<Client>("Jake", "Paul", "007", testAddress1, testClientTypeStudent);
-    ClientPtr client2 = std::make_shared<Client>("Walter", "White", "123", testAddress2, testClientTypeEmployee);
+    ClientPtr client1 = std::make_shared<Client>("Jake", "Paul", "007", testAddress1, testClientTypeStudent, nullptr);
+    ClientPtr client2 = std::make_shared<Client>("Walter", "White", "123", testAddress2, testClientTypeEmployee, nullptr);
 
 };
 

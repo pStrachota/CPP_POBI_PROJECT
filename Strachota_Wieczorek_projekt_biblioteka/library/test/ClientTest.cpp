@@ -8,6 +8,7 @@
 #include "model/Student.h"
 #include "model/universityEmployee.h"
 #include "model/Outsider.h"
+#include "exceptions/ClientException.h"
 
 
 
@@ -41,7 +42,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClient, TestSuiteClientFixture)
 
     BOOST_AUTO_TEST_CASE(ParameterConstrutorTest) {
 
-        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent);
+        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent, nullptr);
         BOOST_CHECK_EQUAL(testFirstName, c->getName());
         BOOST_CHECK_EQUAL(testLastName, c->getSurname());
         BOOST_CHECK_EQUAL(testaddress1, c->getAddress());
@@ -53,19 +54,19 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClient, TestSuiteClientFixture)
 
 
     BOOST_AUTO_TEST_CASE(StudentClientTypeTest) {
-        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent);
+        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent, nullptr);
         BOOST_CHECK_EQUAL(c->getMaxItems(), 2);
         BOOST_CHECK_EQUAL(c->getMaxDays(), 20);
     }
 
     BOOST_AUTO_TEST_CASE(universityEmployeeClientTypeTest) {
-        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeUniversityEmployee);
+        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeUniversityEmployee, nullptr);
         BOOST_CHECK_EQUAL(c->getMaxItems(), 3);
         BOOST_CHECK_EQUAL(c->getMaxDays(), 30);
 
     }
     BOOST_AUTO_TEST_CASE(OutsiderClientTypeTest) {
-        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeOutsider);
+        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeOutsider, nullptr);
         BOOST_CHECK_EQUAL(c->getMaxItems(), 1);
         BOOST_CHECK_EQUAL(c->getMaxDays(), 10);
     }
@@ -74,39 +75,39 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClient, TestSuiteClientFixture)
 
 
     BOOST_AUTO_TEST_CASE(SetFirstNamePositiveTest) {
-        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent);
+        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent, nullptr);
         c->setName("Piotr");
         BOOST_TEST(c->getName() == "Piotr");
     }
 
     BOOST_AUTO_TEST_CASE(SetFirstNameNegativeTest) {
-        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent);
-        BOOST_REQUIRE_THROW(    c->setName(""), std::logic_error);
+        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent, nullptr);
+        BOOST_REQUIRE_THROW(    c->setName(""), exceptionFirstName);
         BOOST_TEST(c->getName() == testFirstName);
     }
     BOOST_AUTO_TEST_CASE(SetLastNamePositiveTest) {
-        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent);
+        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent, nullptr);
         c->setSurname("Strachota");
         BOOST_TEST(c->getSurname() == "Strachota");
     }
     BOOST_AUTO_TEST_CASE(SetLastNameNegativeTest) {
-        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent);
-        BOOST_REQUIRE_THROW(c->setSurname(""), std::logic_error);
+        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent, nullptr);
+        BOOST_REQUIRE_THROW(c->setSurname(""), exceptionLastName);
         BOOST_TEST(c->getSurname() == testLastName);
     }
     BOOST_AUTO_TEST_CASE(SetAddressPositiveTest) {
-        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent);
+        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent, nullptr);
         c->setAddress(testaddress2);
         BOOST_TEST(c->getAddress() == testaddress2);
     }
     BOOST_AUTO_TEST_CASE(SetAddressNegativeTest) {
-        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent);
-        BOOST_REQUIRE_THROW(c->setAddress(nullptr), std::logic_error);
+        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent, nullptr);
+        BOOST_REQUIRE_THROW(c->setAddress(nullptr), exceptionAddress);
         BOOST_TEST(c->getAddress() == testaddress1);
     }
     BOOST_AUTO_TEST_CASE(ClientTypeExceptionsTest) {
-        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent);
-        BOOST_REQUIRE_THROW(c->setClientType(nullptr), std::logic_error);
+        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent, nullptr);
+        BOOST_REQUIRE_THROW(c->setClientType(nullptr), exceptionClientType);
     }
 
     /*BOOST_AUTO_TEST_CASE(ClientFunctorIdTest) {
