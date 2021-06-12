@@ -6,14 +6,14 @@ serialNumber(serialNumber), author(author), title(title) {
 
 }
 
-std::string RentableItem::getRentableItemInfo() const {
+std::string RentableItem::getInfo() const {
     std::string output;
     output = "Serial number: " + serialNumber + " author: " + author + " title " + title;
     return output;
 }
 
 
-const std::string & RentableItem::getSerialNumber() const {
+const std::string & RentableItem::getId() const {
     return serialNumber;
 }
 
@@ -27,4 +27,8 @@ const std::string & RentableItem::getTitle() const {
 
 bool RentableItem::isArchive() const {
     return archive;
+}
+
+void RentableItem::setArchive(bool archive) {
+    RentableItem::archive = archive;
 }

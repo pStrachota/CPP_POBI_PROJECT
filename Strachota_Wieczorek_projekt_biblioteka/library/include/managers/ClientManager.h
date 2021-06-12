@@ -22,8 +22,9 @@ public:
     std::vector<ClientPtr> findClients(const ClientPredicate&);
 
     std::vector<ClientPtr> findAllClients();
-    void unregisterClient(const std::string &);
+    void unregisterClient(const ClientPtr& toDel);
     void saveAllClientsInfoToFile();
+    void saveClientsToFileByPredicate(const ClientPredicate&);
 
 };
 

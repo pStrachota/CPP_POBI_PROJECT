@@ -20,8 +20,10 @@ private:
 public:
     RentableItemPtr getRentableItem(const std::string& serialNumber);
     RentableItemPtr registerBook(const std::string& serialNumber, const std::string& author, const std::string& title, const std::string& publishingHouse);
-
-
+    RentableItemPtr registerArticle(const std::string& serialNumber, const std::string& author, const std::string& title, const std::string& parentOrganisation);
+    void unregisterRentableItem(const RentableItemPtr& toDel);
+    std::vector<RentableItemPtr> findRentableItem(const RentableItemPredicate&);
+    void saveRentableItemsToFileByPredicate(const RentableItemPredicate&);
 };
 
 

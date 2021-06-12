@@ -23,9 +23,9 @@ ClientPtr clientManager::getClient(const std::string& personalId) {
     return clientRepo.findById(personalId);
 }
 
-void clientManager::unregisterClient(const std::string &personalId) {
-    if(getClient(personalId) != nullptr) {
-        getClient(personalId)->setArchive(true);
+void clientManager::unregisterClient(const ClientPtr& toDel) {
+    if(toDel != nullptr) {
+        toDel->setArchive(true);
     }
 }
 
@@ -54,6 +54,25 @@ void clientManager::saveAllClientsInfoToFile() {
         throw exceptionCannotOpenFile("CANNOT OPEN FILE TO SAVE DATA");
     } else {
         for (auto &i : findAllClients()) {
+            proba << i->getInfo() << std::endl;
+        }
+        proba.close();
+    }
+}
+
+void clientManager::saveClientsToFileByPredicate(const ClientPredicate &predicate) {
+    ClientPredicate sum = [&predicate](const ClientPtr& test) {
+        return predicate(test) && !test->isArchive();
+    };
+    std::vector<ClientPtr> result = clientRepo.findByPredicate(sum);
+
+    std::ofstream proba;
+    proba.open("/home/student/ClientsbyPredicateInfo");
+
+    if (!proba) {
+        throw exceptionCannotOpenFile("CANNOT OPEN FILE TO SAVE DATA");
+    } else {
+        for (auto &i : result) {
             proba << i->getInfo() << std::endl;
         }
         proba.close();

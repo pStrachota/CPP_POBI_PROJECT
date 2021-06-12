@@ -71,7 +71,7 @@ RentableItemPtr Rent::getRentableItem() const{
 
 const std::string Rent::getRentInfo() const {
     std::string output;
-    output = "| Klient |" + getClient()->getInfo() + " wypozyczyl " + " " + getRentableItem()->getRentableItemInfo();
+    output = "| Klient |" + getClient()->getInfo() + " wypozyczyl " + " " + getRentableItem()->getInfo();
     return output;
 }
 /*
