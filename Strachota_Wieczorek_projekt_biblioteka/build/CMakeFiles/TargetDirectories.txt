@@ -1,0 +1,11 @@
+/home/student/projekt/Strachota_Wieczorek_projekt_biblioteka/build/CMakeFiles/rebuild_cache.dir
+/home/student/projekt/Strachota_Wieczorek_projekt_biblioteka/build/CMakeFiles/test.dir
+/home/student/projekt/Strachota_Wieczorek_projekt_biblioteka/build/CMakeFiles/edit_cache.dir
+/home/student/projekt/Strachota_Wieczorek_projekt_biblioteka/build/library/CMakeFiles/rebuild_cache.dir
+/home/student/projekt/Strachota_Wieczorek_projekt_biblioteka/build/library/CMakeFiles/edit_cache.dir
+/home/student/projekt/Strachota_Wieczorek_projekt_biblioteka/build/library/CMakeFiles/Library.dir
+/home/student/projekt/Strachota_Wieczorek_projekt_biblioteka/build/library/CMakeFiles/test.dir
+/home/student/projekt/Strachota_Wieczorek_projekt_biblioteka/build/program/CMakeFiles/rebuild_cache.dir
+/home/student/projekt/Strachota_Wieczorek_projekt_biblioteka/build/program/CMakeFiles/edit_cache.dir
+/home/student/projekt/Strachota_Wieczorek_projekt_biblioteka/build/program/CMakeFiles/Program.dir
+/home/student/projekt/Strachota_Wieczorek_projekt_biblioteka/build/program/CMakeFiles/test.dir
