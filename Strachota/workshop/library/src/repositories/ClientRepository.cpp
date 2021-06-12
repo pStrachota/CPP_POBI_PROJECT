@@ -2,7 +2,7 @@
 #include "model/Client.h"
 #include <iostream>
 #include "repositories/Repository.h"
-class Client;
+//class Client;
 
 
 /*

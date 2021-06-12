@@ -1,8 +1,8 @@
-#include <managers/ClientManager.h>
+#include "managers/ClientManager.h"
 #include "model/Client.h"
 #include <memory>
 #include <functional>
-#include <repositories/Repository.h>
+#include "repositories/Repository.h"
 
 ClientPtr clientManager::registerClient(const std::string &firstName, const std::string &lastName, const std::string& personalID, const AddressPtr &address, const ClientTypePtr &type) {
 
@@ -28,13 +28,14 @@ void clientManager::unregisterClient(const std::string &personalId) {
 }
 
 std::vector<ClientPtr> clientManager::findClients(const ClientPredicate& predicate) {
-    bool check = false;
+   /* bool check = false;
     ClientPredicate predicateFalse = [check](ClientPtr ptr) {
         return ptr->isArchive() == check;
+    };*/
+    ClientPredicate sum = [&predicate](const ClientPtr& test) {
+        return predicate(test) && !test->isArchive();
     };
-    ClientPredicate sum = [predicateFalse, predicate](ClientPtr test) {
-        return predicateFalse && predicate;
-    };
+
     return clientRepo.findByPredicate(sum);
 }
 

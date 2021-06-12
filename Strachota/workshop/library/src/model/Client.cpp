@@ -48,7 +48,11 @@ void Client::setArchive(bool archive) {
 }
 
 void Client::setClientType(const ClientTypePtr &clientType) {
-    Client::clientType = clientType;
+    if(clientType == nullptr) {
+        throw ClientException(ClientException::exceptionClientType);
+    } else {
+        this->clientType = clientType;
+    }
 }
 
 void Client::setFirstName(const std::string &firstName) {
