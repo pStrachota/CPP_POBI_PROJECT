@@ -2,6 +2,9 @@
 #include "model/Client.h"
 #include "model/RentableItem.h"
 
+
+//zmienic client i renetableItem na referencje (pisze zeby nie zapomniec)
+
 Rent::Rent(pt::ptime rentBeginTime, ClientPtr client, RentableItemPtr rentableItem) : client(client), rentableItem(rentableItem) {
     if(rentBeginTime == pt::not_a_date_time) beginTime = pt::second_clock::local_time();
     else beginTime = rentBeginTime;

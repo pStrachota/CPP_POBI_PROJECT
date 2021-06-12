@@ -3,8 +3,26 @@
 ClientException::ClientException(const std::string &arg) : logic_error(arg)
 {}
 
-const std::string ClientException::exceptionFirstName = "INVALID FIRST NAME";
-const std::string ClientException::exceptionLastName = "INVALID LAST NAME";
-const std::string ClientException::exceptionPersonalID = "INVALID PERSONAL ID";
-const std::string ClientException::exceptionAddress = "INVALID ADDRESS";
-const std::string ClientException::exceptionClientType = "INVALID CLIENT TYPE";
+std::string ClientException::message() const {
+    return what();
+}
+
+exceptionFirstName::exceptionFirstName(const std::string &message) : ClientException(message){
+
+}
+
+exceptionLastName::exceptionLastName(const std::string &message) : ClientException(message) {
+
+}
+
+exceptionPersonalID::exceptionPersonalID(const std::string &message) : ClientException(message) {
+
+}
+
+exceptionAddress::exceptionAddress(const std::string &message) : ClientException(message) {
+
+}
+
+exceptionClientType::exceptionClientType(const std::string &message) : ClientException(message) {
+
+}

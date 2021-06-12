@@ -12,7 +12,7 @@
 #include <vector>
 
 /**
- * @brief klasa szablonowa dla klas wypozyczen, klientow, i pojazdow
+ * @brief klasa szablonowa dla klas
  * @tparam T - typ klasy
  */
 

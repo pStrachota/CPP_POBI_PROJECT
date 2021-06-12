@@ -8,7 +8,7 @@ ClientPtr clientManager::registerClient(const std::string &firstName, const std:
 
     ClientPtr clientCheck = getClient(personalID);
     if (clientCheck == nullptr) {
-        ClientPtr newClient = std::make_shared<Client>(firstName, lastName, personalID, address, type);
+        ClientPtr newClient = std::make_shared<Client>(firstName, lastName, personalID, address, type, nullptr);
         clientRepo.add(newClient);
         return newClient;
 
