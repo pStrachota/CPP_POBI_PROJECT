@@ -1,6 +1,7 @@
 #include "model/Rent.h"
 #include "model/Client.h"
 #include "model/RentableItem.h"
+#include <math.h>
 
 Rent::Rent(pt::ptime rentBeginTime, ClientPtr client, RentableItemPtr rentableItem) : client(client), rentableItem(rentableItem) {
     if(rentBeginTime == pt::not_a_date_time) beginTime = pt::second_clock::local_time();
@@ -50,7 +51,8 @@ void Rent::setEndTime(pt::ptime time) {
 void Rent::endRent(pt::ptime endTime) {
     setEndTime(endTime);
     double penalty = getClient()->getPenalty();
-    float total_cost = getRentPenaltyDays() * float(penalty);
+    float total_cost = float(int(getRentPenaltyDays())) * float(penalty);
+    //roundf(total_cost);
     setRentCost(total_cost);
 }
 

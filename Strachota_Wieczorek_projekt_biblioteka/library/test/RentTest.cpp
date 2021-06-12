@@ -23,6 +23,7 @@ struct TestSuiteRentFixture{
     pt::ptime testDate3 = pt::ptime(gr::date(2021,3,23), pt::hours(12) + pt::minutes(30));
     pt::ptime testDate4 = pt::ptime(gr::date(2021,3,28), pt::hours(12) + pt::minutes(30));
     pt::ptime testDate5 = pt::ptime(gr::date(2021,3,1), pt::hours(12) + pt::minutes(31));
+    pt::ptime testDate6 = pt::ptime(gr::date(2021,4,1), pt::hours(12) + pt::minutes(31));
 
     ClientPtr client1 = std::make_shared<Client>("Jake", "Paul", "007", testAddress1, testClientTypeStudent);
     ClientPtr client2 = std::make_shared<Client>("Walter", "White", "123", testAddress2, testClientTypeEmployee);
@@ -56,6 +57,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteRent,TestSuiteRentFixture)
 
     BOOST_AUTO_TEST_CASE(PenaltyDaysGetterTest)
     {
+        //client student, max days 20
         Rent r1(testDate1,client1,book);
         r1.setEndTime(testDate2);
         BOOST_TEST(r1.getRentPenaltyDays() == 0);
@@ -65,22 +67,43 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteRent,TestSuiteRentFixture)
         BOOST_TEST(r1.getRentPenaltyDays() == 7);
         r1.setEndTime(testDate5);
         BOOST_TEST(r1.getRentPenaltyDays() == 0);
+
+        //client univ employee, max days 30
+        Rent r2(testDate1,client2,book);
+        r2.setEndTime(testDate2);
+        BOOST_TEST(r2.getRentPenaltyDays() == 0);
+        r2.setEndTime(testDate3);
+        BOOST_TEST(r2.getRentPenaltyDays() == 0);
+        r2.setEndTime(testDate6);
+        BOOST_TEST(r2.getRentPenaltyDays() == 1);
+
     }
 
-    BOOST_AUTO_TEST_CASE(EndRentTest)
+    BOOST_AUTO_TEST_CASE(EndRentTestClientStudent)
     {
-    // client student
+        // client student, max days 20
         Rent r1(testDate1,client1,book);
 
         r1.endRent(testDate2);
-        BOOST_TEST(r1.getRentCost() == (0 * 0.5));
+        BOOST_TEST(r1.getRentCost() == (0 * 0.5),boost::test_tools::tolerance(0.01));
         r1.endRent(testDate3);
-        BOOST_TEST(r1.getRentCost() == (2 * 0.5));
+        BOOST_TEST(r1.getRentCost() == (2 * 0.5),boost::test_tools::tolerance(0.01));
         r1.endRent(testDate4);
-        BOOST_TEST(r1.getRentCost() == (7 * 0.5));
+        BOOST_TEST(r1.getRentCost() == (7 * 0.5),boost::test_tools::tolerance(0.01));
         r1.endRent(testDate5);
-        BOOST_TEST(r1.getRentCost() == (0 * 0.5));
+        BOOST_TEST(r1.getRentCost() == (0 * 0.5),boost::test_tools::tolerance(0.01));
+
+        //client univ employee, max days 30
+        Rent r2(testDate1,client2,book);
+        r2.endRent(testDate2);
+        BOOST_TEST(r2.getRentCost() == 0,boost::test_tools::tolerance(0.01));
+        r2.endRent(testDate3);
+        BOOST_TEST(r2.getRentCost() == 0,boost::test_tools::tolerance(0.01));
+        r2.endRent(testDate6);
+        BOOST_TEST(r2.getRentCost() == (1* 0.2),boost::test_tools::tolerance(0.01));
     }
+
+
 
 
 BOOST_AUTO_TEST_SUITE_END()
