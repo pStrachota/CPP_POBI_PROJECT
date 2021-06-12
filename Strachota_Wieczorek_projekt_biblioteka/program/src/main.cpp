@@ -52,13 +52,5 @@ int main() {
         std::cout << taniec[i]->getInfo() << std::endl;
     }*/
 
-    /* kilka drobnych testow
-    Book b1("123","john","WAWA2","MDM");
-    std::cout << b1.getRentableItemInfo() << "\n";
-    std::cout << b1.getBookInfo()<< "\n";
-    Article a1("123","john","WAWA2","MDM");
-    std::cout << a1.getRentableItemInfo() << "\n";
-    std::cout << a1.getArticleInfo();
-    */
     return 0;
 }

@@ -1,6 +1,7 @@
 #include "model/Rent.h"
 #include "model/Client.h"
 #include "model/RentableItem.h"
+#include <math.h>
 
 
 //zmienic client i renetableItem na referencje (pisze zeby nie zapomniec)
@@ -53,7 +54,8 @@ void Rent::setEndTime(pt::ptime time) {
 void Rent::endRent(pt::ptime endTime) {
     setEndTime(endTime);
     double penalty = getClient()->getPenalty();
-    float total_cost = getRentPenaltyDays() * float(penalty);
+    float total_cost = float(int(getRentPenaltyDays())) * float(penalty);
+    //roundf(total_cost);
     setRentCost(total_cost);
 }
 
