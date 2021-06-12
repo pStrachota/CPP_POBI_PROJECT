@@ -36,8 +36,10 @@ struct TestSuiteRentRepositoryFixture {
         testaddress1 = std::make_shared<Address>("London", "Accacia Avenue", "22");
         testaddress2 = std::make_shared<Address>("London", "Rue Morgue", "13");
 
-        ClientPtr c1 = std::make_shared<Client>("Piotrus", "Strachota", "420", testaddress2, testClientTypeStudent);
-        ClientPtr c2 = std::make_shared<Client>("Pawel", "Wieczorek", "007", testaddress1, testClientTypeUniversityEmployee);
+        ClientPtr c1 = std::make_shared<Client>("Piotrus", "Strachota", "420", testaddress2, testClientTypeStudent,
+                                                nullptr);
+        ClientPtr c2 = std::make_shared<Client>("Pawel", "Wieczorek", "007", testaddress1, testClientTypeUniversityEmployee,
+                                                nullptr);
 
         BookPtr book = std::make_shared<Book>("123", "Edison", "Harry Potter","Zodiac");
         ArticlePtr article = std::make_shared<Article>("777", "Watts", "Harry Potter 2","Harvard");
