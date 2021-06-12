@@ -30,6 +30,14 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClientManager, TestSuiteClientManagerFixture)
 
     }
 
+    BOOST_AUTO_TEST_CASE(unregisterClientTest) {
+        clientManager c;
+        ClientPtr client = c.registerClient("Piotr", "Strachota", "1", testAddress, testClientTypeStudent);
+        c.unregisterClient(client);
+        BOOST_TEST(client->isArchive() == true);
+
+    }
+
     BOOST_AUTO_TEST_CASE(findByPersonalIdTestNegativeTest) {
         clientManager c;
         ClientPtr client = c.registerClient("Piotr", "Strachota", "1", testAddress, testClientTypeStudent);
@@ -43,8 +51,8 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClientManager, TestSuiteClientManagerFixture)
         ClientPtr client2 = c.registerClient("Piotr", "Majdan", "2", testAddress, testClientTypeStudent);
         ClientPtr client3 = c.registerClient("Piotr", "Janczyk", "3", testAddress, testClientTypeStudent);
         ClientPtr client4 = c.registerClient("Piotr", "Strachota", "4", testAddress, testClientTypeStudent);
-        c.unregisterClient("2");
-        c.unregisterClient("4");
+        c.unregisterClient(client2);
+        c.unregisterClient(client4);
 
         std::string test = "Strachota";
         ClientPredicate predicate = [test](const ClientPtr& ptr) {

@@ -9,14 +9,9 @@ const std::string & Book::getPublishingHouse() const {
     return publishingHouse;
 }
 
-std::string Book::getRentableItemInfo() const {
+std::string Book::getInfo() const {
     std::string output;
-    output =  RentableItem::getRentableItemInfo();
+    output = RentableItem::getInfo() + " publishing house " + publishingHouse;
     return output;
 }
 
-std::string Book::getBookInfo() const {
-    std::string output;
-    output =  Book::getRentableItemInfo() + " publishing house " + publishingHouse;
-    return output;
-}

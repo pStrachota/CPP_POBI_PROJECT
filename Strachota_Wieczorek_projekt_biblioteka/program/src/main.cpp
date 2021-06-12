@@ -6,6 +6,8 @@
 #include "model/Book.h"
 #include "managers/ClientManager.h"
 #include "exceptions/ClientException.h"
+#include <regex>
+#include "model/FunctorPredicates.h"
 
 class ChangeObserver : public Observer {
 
@@ -30,6 +32,13 @@ int main() {
     ClientPtr client3 = c.registerClient("Janek", "Strachota", "3", testAddress, testClientTypeStudent);
     ClientPtr client4 = c.registerClient("Olgierd", "Strach4ota", "4", testAddress, testClientTypeStudent);
 
+
+    //testy predykatow/funktorow
+    std::regex tango("(Strachyyyy)(.*)");
+    LastNamePredicate predicate(tango);
+    std::cout << std::boolalpha << predicate(tancerz) << std::endl;
+
+    c.saveAllClientsInfoToFile();
     //tancerz->setName("TancerzPogo");
 
     try {

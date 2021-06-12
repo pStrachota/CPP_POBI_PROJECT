@@ -9,6 +9,7 @@
 #include "model/universityEmployee.h"
 #include "model/Outsider.h"
 #include "exceptions/ClientException.h"
+#include "model/FunctorPredicates.h"
 
 
 
@@ -110,19 +111,27 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClient, TestSuiteClientFixture)
         BOOST_REQUIRE_THROW(c->setClientType(nullptr), exceptionClientType);
     }
 
-    /*BOOST_AUTO_TEST_CASE(ClientFunctorIdTest) {
-        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent);
+    BOOST_AUTO_TEST_CASE(ClientFunctorIdTest) {
+        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent, nullptr);
         IdPredicate predicate(testPersonalID);
         bool accept = predicate(c);
         BOOST_CHECK_EQUAL(accept, true);
     }
     BOOST_AUTO_TEST_CASE(ClientFirstNameFunctorTest) {
-        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent);
+        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent, nullptr);
         std::regex tango("(Piot)(.*)");
         FirstNamePredicate predicate(tango);
         bool accept = predicate(c);
         BOOST_CHECK_EQUAL(accept, true);
-    }*/
+    }
+
+    BOOST_AUTO_TEST_CASE(ClientLastNameFunctorTest) {
+        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent, nullptr);
+        std::regex tango("(Strach)(.*)");
+        LastNamePredicate predicate(tango);
+        bool accept = predicate(c);
+        BOOST_CHECK_EQUAL(accept, true);
+    }
 
 
 

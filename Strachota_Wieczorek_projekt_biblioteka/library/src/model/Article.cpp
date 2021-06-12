@@ -9,15 +9,10 @@ const std::string & Article::getParentOrganisation() const {
     return parentOrganisation;
 }
 
-std::string Article::getRentableItemInfo() const {
+std::string Article::getInfo() const {
     std::string output;
-    output =  RentableItem::getRentableItemInfo();
+    output = RentableItem::getInfo() + " parent organisation " + parentOrganisation;
     return output;
 }
 
 
-std::string Article::getArticleInfo() const {
-    std::string output;
-    output =  Article::getRentableItemInfo() + " parent organisation " + parentOrganisation;
-    return output;
-}

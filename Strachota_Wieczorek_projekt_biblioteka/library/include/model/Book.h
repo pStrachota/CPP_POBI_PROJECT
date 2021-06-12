@@ -9,8 +9,7 @@ private:
     std::string publishingHouse;
 public:
     Book(const std::string &serialNumber, const std::string &author, const std::string &title, const std::string &publishingHouse);
-    std::string getBookInfo() const;
-    virtual std::string getRentableItemInfo() const override;
+    std::string getInfo() const override;
     const std::string &getPublishingHouse() const;
 };
 
