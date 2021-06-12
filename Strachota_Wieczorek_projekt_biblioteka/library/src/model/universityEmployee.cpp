@@ -17,5 +17,5 @@ double universityEmployee::getPenalty() const {
 }
 
 std::string universityEmployee::getTypeInfo() const {
-    return "UNIVERSITY EMLOYEE";
+    return "UNIVERSITY EMPLOYEE";
 }

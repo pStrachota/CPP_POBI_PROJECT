@@ -4,6 +4,8 @@
 #include <math.h>
 
 Rent::Rent(pt::ptime rentBeginTime, ClientPtr client, RentableItemPtr rentableItem) : client(client), rentableItem(rentableItem) {
+    this->rentCost = 0;
+    //this->ended = false;
     if(rentBeginTime == pt::not_a_date_time) beginTime = pt::second_clock::local_time();
     else beginTime = rentBeginTime;
 
@@ -69,3 +71,8 @@ const std::string Rent::getRentInfo() const {
     output = "| Klient |" + getClient()->getInfo() + " wypozyczyl " + " " + getRentableItem()->getRentableItemInfo();
     return output;
 }
+/*
+bool Rent::isEnded() const {
+    return ended;
+}
+*/

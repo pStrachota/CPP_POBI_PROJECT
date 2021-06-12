@@ -23,7 +23,8 @@ private:
     boost::uuids::uuid RentId;
     pt::ptime beginTime;
     pt::ptime endTime;
-    float rentCost = 0;
+    float rentCost;
+    //bool ended;
     ClientPtr client;
     RentableItemPtr rentableItem;
 public:
@@ -39,6 +40,7 @@ public:
     boost::uuids::uuid getRentId() const;
     void setRentCost(float);
     void setEndTime(pt::ptime);
+    //bool isEnded() const;
 };
 
 
