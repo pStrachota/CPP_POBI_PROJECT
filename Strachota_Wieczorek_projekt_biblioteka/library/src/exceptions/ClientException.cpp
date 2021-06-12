@@ -26,3 +26,7 @@ exceptionAddress::exceptionAddress(const std::string &message) : ClientException
 exceptionClientType::exceptionClientType(const std::string &message) : ClientException(message) {
 
 }
+
+exceptionCannotOpenFile::exceptionCannotOpenFile(const std::string &message) : ClientException(message) {
+
+}

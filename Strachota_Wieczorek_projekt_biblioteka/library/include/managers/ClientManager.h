@@ -13,7 +13,6 @@
 #include "repositories/Templates.h"
 
 
-
 class clientManager {
     ClientRepository clientRepo;
 public:
@@ -24,6 +23,8 @@ public:
 
     std::vector<ClientPtr> findAllClients();
     void unregisterClient(const std::string &);
+    void saveAllClientsInfoToFile();
+
 };
 
 

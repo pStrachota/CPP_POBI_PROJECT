@@ -67,6 +67,10 @@ public:
 
 };
 
+class exceptionCannotOpenFile : public ClientException {
+public:
+    explicit exceptionCannotOpenFile(const std::string &message);
+};
 
 
 #endif //STRACHOTA_WIECZOREK_PROJEKT_BIBLIOTEKA_CLIENTEXCEPTION_H

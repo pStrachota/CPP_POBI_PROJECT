@@ -3,6 +3,8 @@
 #include <memory>
 #include <functional>
 #include "repositories/Templates.h"
+#include <fstream>
+#include "exceptions/ClientException.h"
 
 ClientPtr clientManager::registerClient(const std::string &firstName, const std::string &lastName, const std::string& personalID, const AddressPtr &address, const ClientTypePtr &type) {
 
@@ -42,4 +44,21 @@ std::vector<ClientPtr> clientManager::findClients(const ClientPredicate& predica
 std::vector<ClientPtr> clientManager::findAllClients() {
     return clientRepo.findAllClients();
 }
+
+void clientManager::saveAllClientsInfoToFile() {
+
+    std::ofstream proba;
+    proba.open("/home/student/AllClientsInfo");
+
+    if (!proba) {
+        throw exceptionCannotOpenFile("CANNOT OPEN FILE TO SAVE DATA");
+    } else {
+        for (auto &i : findAllClients()) {
+            proba << i->getInfo() << std::endl;
+        }
+        proba.close();
+    }
+}
+
+
 
