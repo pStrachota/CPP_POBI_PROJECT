@@ -6,30 +6,40 @@
 #include <fstream>
 #include "exceptions/ClientException.h"
 
-ClientPtr clientManager::registerClient(const std::string &firstName, const std::string &lastName, const std::string& personalID, const AddressPtr &address, const ClientTypePtr &type) {
+ClientPtr ClientManager::registerClient(const std::string& name, const std::string& surname, const std::string& personalID, const AddressPtr& address, const ClientTypePtr& type) {
 
     ClientPtr clientCheck = getClient(personalID);
     if (clientCheck == nullptr) {
-        ClientPtr newClient = std::make_shared<Client>(firstName, lastName, personalID, address, type);
+        ClientPtr newClient = std::make_shared<Client>(name, surname, personalID, address, type);
         clientRepo.add(newClient);
-        return newClient;
+        if(observers.empty()) {
+            return newClient;
+        } else {
+            observers[0]->notify(newClient);
+            return newClient;
+        }
 
     } else {
         return clientCheck;
     }
 }
 
-ClientPtr clientManager::getClient(const std::string& personalId) {
+ClientPtr ClientManager::getClient(const std::string& personalId) {
     return clientRepo.findById(personalId);
 }
 
-void clientManager::unregisterClient(const ClientPtr& toDel) {
-    if(toDel != nullptr) {
+void ClientManager::unregisterClient(const ClientPtr& toDel) {
+    if(observers.size() == 2) {
+        observers[1]->notify(toDel);
         toDel->setArchive(true);
+    } else {
+        if (toDel != nullptr) {
+            toDel->setArchive(true);
+        }
     }
 }
 
-std::vector<ClientPtr> clientManager::findClients(const ClientPredicate& predicate) {
+std::vector<ClientPtr> ClientManager::findClients(const ClientPredicate& predicate) {
     /*bool check = false;
     ClientPredicate predicateFalse = [check](ClientPtr ptr) {
         return ptr->isArchive() == check;
@@ -41,11 +51,11 @@ std::vector<ClientPtr> clientManager::findClients(const ClientPredicate& predica
     return clientRepo.findByPredicate(sum);
 }
 
-std::vector<ClientPtr> clientManager::findAllClients() {
+std::vector<ClientPtr> ClientManager::findAllClients() {
     return clientRepo.findAllClients();
 }
 
-void clientManager::saveAllClientsInfoToFile() {
+void ClientManager::saveAllClientsInfoToFile() {
 
     std::ofstream proba;
     proba.open("/home/student/AllClientsInfo");
@@ -60,7 +70,7 @@ void clientManager::saveAllClientsInfoToFile() {
     }
 }
 
-void clientManager::saveClientsToFileByPredicate(const ClientPredicate &predicate) {
+void ClientManager::saveClientsToFileByPredicate(const ClientPredicate &predicate) {
     ClientPredicate sum = [&predicate](const ClientPtr& test) {
         return predicate(test) && !test->isArchive();
     };
@@ -79,9 +89,15 @@ void clientManager::saveClientsToFileByPredicate(const ClientPredicate &predicat
     }
 }
 
-int clientManager::countClientRent() {
+unsigned int ClientManager::countClientRent() const{
     return clientRepo.objectSize();
 }
+
+void ClientManager::attachObserver(Observer2Ptr observer2) {
+    observers.push_back(observer2);
+}
+
+
 
 
 

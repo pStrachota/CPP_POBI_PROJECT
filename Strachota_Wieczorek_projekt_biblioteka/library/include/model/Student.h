@@ -39,6 +39,8 @@ public:
       */
     std::string getTypeInfo() const override;
 
+    virtual ~Student();
+
 };
 
 

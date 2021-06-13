@@ -9,6 +9,7 @@
 #include "model/Article.h"
 #include "model/Book.h"
 
+
 struct TestSuiteRentManagerFixture {
     const std::string testFirstName = "Jon";
     const std::string testLastName = "Arbuckle";
@@ -30,6 +31,8 @@ struct TestSuiteRentManagerFixture {
 
 
     TestSuiteRentManagerFixture() {
+
+
         testClientTypeStudent = std::make_shared<Student>();
         testClientTypeUniversityEmployee = std::make_shared<universityEmployee>();
 

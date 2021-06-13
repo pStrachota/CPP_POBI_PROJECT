@@ -15,4 +15,8 @@ std::string Article::getInfo() const {
     return output;
 }
 
+Article::~Article() {
+
+}
+
 

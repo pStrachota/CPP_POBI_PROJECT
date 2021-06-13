@@ -39,7 +39,11 @@ public:
     * @return numer domu
     */
     const std::string &getNumber() const;
+
+    virtual ~Address();
 };
+
+
 
 
 #endif //STRACHOTA_WIECZOREK_PROJEKT_BIBLIOTEKA_ADDRESS_H

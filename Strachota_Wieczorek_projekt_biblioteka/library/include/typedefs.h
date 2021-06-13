@@ -23,9 +23,13 @@ class RentableItem;
 class Book;
 class Article;
 class Observer;
+class ObserverC;
+class ObserverR;
 
 typedef std::shared_ptr<Client> ClientPtr;
 typedef std::shared_ptr<Observer> ObserverPtr;
+typedef std::shared_ptr<ObserverC> Observer2Ptr;
+typedef std::shared_ptr<ObserverR> Observer3Ptr;
 typedef std::shared_ptr<ClientType> ClientTypePtr;
 typedef std::shared_ptr<Rent> RentPtr;
 //typedef std::shared_ptr<Vehicle> VehiclePtr;

@@ -37,6 +37,8 @@ public:
    * @return wartosc typu string
    */
     virtual std::string getTypeInfo() const = 0;
+
+    virtual ~ClientType();
 };
 
 #endif //STRACHOTA_WIECZOREK_PROJEKT_BIBLIOTEKA_CLIENTTYPE_H

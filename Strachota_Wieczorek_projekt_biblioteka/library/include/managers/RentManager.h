@@ -9,10 +9,13 @@
 #include "repositories/Templates.h"
 #include <boost/date_time.hpp>
 #include "model/Rent.h"
+#include "repositories/Templates.h"
 
 /**
  * @brief RentManager zarzadza repozytorium wypozyczen
  */
+
+
 
 namespace pt = boost::posix_time;
 namespace gr = boost::gregorian;
@@ -20,8 +23,15 @@ namespace gr = boost::gregorian;
 class RentManager {
     RentRepository currentRents;
     RentRepository archiveRents;
+    std::vector<ObserverPtr> observers;
 public:
+    /**
+     * @brief daloczam nowego obserwatora
+     * @param observer - obserwator
+     */
+    void attachObserver(ObserverPtr observer);
     RentPtr rentRentableItem(const ClientPtr &client, const RentableItemPtr &rentableItem,pt::ptime beginTime);
+
     void removeRentableItem(RentableItemPtr& rentableItem);
     /**
      * @brief getRentableItemRent to getter wypozyczenia
@@ -45,13 +55,22 @@ public:
      * @brief countRents zlicza wszystkie wypozyczenia biblioteki
      * @return int
      */
-    int countRents() const;
+    unsigned int countRents() const;
     /**
      * @brief saveRentsToFileByPredicate zapisuje wypozyczenia spelniajace dany predykat do pliku
+     * @param predicate - warunek do spelnienia
      */
     void saveRentsToFileByPredicate(const RentPredicate &);
 
 };
+
+
+class Observer {
+
+public:
+    virtual void notify(RentPtr) = 0;
+};
+
 
 
 

@@ -15,3 +15,7 @@ std::string Book::getInfo() const {
     return output;
 }
 
+Book::~Book() {
+
+}
+

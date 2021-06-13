@@ -19,3 +19,7 @@ double Outsider::getPenalty() const {
 std::string Outsider::getTypeInfo() const {
     return "OUTSIDER";
 }
+
+Outsider::~Outsider() {
+
+}

@@ -6,12 +6,14 @@
 #include "model/Client.h"
 #include "model/Address.h"
 
+
 struct TestSuiteClientManagerFixture {
 
     ClientTypePtr testClientTypeStudent;
     AddressPtr testAddress;
 
     TestSuiteClientManagerFixture() {
+
         testClientTypeStudent = std::make_shared<Student>();
         testAddress = std::make_shared<Address>("London", "Rue Morgue", "13");
     }
@@ -24,14 +26,14 @@ struct TestSuiteClientManagerFixture {
 BOOST_FIXTURE_TEST_SUITE(TestSuiteClientManager, TestSuiteClientManagerFixture)
 
     BOOST_AUTO_TEST_CASE(findByPersonalIdTestPositiveTest) {
-        clientManager c;
+        ClientManager c;
         ClientPtr client = c.registerClient("Piotr", "Strachota", "1", testAddress, testClientTypeStudent);
         BOOST_TEST(client = c.getClient("1"));
 
     }
 
     BOOST_AUTO_TEST_CASE(unregisterClientTest) {
-        clientManager c;
+        ClientManager c;
         ClientPtr client = c.registerClient("Piotr", "Strachota", "1", testAddress, testClientTypeStudent);
         c.unregisterClient(client);
         BOOST_TEST(client->isArchive() == true);
@@ -39,14 +41,14 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClientManager, TestSuiteClientManagerFixture)
     }
 
     BOOST_AUTO_TEST_CASE(findByPersonalIdTestNegativeTest) {
-        clientManager c;
+        ClientManager c;
         ClientPtr client = c.registerClient("Piotr", "Strachota", "1", testAddress, testClientTypeStudent);
         ClientPtr client2 = c.registerClient("Robert", "Maklowicz", "1", testAddress, testClientTypeStudent);
         BOOST_TEST(client == client2);
     }
 
     BOOST_AUTO_TEST_CASE(findClientsTest) {
-        clientManager c;
+        ClientManager c;
         ClientPtr client1 = c.registerClient("Piotr", "Strachota", "1", testAddress, testClientTypeStudent);
         ClientPtr client2 = c.registerClient("Piotr", "Majdan", "2", testAddress, testClientTypeStudent);
         ClientPtr client3 = c.registerClient("Piotr", "Janczyk", "3", testAddress, testClientTypeStudent);

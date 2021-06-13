@@ -105,3 +105,7 @@ int Client::getMaxItems() const {
 double Client::getPenalty() const {
     return clientType->getPenalty();
 }
+
+Client::~Client() {
+
+}

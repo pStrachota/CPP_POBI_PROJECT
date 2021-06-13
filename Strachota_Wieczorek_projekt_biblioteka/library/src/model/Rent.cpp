@@ -75,10 +75,14 @@ RentableItemPtr Rent::getRentableItem() const{
     return rentableItem;
 }
 
-const std::string Rent::getRentInfo() const {
+const std::string Rent::getInfo() const {
     std::string output;
     output = "| Klient |" + getClient()->getInfo() + " wypozyczyl " + " " + getRentableItem()->getInfo();
     return output;
+}
+
+Rent::~Rent() {
+
 }
 /*
 bool Rent::isEnded() const {

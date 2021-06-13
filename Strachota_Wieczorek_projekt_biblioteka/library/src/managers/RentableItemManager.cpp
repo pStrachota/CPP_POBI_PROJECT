@@ -33,15 +33,25 @@ RentableItemPtr RentableItemManager::registerArticle(const std::string &serialNu
     if(rItemcheck == nullptr) {
         RentableItemPtr newRentableItem = std::make_shared<Article>(serialNumber, author, title, parentOrganisation);
         rItemRepo.add(newRentableItem);
-        return newRentableItem;
+        if(observers.empty()) {
+            return newRentableItem;
+        } else {
+            observers[0]->notify(newRentableItem);
+            return newRentableItem;
+        }
     } else {
         return rItemcheck;
     }
 }
 
 void RentableItemManager::unregisterRentableItem(const RentableItemPtr& toDel) {
-    if(toDel != nullptr) {
+    if(observers.size() == 2) {
+        observers[1]->notify(toDel);
         toDel->setArchive(true);
+    } else {
+        if (toDel != nullptr) {
+            toDel->setArchive(true);
+        }
     }
 }
 
@@ -69,6 +79,15 @@ void RentableItemManager::saveRentableItemsToFileByPredicate(const RentableItemP
         }
         proba.close();
     }
+}
+
+unsigned int RentableItemManager::rentableItemCounts() const {
+    return rItemRepo.objectSize();
+}
+
+
+void RentableItemManager::attachObserver(Observer3Ptr observer3) {
+    observers.push_back(observer3);
 }
 
 

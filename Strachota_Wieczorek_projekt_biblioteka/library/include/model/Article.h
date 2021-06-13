@@ -25,7 +25,10 @@ public:
    * @return string zwraza informacje o organizacji
    */
     const std::string &getParentOrganisation() const;
+
+    virtual ~Article();
 };
+
 
 
 #endif //STRACHOTA_WIECZOREK_PROJEKT_BIBLIOTEKA_ARTICLE_H

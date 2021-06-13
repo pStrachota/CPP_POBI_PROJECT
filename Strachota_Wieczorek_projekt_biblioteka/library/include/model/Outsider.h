@@ -36,6 +36,8 @@ public:
       * @return wartosc typu string
       */
     std::string getTypeInfo() const override;
+
+    virtual ~Outsider();
 };
 
 

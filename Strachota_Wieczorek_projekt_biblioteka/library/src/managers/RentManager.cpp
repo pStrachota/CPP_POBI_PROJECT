@@ -42,7 +42,13 @@ RentPtr RentManager::rentRentableItem(const ClientPtr &client, const RentableIte
             if(getRentableItemRent(rentableItem) == nullptr) {
                 RentPtr newRent = std::make_shared<Rent>(beginTime, client, rentableItem);
                 currentRents.add(newRent);
-                return newRent;
+                if(observers.empty()) {
+                    return newRent;
+                } else {
+                    observers[0]->notify(newRent);
+                    return newRent;
+                }
+
             }
         }
     }
@@ -52,14 +58,27 @@ RentPtr RentManager::rentRentableItem(const ClientPtr &client, const RentableIte
 
 void RentManager::removeRentableItem(RentableItemPtr& rentableItem) {
 
+    if(observers.size() == 2) {
 
-    for(int i = 0; i <= currentRents.objectSize(); i++) {
-        if (currentRents.getObject(i) != nullptr) {
-            if (currentRents.getObject(i)->getRentableItem() == rentableItem) {
-
-                currentRents.getObject(i)->endRent(pt::second_clock::local_time());
-                archiveRents.add(currentRents.getObject(i));
-                currentRents.removeObject(currentRents.getObject(i));
+        for (int i = 0; i <= currentRents.objectSize(); i++) {
+            if (currentRents.getObject(i) != nullptr) {
+                if (currentRents.getObject(i)->getRentableItem() == rentableItem) {
+                    observers[1]->notify(currentRents.getObject(i));
+                    currentRents.getObject(i)->endRent(pt::second_clock::local_time());
+                    archiveRents.add(currentRents.getObject(i));
+                    currentRents.removeObject(currentRents.getObject(i));
+                }
+            }
+        }
+    } else {
+        for (int i = 0; i <= currentRents.objectSize(); i++) {
+            if (currentRents.getObject(i) != nullptr) {
+                if (currentRents.getObject(i)->getRentableItem() == rentableItem) {
+                    observers[1]->notify(currentRents.getObject(i));
+                    currentRents.getObject(i)->endRent(pt::second_clock::local_time());
+                    archiveRents.add(currentRents.getObject(i));
+                    currentRents.removeObject(currentRents.getObject(i));
+                }
             }
         }
     }
@@ -68,7 +87,7 @@ void RentManager::removeRentableItem(RentableItemPtr& rentableItem) {
 
 
 
-int RentManager::countRents() const {
+unsigned int RentManager::countRents() const {
     return currentRents.objectSize();
 }
 
@@ -85,8 +104,15 @@ void RentManager::saveRentsToFileByPredicate(const RentPredicate &predicate) {
         throw exceptionUnableToOpenFile("CANNOT OPEN FILE TO SAVE DATA");
     } else {
         for (auto &i : result) {
-            proba << i->getRentInfo() << std::endl;
+            proba << i->getInfo() << std::endl;
         }
         proba.close();
     }
 }
+
+
+
+void RentManager::attachObserver(ObserverPtr observer) {
+    observers.push_back(observer);
+}
+

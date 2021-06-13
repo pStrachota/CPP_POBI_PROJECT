@@ -16,6 +16,7 @@
  * @tparam T - typ klasy
  */
 
+
 template <class T>
 class Repository
 {

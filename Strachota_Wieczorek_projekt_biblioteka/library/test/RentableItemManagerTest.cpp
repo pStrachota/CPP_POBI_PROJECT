@@ -4,7 +4,6 @@
 #include "model/RentableItem.h"
 
 
-
 BOOST_AUTO_TEST_SUITE(TestSuiteRentableItem)
 
     BOOST_AUTO_TEST_CASE(findBySerialNumber) {
@@ -23,6 +22,7 @@ BOOST_AUTO_TEST_SUITE(TestSuiteRentableItem)
     }
 
     BOOST_AUTO_TEST_CASE(findBySerialNumberNegativeTest) {
+
         RentableItemManager r;
         RentableItemPtr rItem = r.registerBook("123", "Edison", "Harry Potter","Zodiac");
         RentableItemPtr rItem2 = r.registerBook("123", "Strachota", "Types of modern dance","Yona");
@@ -31,6 +31,7 @@ BOOST_AUTO_TEST_SUITE(TestSuiteRentableItem)
     }
 
     BOOST_AUTO_TEST_CASE(findRentableItemTest) {
+
 
         RentableItemManager r;
         RentableItemPtr rItem = r.registerBook("1", "Edison", "Harry Potter","Zodiac");

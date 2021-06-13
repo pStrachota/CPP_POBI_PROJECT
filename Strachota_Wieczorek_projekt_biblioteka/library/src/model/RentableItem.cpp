@@ -34,3 +34,7 @@ bool RentableItem::isArchive() const {
 void RentableItem::setArchive(bool archive) {
     RentableItem::archive = archive;
 }
+
+RentableItem::~RentableItem() {
+
+}

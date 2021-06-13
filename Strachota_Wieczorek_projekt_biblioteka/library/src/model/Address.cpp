@@ -24,3 +24,7 @@ std::string Address::getInfo() const {
     std::string result = city + " " + street + " " + number;
     return result;
 }
+
+Address::~Address() {
+
+}

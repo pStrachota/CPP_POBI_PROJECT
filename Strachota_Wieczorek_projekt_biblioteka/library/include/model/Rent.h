@@ -42,7 +42,10 @@ public:
     * @brief getter informacji o wypozyczeniu
     * @return string
     */
-    const std::string getRentInfo() const;
+    const std::string getInfo() const;
+
+    virtual ~Rent();
+
     /**
     * @brief wylicza o ile przekroczono czas wypozyczenia
     * @return int

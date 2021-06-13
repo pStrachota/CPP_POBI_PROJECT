@@ -21,13 +21,6 @@ class ClientType;
  */
 
 
-class Observer {
-
-public:
-    virtual void notify(ClientPtr) = 0;
-};
-
-
 class Client : public std::enable_shared_from_this<Client> {
 
 private:
@@ -35,6 +28,10 @@ private:
     std::string surname;
     std::string personalID;
     AddressPtr address;
+public:
+    virtual ~Client();
+
+private:
     ClientTypePtr clientType;
     bool archive = false;
 

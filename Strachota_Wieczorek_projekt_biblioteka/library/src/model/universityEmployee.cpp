@@ -19,3 +19,7 @@ double universityEmployee::getPenalty() const {
 std::string universityEmployee::getTypeInfo() const {
     return "UNIVERSITY EMPLOYEE";
 }
+
+universityEmployee::~universityEmployee() {
+
+}

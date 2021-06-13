@@ -19,3 +19,7 @@ double Student::getPenalty() const {
 std::string Student::getTypeInfo() const {
     return "STUDENT";
 }
+
+Student::~Student() {
+
+}

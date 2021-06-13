@@ -17,6 +17,9 @@ private:
     std::string title;
     bool archive = false;
 public:
+    virtual ~RentableItem();
+
+public:
     RentableItem(const std::string &serialNumber, const std::string &author, const std::string &title);
     /**
     * @brief getter informacji o wypozyczeniu
