@@ -12,9 +12,9 @@
 
 
 Client::Client(const std::string &name, const std::string &surname, const std::string &personalId,
-               const AddressPtr &address, const ClientTypePtr &clientType, const ObserverPtr &observer) : name(name), surname(surname),
+               const AddressPtr &address, const ClientTypePtr &clientType) : name(name), surname(surname),
                                                                              personalID(personalId), address(address),
-                                                                             clientType(clientType), observer(observer) {
+                                                                             clientType(clientType) {
 
     if (name.empty()) throw exceptionFirstName("INVALID FIRST NAME");     //ClientException(ClientException::exceptionFirstName);
     if (surname.empty()) throw exceptionLastName("INVALID SURNAME");

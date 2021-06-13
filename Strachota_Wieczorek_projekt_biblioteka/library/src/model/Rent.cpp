@@ -7,7 +7,7 @@
 #include <utility>
 
 
-
+//zmienic client i renetableItem na referencje (pisze zeby nie zapomniec)
 
 Rent::Rent(pt::ptime rentBeginTime, const ClientPtr& client, const RentableItemPtr& rentableItem) : client(client), rentableItem(rentableItem) {
     this->rentCost = 0;
@@ -63,6 +63,7 @@ void Rent::endRent(pt::ptime endTime) {
     setEndTime(endTime);
     double penalty = getClient()->getPenalty();
     float total_cost = float(int(getRentPenaltyDays())) * float(penalty);
+    //roundf(total_cost);
     setRentCost(total_cost);
 }
 
@@ -79,3 +80,8 @@ const std::string Rent::getRentInfo() const {
     output = "| Klient |" + getClient()->getInfo() + " wypozyczyl " + " " + getRentableItem()->getInfo();
     return output;
 }
+/*
+bool Rent::isEnded() const {
+    return ended;
+}
+*/

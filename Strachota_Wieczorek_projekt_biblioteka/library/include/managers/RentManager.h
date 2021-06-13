@@ -18,11 +18,12 @@ class RentManager {
     RentRepository archiveRents;
 public:
     RentPtr rentRentableItem(const ClientPtr &client, const RentableItemPtr &rentableItem,pt::ptime beginTime);
-    void removeRentableItem(RentableItemPtr rentableItem);
-    //RentPtr getRentableItemRent(const boost::uuids::uuid rentId);
+    void removeRentableItem(RentableItemPtr& rentableItem);
     RentPtr getRentableItemRent(const RentableItemPtr &rentableItem);
     std::vector<RentPtr> findRents(const RentPredicate& predicate);
     std::vector<RentPtr> getAllClientRents(const ClientPtr &client);
+    int countRents() const;
+    void saveRentsToFileByPredicate(const RentPredicate &);
 
 };
 

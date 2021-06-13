@@ -25,6 +25,7 @@ public:
     void unregisterClient(const ClientPtr& toDel);
     void saveAllClientsInfoToFile();
     void saveClientsToFileByPredicate(const ClientPredicate&);
+    int countClientRent();
 
 };
 

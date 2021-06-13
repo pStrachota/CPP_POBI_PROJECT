@@ -10,7 +10,7 @@ ClientPtr clientManager::registerClient(const std::string &firstName, const std:
 
     ClientPtr clientCheck = getClient(personalID);
     if (clientCheck == nullptr) {
-        ClientPtr newClient = std::make_shared<Client>(firstName, lastName, personalID, address, type, nullptr);
+        ClientPtr newClient = std::make_shared<Client>(firstName, lastName, personalID, address, type);
         clientRepo.add(newClient);
         return newClient;
 
@@ -77,6 +77,10 @@ void clientManager::saveClientsToFileByPredicate(const ClientPredicate &predicat
         }
         proba.close();
     }
+}
+
+int clientManager::countClientRent() {
+    return clientRepo.objectSize();
 }
 
 

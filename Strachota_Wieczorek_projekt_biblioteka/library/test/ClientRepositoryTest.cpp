@@ -30,15 +30,15 @@ struct TestSuiteClientRepositoryFixture {
 BOOST_FIXTURE_TEST_SUITE(TestSuiteClientRepository, TestSuiteClientRepositoryFixture)
 
     BOOST_AUTO_TEST_CASE(AddClientPositivetest) {
-        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent, nullptr);
+        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent);
         ClientRepository nie;
         nie.add(c);
         BOOST_TEST(nie.getObject(0) == c);
     }
 
     BOOST_AUTO_TEST_CASE(RemoveClientPositiveTest) {
-        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent, nullptr);
-        ClientPtr c2 = std::make_shared<Client>("Piotrus", "Strachota", "420", testaddress2, testClientTypeStudent, nullptr);
+        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent);
+        ClientPtr c2 = std::make_shared<Client>("Piotrus", "Strachota", "420", testaddress2, testClientTypeStudent);
         ClientRepository nie;
         nie.add(c);
         nie.add(c2);
@@ -47,7 +47,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClientRepository, TestSuiteClientRepositoryFix
     }
 
     BOOST_AUTO_TEST_CASE(RemoveClientNegativeTest) {
-        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent, nullptr);
+        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent);
         ClientRepository nie;
         nie.add(c);
         nie.add(nullptr);
@@ -56,7 +56,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClientRepository, TestSuiteClientRepositoryFix
 }
 
     BOOST_AUTO_TEST_CASE(GetClientSize) {
-        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent, nullptr);
+        ClientPtr c = std::make_shared<Client>(testFirstName, testLastName, testPersonalID, testaddress1, testClientTypeStudent);
         ClientRepository nie;
         nie.add(c);
         BOOST_TEST(nie.objectSize() == 1);

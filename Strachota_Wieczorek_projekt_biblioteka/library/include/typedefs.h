@@ -30,8 +30,8 @@ typedef std::shared_ptr<ClientType> ClientTypePtr;
 typedef std::shared_ptr<Rent> RentPtr;
 //typedef std::shared_ptr<Vehicle> VehiclePtr;
 typedef std::shared_ptr<Address> AddressPtr;
-typedef std::shared_ptr<Book> BookPtr;
-typedef std::shared_ptr<Article> ArticlePtr;
+//typedef std::shared_ptr<Book> BookPtr;
+//typedef std::shared_ptr<Article> ArticlePtr;
 typedef std::shared_ptr<StorageContainer> ContainerPtr;
 
 typedef std::shared_ptr<RentableItem> RentableItemPtr;

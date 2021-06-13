@@ -12,8 +12,8 @@ struct TestSuiteRentFixture{
     ClientTypePtr testClientTypeStudent = std::make_shared<Student>();
     ClientTypePtr testClientTypeEmployee = std::make_shared<universityEmployee>();
 
-    BookPtr book = std::make_shared<Book>("123", "Edison", "Harry Potter","Zodiac");
-    ArticlePtr article = std::make_shared<Article>("777", "Watts", "Harry Potter 2","Harvard");
+    RentableItemPtr book = std::make_shared<Book>("123", "Edison", "Harry Potter","Zodiac");
+    RentableItemPtr article = std::make_shared<Article>("777", "Watts", "Harry Potter 2","Harvard");
 
     AddressPtr testAddress1 = std::make_shared<Address>("London", "Rue Morgue", "13");
     AddressPtr testAddress2 = std::make_shared<Address>("London", "BakerSt", "21");
@@ -25,8 +25,8 @@ struct TestSuiteRentFixture{
     pt::ptime testDate5 = pt::ptime(gr::date(2021,3,1), pt::hours(12) + pt::minutes(31));
     pt::ptime testDate6 = pt::ptime(gr::date(2021,4,1), pt::hours(12) + pt::minutes(31));
 
-    ClientPtr client1 = std::make_shared<Client>("Jake", "Paul", "007", testAddress1, testClientTypeStudent, nullptr);
-    ClientPtr client2 = std::make_shared<Client>("Walter", "White", "123", testAddress2, testClientTypeEmployee, nullptr);
+    ClientPtr client1 = std::make_shared<Client>("Jake", "Paul", "007", testAddress1, testClientTypeStudent);
+    ClientPtr client2 = std::make_shared<Client>("Walter", "White", "123", testAddress2, testClientTypeEmployee);
 
 };
 

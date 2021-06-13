@@ -20,8 +20,8 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteRentableItemRepository, TestSuiteRentableItemR
 
 
     BOOST_AUTO_TEST_CASE(AddRentableItemPositivetest) {
-        BookPtr book1 = std::make_shared<Book>(testSerialNumber1, testAuthor1, testTitle1, testPublishingCompany);
-        ArticlePtr article2 = std::make_shared<Article>(testSerialNumber2, testAuthor2, testTitle2, testParentOrganisation);
+        RentableItemPtr book1 = std::make_shared<Book>(testSerialNumber1, testAuthor1, testTitle1, testPublishingCompany);
+        RentableItemPtr article2 = std::make_shared<Article>(testSerialNumber2, testAuthor2, testTitle2, testParentOrganisation);
 
         RentableItemRepository repo;
         repo.add(book1);
@@ -31,8 +31,8 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteRentableItemRepository, TestSuiteRentableItemR
     }
 
     BOOST_AUTO_TEST_CASE(GetRentableItemSize) {
-        BookPtr book1 = std::make_shared<Book>(testSerialNumber1, testAuthor1, testTitle1, testPublishingCompany);
-        ArticlePtr article2 = std::make_shared<Article>(testSerialNumber2, testAuthor2, testTitle2, testParentOrganisation);
+        RentableItemPtr book1 = std::make_shared<Book>(testSerialNumber1, testAuthor1, testTitle1, testPublishingCompany);
+        RentableItemPtr article2 = std::make_shared<Article>(testSerialNumber2, testAuthor2, testTitle2, testParentOrganisation);
 
         RentableItemRepository repo;
         BOOST_TEST(repo.objectSize() == 0);
@@ -44,8 +44,8 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteRentableItemRepository, TestSuiteRentableItemR
     }
 
     BOOST_AUTO_TEST_CASE(RemoveRentableItemPositiveTest) {
-        BookPtr book1 = std::make_shared<Book>(testSerialNumber1, testAuthor1, testTitle1, testPublishingCompany);
-        ArticlePtr article2 = std::make_shared<Article>(testSerialNumber2, testAuthor2, testTitle2, testParentOrganisation);
+        RentableItemPtr book1 = std::make_shared<Book>(testSerialNumber1, testAuthor1, testTitle1, testPublishingCompany);
+        RentableItemPtr article2 = std::make_shared<Article>(testSerialNumber2, testAuthor2, testTitle2, testParentOrganisation);
         RentableItemRepository repo;
         repo.add(book1);
         repo.add(article2);
@@ -54,8 +54,8 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteRentableItemRepository, TestSuiteRentableItemR
     }
 
     BOOST_AUTO_TEST_CASE(RemoveRentableItemNegativeTest) {
-        BookPtr book1 = std::make_shared<Book>(testSerialNumber1, testAuthor1, testTitle1, testPublishingCompany);
-        ArticlePtr article2 = std::make_shared<Article>(testSerialNumber2, testAuthor2, testTitle2, testParentOrganisation);
+        RentableItemPtr book1 = std::make_shared<Book>(testSerialNumber1, testAuthor1, testTitle1, testPublishingCompany);
+        RentableItemPtr article2 = std::make_shared<Article>(testSerialNumber2, testAuthor2, testTitle2, testParentOrganisation);
 
         RentableItemRepository repo;
         repo.add(book1);
@@ -66,8 +66,8 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteRentableItemRepository, TestSuiteRentableItemR
     }
 
     BOOST_AUTO_TEST_CASE(AddRentableItemNegativeTest) {
-        BookPtr book1 = std::make_shared<Book>(testSerialNumber1, testAuthor1, testTitle1, testPublishingCompany);
-        ArticlePtr article2 = std::make_shared<Article>(testSerialNumber2, testAuthor2, testTitle2, testParentOrganisation);
+        RentableItemPtr book1 = std::make_shared<Book>(testSerialNumber1, testAuthor1, testTitle1, testPublishingCompany);
+        RentableItemPtr article2 = std::make_shared<Article>(testSerialNumber2, testAuthor2, testTitle2, testParentOrganisation);
         RentableItemRepository repo;
         repo.add(book1);
         repo.add(article2);

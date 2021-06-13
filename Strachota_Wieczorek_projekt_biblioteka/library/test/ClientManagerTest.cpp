@@ -54,6 +54,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClientManager, TestSuiteClientManagerFixture)
         c.unregisterClient(client2);
         c.unregisterClient(client4);
 
+        BOOST_CHECK_EQUAL(c.countClientRent(), 4);
         std::string test = "Strachota";
         ClientPredicate predicate = [test](const ClientPtr& ptr) {
             return ptr->getSurname() == test;

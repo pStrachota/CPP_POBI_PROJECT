@@ -3,54 +3,90 @@
 #include "model/RentableItem.h"
 #include <memory>
 #include "repositories/Templates.h"
-
+#include "exceptions/RentExceptions.h"
 
 std::vector<RentPtr> RentManager::findRents(const RentPredicate & predicate) {
-    RentPredicate sum = [&predicate](const RentPtr& test) {
-        return predicate(test);
-    };
-
-    return currentRents.findByPredicate(sum);
+    return currentRents.findByPredicate(predicate);
 }
 
 std::vector<RentPtr> RentManager::getAllClientRents(const ClientPtr &client) {
-    RentPredicate predicator = [&client](const RentPtr& test) {
-        return (test->getClient() == client);
-    };
-    return findRents(predicator);
+
+    std::vector<RentPtr> fonde;
+    for(int i = 0; i < currentRents.objectSize(); i++) {
+        if (currentRents.getObject(i) != nullptr) {
+            if (currentRents.getObject(i)->getClient() == client) {
+                fonde.push_back(currentRents.getObject(i));
+            }
+        }
+    }
+    return fonde;
+}
+
+RentPtr RentManager::getRentableItemRent(const RentableItemPtr& rentableItem) {
+
+    for(int i = 0; i < currentRents.objectSize(); i++) {
+        if (currentRents.getObject(i) != nullptr) {
+            if (currentRents.getObject(i)->getRentableItem() == rentableItem) {
+                return currentRents.getObject(i);
+            }
+        }
+    }
+    return nullptr;
 }
 
 RentPtr RentManager::rentRentableItem(const ClientPtr &client, const RentableItemPtr &rentableItem,
                                       pt::ptime beginTime) {
-    RentPtr rentCheck = getRentableItemRent(rentableItem);
-    if (rentCheck == nullptr) {
-        RentPtr newRent = std::make_shared<Rent>(beginTime,client,rentableItem);
-        currentRents.add(newRent);
-        return newRent;
 
+   if(!client->isArchive()) {
+        if(getAllClientRents(client).size() < client->getMaxItems()) {
+            if(getRentableItemRent(rentableItem) == nullptr) {
+                RentPtr newRent = std::make_shared<Rent>(beginTime, client, rentableItem);
+                currentRents.add(newRent);
+                return newRent;
+            }
+        }
+    }
+    return nullptr;
+}
+
+
+void RentManager::removeRentableItem(RentableItemPtr& rentableItem) {
+
+
+    for(int i = 0; i <= currentRents.objectSize(); i++) {
+        if (currentRents.getObject(i) != nullptr) {
+            if (currentRents.getObject(i)->getRentableItem() == rentableItem) {
+
+                currentRents.getObject(i)->endRent(pt::second_clock::local_time());
+                archiveRents.add(currentRents.getObject(i));
+                currentRents.removeObject(currentRents.getObject(i));
+            }
+        }
+    }
+}
+
+
+
+
+int RentManager::countRents() const {
+    return currentRents.objectSize();
+}
+
+void RentManager::saveRentsToFileByPredicate(const RentPredicate &predicate) {
+    RentPredicate sum = [&predicate](const RentPtr& test) {
+        return predicate(test);
+    };
+    std::vector<RentPtr> result = currentRents.findByPredicate(sum);
+
+    std::ofstream proba;
+    proba.open("/home/student/RentsbyPredicateInfo");
+
+    if (!proba) {
+        throw exceptionUnableToOpenFile("CANNOT OPEN FILE TO SAVE DATA");
     } else {
-        return rentCheck;
+        for (auto &i : result) {
+            proba << i->getRentInfo() << std::endl;
+        }
+        proba.close();
     }
 }
-
-RentPtr RentManager::getRentableItemRent(const RentableItemPtr &rentableItem) {
-    RentPredicate predicator = [&rentableItem](const RentPtr& test) {
-        return (test->getRentableItem() == rentableItem);
-    };
-    std::vector<RentPtr> vector = currentRents.findByPredicate(predicator);
-    if (vector.size() != 1) return nullptr;
-    return vector[0];
-}
-
-void RentManager::removeRentableItem(RentableItemPtr rentableItem) {
-    RentPredicate predicator = [&rentableItem](const RentPtr& test) {
-        return (test->getRentableItem() == rentableItem);
-    };
-    std::vector<RentPtr> vector = currentRents.findByPredicate(predicator);
-    if (vector.size() == 1){
-        currentRents.removeObject(vector[0]);
-        archiveRents.add(vector[0]);
-    }
-
-}
-
