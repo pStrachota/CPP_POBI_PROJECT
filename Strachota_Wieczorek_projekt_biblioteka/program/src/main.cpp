@@ -44,6 +44,10 @@ int main() {
     std::vector<RentPtr> proba = r.findRents(predicate);
     std::cout << "powinno byc 2 wypozyczenia, a sa: " << proba.size() << std::endl;
 
+    for(int i = 0; i < proba.size(); i++) {
+        std::cout << proba[i]->getRentInfo() << std::endl;
+    }
+
     //std::cout << r.countRents() << std::endl;
 
 //    ClientTypePtr testClientTypeStudent = std::make_shared<Student>();

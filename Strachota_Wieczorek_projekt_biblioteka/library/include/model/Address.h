@@ -6,6 +6,12 @@
 #define STRACHOTA_WIECZOREK_PROJEKT_BIBLIOTEKA_ADDRESS_H
 #include <iostream>
 
+/**
+ * @brief klasa Address, polaczone relacja z klasa Client
+ * polacznie zgodnie z zasada, iz wielu klientow moze miec
+ * ten sam adress
+ */
+
 class Address {
 private:
     std::string city;
@@ -13,9 +19,25 @@ private:
     std::string number;
 public:
     Address(const std::string &city, const std::string &street, const std::string &number);
+    /**
+    * @brief getter dla miasta
+    * @return nazwa miasta
+    */
     const std::string &getCity() const;
+    /**
+    * @brief getter dla ulicy
+    * @return nazwa ulicy
+    */
     const std::string &getStreet() const;
+    /**
+    * @brief getInfo konkatenuje informacje o adresie
+    * @return string zawierajacy informacje o adresie
+    */
     std::string getInfo() const;
+    /**
+    * @brief getter dla numeru domu
+    * @return numer domu
+    */
     const std::string &getNumber() const;
 };
 
