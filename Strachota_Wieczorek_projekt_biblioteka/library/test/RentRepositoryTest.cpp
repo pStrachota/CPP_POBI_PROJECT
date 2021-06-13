@@ -54,62 +54,7 @@ struct TestSuiteRentRepositoryFixture {
 
 BOOST_FIXTURE_TEST_SUITE(TestSuiteRentRepository, TestSuiteRentRepositoryFixture)
 
-    BOOST_AUTO_TEST_CASE(GetRentSize) {
-        RentPtr r1 = std::make_shared<Rent>(testDate1,c1,book);
-        RentPtr r2 = std::make_shared<Rent>(testDate2,c2,article);
-        RentPtr r3 = std::make_shared<Rent>(testDate1,c2,book);
-        RentRepository repo;
-        BOOST_TEST(repo.objectSize() == 0);
-        repo.add(r1);
-        BOOST_TEST(repo.objectSize() == 1);
-        repo.add(r2);
-        BOOST_TEST(repo.objectSize() == 2);
-        repo.add(r3);
-        BOOST_TEST(repo.objectSize() == 3);
 
-    }
-
-    BOOST_AUTO_TEST_CASE(AddRentPositivetest) {
-        RentPtr r1 = std::make_shared<Rent>(testDate1,c1,book);
-        RentPtr r2 = std::make_shared<Rent>(testDate2,c2,article);
-        RentRepository repo;
-        repo.add(r1);
-        repo.add(r2);
-        BOOST_TEST(repo.getObject(0) == r1);
-        BOOST_TEST(repo.getObject(1) == r2);
-    }
-
-    BOOST_AUTO_TEST_CASE(RemoveRentPositiveTest) {
-        RentPtr r1 = std::make_shared<Rent>(testDate1,c1,book);
-        RentPtr r2 = std::make_shared<Rent>(testDate2,c2,article);
-        RentRepository repo;
-        repo.add(r1);
-        repo.add(r2);
-        repo.removeObject(r1);
-        BOOST_TEST(repo.getObject(0) == r2);
-    }
-
-    BOOST_AUTO_TEST_CASE(RemoveRentNegativeTest) {
-        RentPtr r1 = std::make_shared<Rent>(testDate1,c1,book);
-        RentPtr r2 = std::make_shared<Rent>(testDate2,c2,article);
-        RentRepository repo;
-        repo.add(r1);
-        repo.add(r2);
-        repo.removeObject(nullptr);
-        BOOST_TEST(repo.objectSize() == 2);
-
-    }
-
-    BOOST_AUTO_TEST_CASE(AddRentNegativeTest) {
-        RentPtr r1 = std::make_shared<Rent>(testDate1,c1,book);
-        RentPtr r2 = std::make_shared<Rent>(testDate2,c2,article);
-        RentRepository repo;
-        repo.add(r1);
-        repo.add(r2);
-        repo.add(nullptr);
-        BOOST_TEST(repo.objectSize() == 2);
-
-    }
 
 
 

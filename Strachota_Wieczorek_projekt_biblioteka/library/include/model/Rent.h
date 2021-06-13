@@ -24,11 +24,10 @@ private:
     pt::ptime beginTime;
     pt::ptime endTime;
     float rentCost;
-    //bool ended;
     ClientPtr client;
     RentableItemPtr rentableItem;
 public:
-    Rent(pt::ptime beginTime, ClientPtr client, RentableItemPtr rentableItem);
+    Rent(pt::ptime beginTime, const ClientPtr& client, const RentableItemPtr& rentableItem);
     void endRent(pt::ptime endTime);
     const std::string getRentInfo() const;
     int getRentPenaltyDays() const;
@@ -40,7 +39,7 @@ public:
     boost::uuids::uuid getRentId() const;
     void setRentCost(float);
     void setEndTime(pt::ptime);
-    //bool isEnded() const;
+
 };
 
 

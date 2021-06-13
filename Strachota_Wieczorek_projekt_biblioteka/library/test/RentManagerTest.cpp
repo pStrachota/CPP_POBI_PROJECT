@@ -53,50 +53,6 @@ struct TestSuiteRentManagerFixture {
 BOOST_FIXTURE_TEST_SUITE(TestSuiteRentManager, TestSuiteRentManagerFixture)
 
 
-    BOOST_AUTO_TEST_CASE(findRentsTest) {
-        RentManager r;
-        RentPtr r1 = r.rentRentableItem(c1,book,testDate1);
-        RentPtr r2 = r.rentRentableItem(c2,article,testDate2);
-        RentPtr r3 = r.rentRentableItem(c2,book,testDate2);
-
-        r.removeRentableItem(r3->getRentableItem());
-        r.removeRentableItem(r2->getRentableItem());
-
-        std::string test = "Strachota";
-        RentPredicate predicate = [test](const RentPtr& ptr) {
-            return ptr->getClient()->getSurname() == test;
-        };
-
-        std::vector<RentPtr> result = r.findRents(predicate);
-        std::vector<RentPtr> testResult;
-        testResult.push_back(r1);
-
-        // Tu warunki testowe
-        // wyglada na to ze funkcje findRents
-        // nie znajduje niczego za pomoca predykatu a powinna
-    }
-
-    BOOST_AUTO_TEST_CASE(getAllClientsRentsTest) {
-        RentManager r;
-        RentPtr r1 = r.rentRentableItem(c1,book,testDate1);
-        RentPtr r2 = r.rentRentableItem(c1,article,testDate2);
-        RentPtr r3 = r.rentRentableItem(c1,book,testDate2);
-        RentPtr r4 = r.rentRentableItem(c2,article,testDate2);
-        RentPtr r5 = r.rentRentableItem(c2,book,testDate1);
-
-        r.removeRentableItem(r1->getRentableItem());
-
-        ClientPtr testC = c1;
-        RentPredicate predicate = [&testC](const RentPtr& ptr) {
-            return ptr->getClient() == testC;
-        };
-
-        std::vector<RentPtr> result = r.findRents(predicate);
-
-        // Tu warunki testowe
-        // wyglada na to ze funkcje findRents
-        // nie znajduje niczego za pomoca predykatu a powinna
-    }
 
 
 BOOST_AUTO_TEST_SUITE_END()

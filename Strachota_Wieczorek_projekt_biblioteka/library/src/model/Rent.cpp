@@ -2,18 +2,24 @@
 #include "model/Client.h"
 #include "model/RentableItem.h"
 #include <math.h>
+#include "exceptions/RentExceptions.h"
+
+#include <utility>
 
 
-//zmienic client i renetableItem na referencje (pisze zeby nie zapomniec)
 
-Rent::Rent(pt::ptime rentBeginTime, ClientPtr client, RentableItemPtr rentableItem) : client(client), rentableItem(rentableItem) {
+
+Rent::Rent(pt::ptime rentBeginTime, const ClientPtr& client, const RentableItemPtr& rentableItem) : client(client), rentableItem(rentableItem) {
     this->rentCost = 0;
-    //this->ended = false;
     if(rentBeginTime == pt::not_a_date_time) beginTime = pt::second_clock::local_time();
     else beginTime = rentBeginTime;
 
     boost::uuids::random_generator generator;
     this->RentId = generator();
+
+    if (client == nullptr) throw exceptionClient("INVALID CLIENT");
+    if (rentableItem == nullptr) throw exceptionRentableItem("INVALID RENTABLE ITEM");
+    if (rentBeginTime == pt::not_a_date_time) throw exceptionBeginTime("INVALID DATE");
 }
 
 boost::uuids::uuid Rent::getRentId() const {
@@ -57,7 +63,6 @@ void Rent::endRent(pt::ptime endTime) {
     setEndTime(endTime);
     double penalty = getClient()->getPenalty();
     float total_cost = float(int(getRentPenaltyDays())) * float(penalty);
-    //roundf(total_cost);
     setRentCost(total_cost);
 }
 
@@ -74,8 +79,3 @@ const std::string Rent::getRentInfo() const {
     output = "| Klient |" + getClient()->getInfo() + " wypozyczyl " + " " + getRentableItem()->getInfo();
     return output;
 }
-/*
-bool Rent::isEnded() const {
-    return ended;
-}
-*/

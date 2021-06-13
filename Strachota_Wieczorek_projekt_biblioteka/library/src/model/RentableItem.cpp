@@ -1,9 +1,11 @@
-
+#include "exceptions/RentableItemException.h"
 #include "model/RentableItem.h"
 
 RentableItem::RentableItem(const std::string &serialNumber, const std::string &author, const std::string &title) :
-serialNumber(serialNumber), author(author), title(title) {
-
+        serialNumber(serialNumber), author(author), title(title) {
+    if(serialNumber.empty()) throw exceptionSerialNumber("INVALID SERIAL NUMBER");
+    if(author.empty()) throw exceptionAuthor("INVALID AUTHOR");
+    if(title.empty()) throw exceptionTitle("INVALID TITLE");
 }
 
 std::string RentableItem::getInfo() const {
