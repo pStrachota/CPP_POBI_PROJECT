@@ -2,21 +2,21 @@
 #include <string>
 #include <algorithm>
 #include "typedefs.h"
-
+/*
 Client::Client()
 {
     firstName = "initial_first_name";
     lastName = "initial_last_name";
     personalID = "initial_personal_ID";
 }
+ */
 
 Client::Client(const std::string &firstName, const std::string &lastName, const std::string &personalID, AddressPtr ClientAddress, ClientTypePtr clientType) : firstName(firstName), lastName(lastName), personalID(personalID), ClientAddress(ClientAddress), clientType(clientType){}
-
+/*
 Client::~Client()
 {
-    //delete ClientAddress;
 }
-
+*/
 std::string Client::getClientInfo()
 {
     std::string output;
@@ -74,6 +74,16 @@ void Client::setAddress(AddressPtr someAddress)
     else
     {
         ClientAddress = someAddress;
+    }
+}
+
+void Client::setClientType(ClientTypePtr clientType1) {
+    if ( clientType1 == nullptr){
+        std::cout << " Incorrect address. ";
+    }
+    else
+    {
+        clientType = clientType1;
     }
 }
 /*

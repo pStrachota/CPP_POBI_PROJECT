@@ -1,18 +1,16 @@
 #include "model/ClientType.h"
 
-ClientType::~ClientType() {
-    // klasa abstarkcyjna
-}
-/*
-double ClientType::applyDiscount(int) {
 
+
+double ClientType::applyDiscount(int) {
+    return 0;
 }
 
 int ClientType::getMaxVehicles() {
-
+    return 0;
 }
-
-int ClientType::getTypeInfo() {
-
+/*
+std::string ClientType::getTypeInfo() {
+    return std::__cxx11::string();
 }
 */
