@@ -30,6 +30,7 @@ public:
     unsigned int getRentDays();
     const pt::ptime &getBeginTime() const;
     const pt::ptime &getEndTime() const;
+    void setEndTime(pt::ptime time);
     void endRent(pt::ptime);
     unsigned int getRentCost();
 };

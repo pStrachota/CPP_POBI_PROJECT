@@ -1,4 +1,5 @@
 #include "model/Client.h"
+#include "model/ClientType.h"
 #include <string>
 #include <algorithm>
 #include "typedefs.h"
@@ -21,8 +22,9 @@ std::string Client::getClientInfo()
 {
     std::string output;
     std::string address = ClientAddress->getAddressInfo();
+    std::string cTypeInfo = clientType->getTypeInfo();
 
-    output = firstName + " " + lastName + " " + personalID + " " + address;
+    output = firstName + " " + lastName + " " + personalID + " " + address + " " + cTypeInfo;
     return output;
 }
 
@@ -85,6 +87,14 @@ void Client::setClientType(ClientTypePtr clientType1) {
     {
         clientType = clientType1;
     }
+}
+
+int Client::getMaxVehicles() {
+    return clientType->getMaxVehicles();
+}
+
+double Client::applyDiscount(double price) {
+    return clientType->applyDiscount(price);
 }
 /*
 const RentPtr Client::getRents(unsigned int n) const {

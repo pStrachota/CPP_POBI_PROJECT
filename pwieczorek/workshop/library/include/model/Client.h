@@ -33,7 +33,7 @@ public:
     const std::string &getPersonalID() const;
     const AddressPtr getAddress() const;
     int getMaxVehicles();
-    double applyDiscount( double );
+    double applyDiscount(double);
     void setClientType(ClientTypePtr clientType1);
     //const RentPtr getRents(unsigned int) const;
     //void newRent(RentPtr);

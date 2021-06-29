@@ -35,6 +35,7 @@ std::string Rent::getRentInfo() {
 }
 
 unsigned int Rent::getRentDays() {
+    /*
     if(endTime == pt::not_a_date_time) return 0;
 
     pt::time_period period(beginTime, endTime);
@@ -43,6 +44,16 @@ unsigned int Rent::getRentDays() {
     unsigned  int moreDays = period.length().hours() % 23;
     rentDays + moreDays;
     return rentDays;
+    */
+
+    if(endTime == pt::not_a_date_time) return 0;
+
+    pt::time_period period(getBeginTime(), getEndTime());
+    if(period.length().hours() == 0 && period.length().minutes() <= 1) return 0;
+
+    unsigned  int rentDays = period.length().hours() / 24;
+    return rentDays;
+
 
 }
 
@@ -54,12 +65,14 @@ const pt::ptime &Rent::getEndTime() const {
     return endTime;
 }
 
+void Rent::setEndTime(pt::ptime time) {
+    endTime = time;
+}
+
 void Rent::endRent(pt::ptime givenTime) {
+
     if(endTime == pt::not_a_date_time)
     {
-        //ptrVehicle->setIsRented(false);
-        //ptrClient->delRent(this);
-
         if (givenTime == pt::not_a_date_time)
         {
             endTime = pt::second_clock::local_time();
@@ -69,10 +82,18 @@ void Rent::endRent(pt::ptime givenTime) {
         } else endTime = givenTime;
 
     }
-    rentCost += ptrVehicle->getBasePrice() * getRentDays();
+
+    rentCost += ptrVehicle->getBasePrice() * 1;
+    double price = rentCost;
+    double discount = 0;
+    //cos tu nie dziala
+    discount = getClient()->applyDiscount(price);
+    rentCost -= discount;
+
 }
 
 unsigned int Rent::getRentCost()
 {
-    return rentCost;
+    if(rentCost >=  6 ) return rentCost - getClient()->applyDiscount(rentCost);
+    else return rentCost;
 }
