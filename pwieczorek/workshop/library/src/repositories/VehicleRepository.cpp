@@ -7,6 +7,14 @@ VehiclePtr VehicleRepository::getVehicle(unsigned int index) {
     return vehicleVector[index];
 }
 
+VehiclePtr VehicleRepository::findByPlateNumber(std::string plate) {
+    VehiclePtr found = nullptr;
+    for (int i = 0; i < vehicleVector.size();i++){
+        if (vehicleVector[i]->getPlateNumber() == plate) found = vehicleVector[i];
+    }
+    return found;
+}
+
 std::string VehicleRepository::getReport() {
     std::string output;
     for(std::vector<VehiclePtr>::iterator it = vehicleVector.begin(); it != vehicleVector.end(); ++it) {

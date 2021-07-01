@@ -14,7 +14,7 @@ public:
     const unsigned int getSize() const;
     std::vector<VehiclePtr>  findBy(VehiclePredicate);
     bool testPlate(const VehiclePtr &vehicle);
-
+    VehiclePtr findByPlateNumber(std::string plate);
 
 };
 
