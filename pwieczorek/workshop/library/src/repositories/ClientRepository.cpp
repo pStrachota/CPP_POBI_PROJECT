@@ -46,3 +46,13 @@ std::vector<ClientPtr> ClientRepository::findBy(ClientPredicate predicate){
 bool ClientRepository::testId1(const ClientPtr &ptr) {
     return ptr->getPersonalID() == "1";
 }
+
+ClientPtr ClientRepository::findByPersonalId(std::string personalId) {
+    ClientPtr foundPtr = nullptr;
+    for (unsigned int i = 0; i < clientVector.size(); i++) {
+        if (clientVector[i] -> getPersonalID() == personalId) {
+            foundPtr = clientVector[i];
+        }
+    }
+    return foundPtr;
+}

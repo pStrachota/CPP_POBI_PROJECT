@@ -18,6 +18,7 @@ private:
     std::string personalID;
     AddressPtr ClientAddress;
     ClientTypePtr clientType;
+    bool archive = false;
     //std::vector<RentPtr> currentRents;
 
 public:
@@ -27,6 +28,8 @@ public:
     //std::string getFullClientInfo();
     void setFirstName(const std::string & ) ;
     void setLastName(const std::string & ) ;
+    void setIsArchive(bool archive);
+    bool isArchive();
     void setAddress(AddressPtr);
     const std::string &getFirstName() const;
     const std::string &getLastName() const;

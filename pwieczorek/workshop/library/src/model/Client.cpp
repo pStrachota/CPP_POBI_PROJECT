@@ -96,6 +96,14 @@ int Client::getMaxVehicles() {
 double Client::applyDiscount(double price) {
     return clientType->applyDiscount(price);
 }
+
+bool Client::isArchive() {
+    return archive;
+}
+
+void Client::setIsArchive(bool archive) {
+    this->archive = archive;
+}
 /*
 const RentPtr Client::getRents(unsigned int n) const {
     return currentRents[n];

@@ -48,6 +48,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClient, TestSuiteClientFixture)
         BOOST_TEST(testLastName == c.getLastName());
         BOOST_TEST(testPersonalID == c.getPersonalID());
         BOOST_TEST(testaddress1 == c.getAddress());
+        BOOST_TEST(c.isArchive() == false);
     }
 
     BOOST_AUTO_TEST_CASE(FirstNameSetterPositiveTests)
@@ -55,6 +56,14 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClient, TestSuiteClientFixture)
         Client c(testFirstName, testLastName, testPersonalID, testaddress1,CTdefault);
         c.setFirstName("Alex");
         BOOST_TEST(c.getFirstName() == "Alex");
+
+    }
+
+    BOOST_AUTO_TEST_CASE(IsArchiveSetterTests)
+    {
+        Client c(testFirstName, testLastName, testPersonalID, testaddress1,CTdefault);
+        c.setIsArchive(true);
+        BOOST_TEST(c.isArchive() == true);
 
     }
 

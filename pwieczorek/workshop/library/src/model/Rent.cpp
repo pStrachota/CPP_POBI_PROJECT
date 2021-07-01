@@ -83,17 +83,12 @@ void Rent::endRent(pt::ptime givenTime) {
 
     }
 
-    rentCost += ptrVehicle->getBasePrice() * 1;
-    double price = rentCost;
-    double discount = 0;
-    //cos tu nie dziala
-    discount = getClient()->applyDiscount(price);
-    rentCost -= discount;
+    rentCost += (ptrVehicle->getBasePrice() * getRentDays());
 
 }
 
 unsigned int Rent::getRentCost()
 {
-    if(rentCost >=  6 ) return rentCost - getClient()->applyDiscount(rentCost);
+    if(rentCost >=  6 ) return rentCost - ptrClient->applyDiscount(rentCost);
     else return rentCost;
 }

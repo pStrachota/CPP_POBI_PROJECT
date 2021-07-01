@@ -1,0 +1,12 @@
+
+
+#ifndef CARRENTAL_VEHICLEMANAGER_H
+#define CARRENTAL_VEHICLEMANAGER_H
+
+
+class VehicleManager {
+
+};
+
+
+#endif //CARRENTAL_VEHICLEMANAGER_H

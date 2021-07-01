@@ -63,6 +63,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteRent,TestSuiteRentFixture)
     {
         Rent r(rentID,ptrClient,ptrVehicle,testDate);
         r.setEndTime(testDate2);
+        r.endRent(testDate2);
         BOOST_TEST(r.getRentDays() == 10);
 
     }

@@ -15,6 +15,7 @@ public:
     const unsigned int getSize() const;
     std::vector<ClientPtr> findBy(ClientPredicate);
     bool testId1(const ClientPtr &ptr);
+    ClientPtr findByPersonalId(std::string personalId);
 };
 
 
