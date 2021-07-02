@@ -5,6 +5,7 @@ const unsigned int RentRepository::getSize() const {
     return rentVector.size();
 }
 
+
 std::string RentRepository::getReport() {
     std::string output;
     for(std::vector<RentPtr>::iterator it = rentVector.begin(); it != rentVector.end(); ++it) {
@@ -12,6 +13,11 @@ std::string RentRepository::getReport() {
     }
     return output;
 }
+
+std::vector<RentPtr> RentRepository::getAllRents() {
+    return rentVector;
+}
+
 
 void RentRepository::addRent(RentPtr someRent) {
     if (someRent != nullptr){
@@ -43,3 +49,5 @@ std::vector<RentPtr> RentRepository::findBy(RentPredicate predicate) {
 bool RentRepository::testId1(const RentPtr &ptr) {
     return ptr->getID() == 1;
 }
+
+

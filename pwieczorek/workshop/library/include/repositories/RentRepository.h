@@ -14,6 +14,7 @@ public:
     std::string getReport();
     const unsigned int getSize() const;
     std::vector<RentPtr> findBy(RentPredicate);
+    std::vector<RentPtr> getAllRents();
     bool testId1(const RentPtr &ptr);
 
 };
