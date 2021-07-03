@@ -3,21 +3,25 @@
 #include <string>
 #include <algorithm>
 #include "typedefs.h"
-/*
-Client::Client()
-{
-    firstName = "initial_first_name";
-    lastName = "initial_last_name";
-    personalID = "initial_personal_ID";
-}
- */
+#include "exceptions/ClientException.h"
 
-Client::Client(const std::string &firstName, const std::string &lastName, const std::string &personalID, AddressPtr ClientAddress, ClientTypePtr clientType) : firstName(firstName), lastName(lastName), personalID(personalID), ClientAddress(ClientAddress), clientType(clientType){}
-/*
-Client::~Client()
+Client::Client(const std::string &firstName, const std::string &lastName, const std::string &personalID, AddressPtr ClientAddress, ClientTypePtr clientType) : firstName(firstName), lastName(lastName), personalID(personalID), ClientAddress(ClientAddress), clientType(clientType)
 {
+    if(firstName.empty()){
+        throw exceptionFirstName(" ERROR FIRST NAME");
+    }
+    if(lastName.empty()){
+        throw exceptionLastName(" ERROR LAST NAME ");
+    }
+    if ( ClientAddress == nullptr){
+        throw exceptionAddress(" ERROR ADRESS ");
+    }
+    if ( clientType == nullptr){
+        throw exceptionClientType(" ERROR CLIENT TYPE ");
+    }
+
 }
-*/
+
 std::string Client::getClientInfo()
 {
     std::string output;
@@ -30,18 +34,18 @@ std::string Client::getClientInfo()
 
 void Client::setFirstName(const std::string &givenFirstName)
 {
-    if(givenFirstName == "")
+    if(givenFirstName.empty())
     {
-        std::cout << "incorrect name" << std::endl;
+        throw exceptionFirstName(" ERROR FIRST NAME");
     }
     else firstName = givenFirstName;
 }
 
 void Client::setLastName(const std::string &givenLastName)
 {
-    if(givenLastName == "")
+    if(givenLastName.empty())
     {
-        std::cout << "incorrect surname" << std::endl;
+        throw exceptionLastName(" ERROR LAST NAME ");
     }
     else
     {
@@ -71,7 +75,7 @@ const AddressPtr Client::getAddress() const
 void Client::setAddress(AddressPtr someAddress)
 {
     if ( someAddress == nullptr){
-        std::cout << " Incorrect address. ";
+        throw exceptionAddress(" ERROR ADRESS ");
     }
     else
     {
@@ -81,7 +85,7 @@ void Client::setAddress(AddressPtr someAddress)
 
 void Client::setClientType(ClientTypePtr clientType1) {
     if ( clientType1 == nullptr){
-        std::cout << " Incorrect address. ";
+        throw exceptionClientType(" ERROR CLIENT TYPE ");
     }
     else
     {

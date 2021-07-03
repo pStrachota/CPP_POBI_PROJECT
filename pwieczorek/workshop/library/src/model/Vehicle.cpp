@@ -1,7 +1,8 @@
 #include "model/Vehicle.h"
-
+#include "exceptions/VehicleException.h"
 Vehicle::Vehicle(const std::string &numerRejestracyjny, const unsigned int &cenaBazowa) : plateNumber(numerRejestracyjny), basePrice(cenaBazowa){
-
+    if (cenaBazowa < 0) throw exceptionBasePrice(" ERROR BASE PRICE");
+    if (numerRejestracyjny.empty()) throw exceptionPlateNumber(" ERROR PLATE NUMBER");
 }
 
 
@@ -18,13 +19,14 @@ const std::string & Vehicle::getPlateNumber() const {
 }
 
 void Vehicle::setPlateNumber(const std::string &givenPlateNumber) {
-    if (givenPlateNumber == ""){
-        std::cout << "Incorrect plate number";
+    if (givenPlateNumber.empty()){
+        throw exceptionPlateNumber(" ERROR PLATE NUMBER ");
     }
     else plateNumber = givenPlateNumber;
 }
 
 void Vehicle::setBasePrice(const unsigned int &givenPrice) {
+    if (givenPrice < 0) throw exceptionBasePrice(" ERROR BASE PRICE");
     basePrice = givenPrice;
 }
 
