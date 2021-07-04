@@ -13,7 +13,8 @@
 
 struct TestSuiteRentFixture{
     unsigned int rentID = 3;
-    ClientPtr  ptrClient, ptrClient2,ptrClient3,ptrClient4,ptrClient5;
+    ClientPtr  ptrClient;
+    ClientPtr ptrClient2,ptrClient3,ptrClient4,ptrClient5;
     VehiclePtr  ptrVehicle;
     AddressPtr ptrAddress;
     pt::ptime testDate = pt::ptime(gr::date(2021,3,13), pt::hours(12) + pt::minutes(30));
@@ -26,6 +27,12 @@ struct TestSuiteRentFixture{
     ClientTypePtr CTgold;
 
     TestSuiteRentFixture() {
+        CTdefault = std::make_shared<Default>();
+        CTsilver = std::make_shared<Silver>();
+        CTbronze = std::make_shared<Bronze>();
+        CTplatinum = std::make_shared<Platinum>();
+        CTdiamond = std::make_shared<Diamond>();
+        CTgold = std::make_shared<Gold>();
         ptrAddress = std::make_shared<Address>("london","baker st","7");
         ptrVehicle = std::make_shared<Vehicle>("007",5);
         ptrClient = std::make_shared<Client>("adam","nowak","007",ptrAddress,CTdefault);
@@ -34,12 +41,7 @@ struct TestSuiteRentFixture{
         ptrClient4 = std::make_shared<Client>("adam","nowak","007",ptrAddress,CTplatinum);
         ptrClient5 = std::make_shared<Client>("adam","nowak","007",ptrAddress,CTdiamond);
         ptrClient5 = std::make_shared<Client>("adam","nowak","007",ptrAddress,CTgold);
-        CTdefault = std::make_shared<Default>();
-        CTsilver = std::make_shared<Silver>();
-        CTbronze = std::make_shared<Bronze>();
-        CTplatinum = std::make_shared<Platinum>();
-        CTdiamond = std::make_shared<Diamond>();
-        CTgold = std::make_shared<Gold>();
+
     }
 
     ~TestSuiteRentFixture() {
@@ -52,10 +54,10 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteRent,TestSuiteRentFixture)
 
     BOOST_AUTO_TEST_CASE(ConstructorTests)
     {
-    Rent r(rentID,ptrClient,ptrVehicle,testDate);
+    Rent r(rentID,ptrClient2,ptrVehicle,testDate);
     BOOST_TEST(r.getID() == rentID);
     BOOST_TEST(r.getVehicle() == ptrVehicle);
-    BOOST_TEST(r.getClient() == ptrClient);
+    BOOST_TEST(r.getClient() == ptrClient2);
     BOOST_TEST(r.getRentCost() == 0);
     }
 
@@ -66,6 +68,13 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteRent,TestSuiteRentFixture)
         r.endRent(testDate2);
         BOOST_TEST(r.getRentDays() == 10);
 
+    }
+
+    BOOST_AUTO_TEST_CASE(ConstructorNegativeTestExceptions)
+    {
+        BOOST_REQUIRE_THROW(Rent r1(rentID,ptrClient, nullptr,testDate), std::logic_error);
+        BOOST_REQUIRE_THROW(Rent r2(rentID,nullptr, ptrVehicle,testDate), std::logic_error);
+        BOOST_REQUIRE_THROW(Rent r4(rentID,ptrClient, ptrVehicle,pt::not_a_date_time), std::logic_error);
     }
 
 BOOST_AUTO_TEST_SUITE_END()

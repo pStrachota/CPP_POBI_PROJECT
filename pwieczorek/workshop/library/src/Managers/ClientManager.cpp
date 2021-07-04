@@ -5,7 +5,7 @@
 #include <memory>
 #include <functional>
 
-ClientPtr ClientManager::registerClient(std::string firstName, std::string lastName, std::string personalID,
+ClientPtr ClientManager::registerClient( std::string &firstName, std::string lastName, std::string personalID,
                                    ClientTypePtr clientType, AddressPtr address) {
     ClientPtr foundClient = nullptr;
     // spr czy w bazie
@@ -32,7 +32,7 @@ void ClientManager::unregisterClient(ClientPtr client) {
 
 std::vector<ClientPtr> ClientManager::findClients(ClientPredicate predicate) {
     ClientPredicate notArchived = [](ClientPtr cPtr){
-        return cPtr->isArchive() == false;
+        return !cPtr->isArchive();
     };
 
     ClientPredicate combined = [notArchived,predicate](ClientPtr cPtr2){
@@ -44,7 +44,7 @@ std::vector<ClientPtr> ClientManager::findClients(ClientPredicate predicate) {
 
 std::vector<ClientPtr> ClientManager::findAllClients() {
     ClientPredicate combined = [](ClientPtr cPtr){
-        return cPtr->isArchive() == false;
+        return !cPtr->isArchive();
     };
 
     return clientRep.findBy(combined);

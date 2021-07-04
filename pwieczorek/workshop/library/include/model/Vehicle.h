@@ -17,7 +17,7 @@ public:
     const unsigned int &getBasePrice() const;
 
     void setPlateNumber(const std::string &);
-    void setBasePrice(const unsigned int &);
+    void setBasePrice(const int &);
     //const bool isRented() const;
     void setIsRented(bool);
 

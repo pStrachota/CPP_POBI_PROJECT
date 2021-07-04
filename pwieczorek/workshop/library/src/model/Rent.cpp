@@ -1,13 +1,18 @@
 #include "model/Rent.h"
 #include <string>
 #include "typedefs.h"
+#include "exceptions/RentException.h"
 
 Rent::Rent(const unsigned int &rentID, ClientPtr const ptrClient, VehiclePtr const ptrVehicle, const pt::ptime initTime) : rentID(rentID), ptrClient(ptrClient), ptrVehicle(ptrVehicle)
 {
-    //ptrClient->newRent(this);
-    //ptrVehicle->setIsRented(true);
-    if(initTime == pt::not_a_date_time) beginTime = pt::second_clock::local_time();
-    else beginTime = initTime;
+    if (initTime == pt::not_a_date_time) throw exceptionBeginTime(" ERROR BEGIN TIME ");
+    if (ptrClient == nullptr) throw exceptionClient(" ERROR CLIENT ");
+    if (ptrVehicle == nullptr) throw exceptionVehicle(" ERROR VEHICLE ");
+
+    //if(initTime == pt::not_a_date_time) beginTime = pt::second_clock::local_time();
+    //else beginTime = initTime;
+
+    this->beginTime = initTime;
 }
 
 const unsigned int & Rent::getID() const {

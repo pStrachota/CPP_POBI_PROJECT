@@ -59,6 +59,12 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClient, TestSuiteClientFixture)
 
     }
 
+    BOOST_AUTO_TEST_CASE(FirstNameSetterNegativeTests)
+    {
+        Client c(testFirstName, testLastName, testPersonalID, testaddress1,CTdefault);
+        BOOST_REQUIRE_THROW(c.setFirstName(""), std::logic_error);
+    }
+
     BOOST_AUTO_TEST_CASE(IsArchiveSetterTests)
     {
         Client c(testFirstName, testLastName, testPersonalID, testaddress1,CTdefault);
@@ -74,6 +80,12 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClient, TestSuiteClientFixture)
         BOOST_TEST(c.getLastName() == "Nowak");
     }
 
+    BOOST_AUTO_TEST_CASE(LastNameSetterNegativeTests)
+    {
+        Client c(testFirstName, testLastName, testPersonalID, testaddress1,CTdefault);
+        BOOST_REQUIRE_THROW(c.setLastName(""), std::logic_error);
+    }
+
     BOOST_AUTO_TEST_CASE(AddressSetterPositiveTests)
     {
         Client c(testFirstName, testLastName, testPersonalID, testaddress1,CTdefault);
@@ -84,8 +96,22 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteClient, TestSuiteClientFixture)
     BOOST_AUTO_TEST_CASE(AddressSetterFailedTests)
     {
         Client c(testFirstName, testLastName, testPersonalID, testaddress1,CTdefault);
-        c.setAddress(nullptr);
+        BOOST_REQUIRE_THROW(c.setAddress(nullptr), std::logic_error);
         BOOST_TEST(c.getAddress() == testaddress1);
+    }
+
+    BOOST_AUTO_TEST_CASE(ClientTypeSetterPositiveTests)
+    {
+        Client c(testFirstName, testLastName, testPersonalID, testaddress1,CTdefault);
+        c.setClientType(CTbronze);
+        BOOST_TEST(c.getClientType() == CTbronze);
+    }
+
+
+    BOOST_AUTO_TEST_CASE(ClientTypeSetterNegativeTests)
+    {
+        Client c(testFirstName, testLastName, testPersonalID, testaddress1,CTdefault);
+        BOOST_REQUIRE_THROW(c.setClientType(nullptr), std::logic_error);
     }
 
     BOOST_AUTO_TEST_CASE(DefaultClientTest)

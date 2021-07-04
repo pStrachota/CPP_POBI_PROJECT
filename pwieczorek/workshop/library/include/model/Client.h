@@ -35,6 +35,7 @@ public:
     const std::string &getLastName() const;
     const std::string &getPersonalID() const;
     const AddressPtr getAddress() const;
+    const ClientTypePtr getClientType() const;
     int getMaxVehicles();
     double applyDiscount(double);
     void setClientType(ClientTypePtr clientType1);

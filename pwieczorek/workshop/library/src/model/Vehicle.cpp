@@ -19,14 +19,14 @@ const std::string & Vehicle::getPlateNumber() const {
 }
 
 void Vehicle::setPlateNumber(const std::string &givenPlateNumber) {
-    if (givenPlateNumber.empty()){
+    if (givenPlateNumber == ""){
         throw exceptionPlateNumber(" ERROR PLATE NUMBER ");
     }
     else plateNumber = givenPlateNumber;
 }
 
-void Vehicle::setBasePrice(const unsigned int &givenPrice) {
-    if (givenPrice < 0) throw exceptionBasePrice(" ERROR BASE PRICE");
+void Vehicle::setBasePrice(const int &givenPrice) {
+    if (givenPrice < 0) throw exceptionBasePrice(" ERROR BASE PRICE ");
     basePrice = givenPrice;
 }
 

@@ -93,6 +93,10 @@ void Client::setClientType(ClientTypePtr clientType1) {
     }
 }
 
+const ClientTypePtr Client::getClientType() const {
+    return clientType;
+}
+
 int Client::getMaxVehicles() {
     return clientType->getMaxVehicles();
 }
