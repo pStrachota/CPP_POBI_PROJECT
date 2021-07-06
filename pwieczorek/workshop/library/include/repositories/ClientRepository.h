@@ -3,6 +3,8 @@
 #include "typedefs.h"
 #include <vector>
 #include <string>
+#include "repositories/Repository.h"
+
 
 class ClientRepository {
 private:
@@ -10,12 +12,19 @@ private:
 public:
     ClientPtr getClient(unsigned int index);
     void addClient(ClientPtr);
+    const unsigned int getSize() const;
+
+
     void removeClient(ClientPtr);
     std::string getReport();
-    const unsigned int getSize() const;
-    std::vector<ClientPtr> findBy(ClientPredicate);
-    bool testId1(const ClientPtr &ptr);
+
+
     ClientPtr findByPersonalId(std::string personalId);
+
+    bool testId1(const ClientPtr &ptr);
+
+    //wymaga pozostawienia
+    std::vector<ClientPtr> findBy(ClientPredicate);
 };
 
 

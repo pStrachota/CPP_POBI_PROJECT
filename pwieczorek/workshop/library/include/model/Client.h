@@ -25,6 +25,8 @@ public:
     Client(const std::string &firstName, const std::string &lastName, const std::string &personalID, AddressPtr ClientAddress, ClientTypePtr clientType);
     //~Client();
     std::string getClientInfo();
+    std::string getInfo() const;
+    std::string getId() const;
     //std::string getFullClientInfo();
     void setFirstName(const std::string & ) ;
     void setLastName(const std::string & ) ;
@@ -39,9 +41,6 @@ public:
     int getMaxVehicles();
     double applyDiscount(double);
     void setClientType(ClientTypePtr clientType1);
-    //const RentPtr getRents(unsigned int) const;
-    //void newRent(RentPtr);
-    //void delRent(RentPtr);
 
 };
 

@@ -3,6 +3,7 @@
 #include <vector>
 #include "typedefs.h"
 #include <string>
+#include "repositories/Repository.h"
 
 class RentRepository {
 private:
@@ -10,6 +11,7 @@ private:
 public:
     RentPtr getRent(unsigned int index);
     void addRent(RentPtr);
+
     void removeRent(RentPtr);
     std::string getReport();
     const unsigned int getSize() const;

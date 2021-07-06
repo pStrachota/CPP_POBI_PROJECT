@@ -3,14 +3,13 @@
 #include "typedefs.h"
 #include "exceptions/RentException.h"
 
-Rent::Rent(const unsigned int &rentID, ClientPtr const ptrClient, VehiclePtr const ptrVehicle, const pt::ptime initTime) : rentID(rentID), ptrClient(ptrClient), ptrVehicle(ptrVehicle)
+
+Rent::Rent(boost::uuids::uuid rentId, ClientPtr const ptrClient, VehiclePtr const ptrVehicle, const pt::ptime initTime) : rentId(rentId), ptrClient(ptrClient), ptrVehicle(ptrVehicle)
 {
     if (initTime == pt::not_a_date_time) throw exceptionBeginTime(" ERROR BEGIN TIME ");
     if (ptrClient == nullptr) throw exceptionClient(" ERROR CLIENT ");
     if (ptrVehicle == nullptr) throw exceptionVehicle(" ERROR VEHICLE ");
 
-    //if(initTime == pt::not_a_date_time) beginTime = pt::second_clock::local_time();
-    //else beginTime = initTime;
 
     this->beginTime = initTime;
 }
@@ -31,11 +30,12 @@ std::string Rent::getRentInfo() {
     std::string output;
     std::stringstream ss1;
     std::stringstream ss2;
+    std::string stringId = boost::uuids::to_string(rentId);
     ss1 << getBeginTime();
     ss2 << getEndTime();
     std::string s1 = ss1.str();
     std::string s2 = ss2.str();
-    output = " rentID: " + std::to_string(rentID) + " car: " + ptrVehicle->getVehicleInfo() + " client " + ptrClient->getClientInfo() + " rent begins: " + s1 + " rent ends: " + s2;
+    output = " rentID: " + stringId + " car: " + ptrVehicle->getVehicleInfo() + " client " + ptrClient->getClientInfo() + " rent begins: " + s1 + " rent ends: " + s2;
     return output;
 }
 
@@ -96,4 +96,12 @@ unsigned int Rent::getRentCost()
 {
     if(rentCost >=  6 ) return rentCost - ptrClient->applyDiscount(rentCost);
     else return rentCost;
+}
+
+std::string Rent::getInfo() {
+    return Rent::getRentInfo();
+}
+
+boost::uuids::uuid Rent::getId() const {
+    return rentId;
 }

@@ -45,7 +45,21 @@ double RentManager::checkClientRentBalance(ClientPtr client) {
     return sum;
 }
 
-RentPtr RentManager::rentVehicle(unsigned int ID,ClientPtr client, VehiclePtr vehicle, pt::ptime beginTime) {
+RentPtr RentManager::rentVehicle(ClientPtr client, VehiclePtr vehicle, pt::ptime beginTime) {
+    boost::uuids::uuid ID;
+    while(true){
+        boost::uuids::random_generator gen;
+        ID = gen();
+        bool found = false;
+        for(int i = 0; i<currentRents.getSize();i++){
+            if(currentRents.getRent(i)->getId() == ID) found = true;
+        }
+        for(int i = 0; i<archiveRents.getSize() && !found ;i++){
+            if(archiveRents.getRent(i)->getId() == ID) found = true;
+        }
+        if(found) break;
+    }
+
     if (client->isArchive() == false && (client->getMaxVehicles() < getAllClientRents(client).size())){
         RentPtr rent = std::make_shared<Rent>(ID, client, vehicle, beginTime);
         currentRents.addRent(rent);

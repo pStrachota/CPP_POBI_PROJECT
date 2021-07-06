@@ -139,3 +139,13 @@ void Client::delRent(RentPtr givenRent) {
     std::remove(currentRents.begin(), currentRents.end(), givenRent);
 }
  */
+
+std::string Client::getInfo() const {
+    std::string output;
+    output = " name: " + firstName + " last name: " + lastName + " ID " + personalID + " adres: " + this->getAddress()->getAddressInfo() + "\n";
+    return output;
+}
+
+std::string Client::getId() const {
+    return Client::getPersonalID();
+}

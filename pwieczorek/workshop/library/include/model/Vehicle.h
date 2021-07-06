@@ -12,7 +12,7 @@ private:
 public:
     Vehicle(const std::string &numerRejestracyjny, const unsigned int &cenaBazowa);
     virtual ~Vehicle(); // zmienic na abstrakcyjna
-
+    std::string getId() const;
     const std::string &getPlateNumber() const;
     const unsigned int &getBasePrice() const;
 
@@ -22,6 +22,7 @@ public:
     void setIsRented(bool);
 
     virtual std::string getVehicleInfo();
+    std::string getInfo();
     virtual double getActualRentalPrice();
 
 };

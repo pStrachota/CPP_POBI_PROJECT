@@ -9,10 +9,14 @@
 #include "model/Platinum.h"
 #include "model/Diamond.h"
 #include "model/Gold.h"
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_generators.hpp>
+#include <boost/uuid/uuid_io.hpp>
 
 
 struct TestSuiteRentFixture{
-    unsigned int rentID = 3;
+    //unsigned int rentID = 3;
+    boost::uuids::uuid rentId;
     ClientPtr  ptrClient;
     ClientPtr ptrClient2,ptrClient3,ptrClient4,ptrClient5;
     VehiclePtr  ptrVehicle;
@@ -54,8 +58,8 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteRent,TestSuiteRentFixture)
 
     BOOST_AUTO_TEST_CASE(ConstructorTests)
     {
-    Rent r(rentID,ptrClient2,ptrVehicle,testDate);
-    BOOST_TEST(r.getID() == rentID);
+    Rent r(rentId,ptrClient2,ptrVehicle,testDate);
+    BOOST_TEST(r.getId() == rentId);
     BOOST_TEST(r.getVehicle() == ptrVehicle);
     BOOST_TEST(r.getClient() == ptrClient2);
     BOOST_TEST(r.getRentCost() == 0);
@@ -63,7 +67,7 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteRent,TestSuiteRentFixture)
 
     BOOST_AUTO_TEST_CASE(getRentDaysTests)
     {
-        Rent r(rentID,ptrClient,ptrVehicle,testDate);
+        Rent r(rentId,ptrClient,ptrVehicle,testDate);
         r.setEndTime(testDate2);
         r.endRent(testDate2);
         BOOST_TEST(r.getRentDays() == 10);
@@ -72,9 +76,9 @@ BOOST_FIXTURE_TEST_SUITE(TestSuiteRent,TestSuiteRentFixture)
 
     BOOST_AUTO_TEST_CASE(ConstructorNegativeTestExceptions)
     {
-        BOOST_REQUIRE_THROW(Rent r1(rentID,ptrClient, nullptr,testDate), std::logic_error);
-        BOOST_REQUIRE_THROW(Rent r2(rentID,nullptr, ptrVehicle,testDate), std::logic_error);
-        BOOST_REQUIRE_THROW(Rent r4(rentID,ptrClient, ptrVehicle,pt::not_a_date_time), std::logic_error);
+        BOOST_REQUIRE_THROW(Rent r1(rentId,ptrClient, nullptr,testDate), std::logic_error);
+        BOOST_REQUIRE_THROW(Rent r2(rentId,nullptr, ptrVehicle,testDate), std::logic_error);
+        BOOST_REQUIRE_THROW(Rent r4(rentId,ptrClient, ptrVehicle,pt::not_a_date_time), std::logic_error);
     }
 
 BOOST_AUTO_TEST_SUITE_END()

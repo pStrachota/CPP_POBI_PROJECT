@@ -3,18 +3,22 @@
 #include "typedefs.h"
 #include <vector>
 #include <string>
+#include "repositories/Repository.h"
+
 
 class VehicleRepository {
     std::vector<VehiclePtr> vehicleVector;
 public:
     VehiclePtr getVehicle(unsigned int index);
     void addVehicle(VehiclePtr);
+
     void removeVehicle(VehiclePtr);
     std::string getReport();
     const unsigned int getSize() const;
-    std::vector<VehiclePtr>  findBy(VehiclePredicate);
     bool testPlate(const VehiclePtr &vehicle);
     VehiclePtr findByPlateNumber(std::string plate);
+    //pozostawic
+    std::vector<VehiclePtr>  findBy(VehiclePredicate);
 
 };
 

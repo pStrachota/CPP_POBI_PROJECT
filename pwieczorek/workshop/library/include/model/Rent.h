@@ -5,6 +5,9 @@
 #include "model/Vehicle.h"
 #include <boost/date_time.hpp>
 #include "typedefs.h"
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_generators.hpp>
+#include <boost/uuid/uuid_io.hpp>
 
 namespace pt = boost::posix_time;
 namespace gr = boost::gregorian;
@@ -14,6 +17,7 @@ class Client;
 
 class Rent {
 private:
+    boost::uuids::uuid rentId;
     unsigned int rentID;
     ClientPtr const ptrClient;
     VehiclePtr const ptrVehicle;
@@ -22,8 +26,9 @@ private:
     unsigned int rentCost = 0;
 public:
 
-    Rent(const unsigned int &,ClientPtr const, VehiclePtr const, const pt::ptime);
+    Rent(boost::uuids::uuid rentId,ClientPtr const, VehiclePtr const, const pt::ptime);
     std::string getRentInfo();
+    std::string getInfo();
     const unsigned int & getID() const;
     const VehiclePtr getVehicle() const;
     const ClientPtr getClient() const;
@@ -33,6 +38,7 @@ public:
     void setEndTime(pt::ptime time);
     void endRent(pt::ptime);
     unsigned int getRentCost();
+    boost::uuids::uuid getId() const;
 };
 
 

@@ -47,3 +47,11 @@ void Vehicle::setIsRented(bool isItRented) {
 double Vehicle::getActualRentalPrice() {
     return getBasePrice();
 }
+
+std::string Vehicle::getInfo(){
+    return Vehicle::getVehicleInfo();
+}
+
+std::string Vehicle::getId() const {
+    return Vehicle::getPlateNumber();
+}
