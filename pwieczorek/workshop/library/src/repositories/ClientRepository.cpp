@@ -1,6 +1,6 @@
 #include "repositories/ClientRepository.h"
 #include "model/Client.h"
-
+/*
 ClientPtr ClientRepository::getClient(unsigned int index) {
     if ( index > (clientVector.size()-1)) return nullptr;
     return clientVector[index];
@@ -31,22 +31,14 @@ std::string ClientRepository::getReport() {
 const unsigned int ClientRepository::getSize() const {
     return clientVector.size();
 }
+*/
 
-std::vector<ClientPtr> ClientRepository::findBy(ClientPredicate predicate){
-    std::vector<ClientPtr> found;
-    for (unsigned int i = 0; i < clientVector.size(); i++) {
-        ClientPtr client = getClient(i);
-        if (client != nullptr && predicate(client)) {
-            found.push_back(client);
-        }
-    }
-    return found;
-}
-
+/*
 bool ClientRepository::testId1(const ClientPtr &ptr) {
     return ptr->getPersonalID() == "1";
 }
-
+*/
+/*
 ClientPtr ClientRepository::findByPersonalId(std::string personalId) {
     ClientPtr foundPtr = nullptr;
     for (unsigned int i = 0; i < clientVector.size(); i++) {
@@ -55,4 +47,23 @@ ClientPtr ClientRepository::findByPersonalId(std::string personalId) {
         }
     }
     return foundPtr;
+}
+ */
+
+std::vector<ClientPtr> ClientRepository::findBy(ClientPredicate predicate){
+    std::vector<ClientPtr> found;
+    for (unsigned int i = 0; i < objects.size(); i++) {
+        ClientPtr client = get(i);
+        if (client != nullptr && predicate(client)) {
+            found.push_back(client);
+        }
+    }
+    return found;
+}
+
+std::vector<ClientPtr> ClientRepository::findAllClients() {
+    ClientPredicate predicator = [](ClientPtr ptr) {
+        return !ptr->isArchive();
+    };
+    return ClientRepository::findBy(predicator);
 }

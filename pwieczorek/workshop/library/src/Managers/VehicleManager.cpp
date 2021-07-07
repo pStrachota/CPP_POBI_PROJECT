@@ -6,7 +6,7 @@
 #include <functional>
 
 VehiclePtr VehicleManager::getVehicle(std::string plateNumber) {
-    return vehicleRep.findByPlateNumber(plateNumber);
+    return vehicleRep.findById(plateNumber);
 }
 
 std::vector<VehiclePtr> VehicleManager::findVehicles(VehiclePredicate predicate) {
@@ -15,11 +15,11 @@ std::vector<VehiclePtr> VehicleManager::findVehicles(VehiclePredicate predicate)
 
 VehiclePtr VehicleManager::registerBicycle(std::string plateNumber, int basePrice) {
     VehiclePtr foundVehicle = nullptr;
-    foundVehicle = vehicleRep.findByPlateNumber(plateNumber);
+    foundVehicle = vehicleRep.findById(plateNumber);
 
     if (foundVehicle == nullptr){
         VehiclePtr vehicle = std::make_shared<Bicycle>(plateNumber, basePrice);
-        vehicleRep.addVehicle(vehicle);
+        vehicleRep.add(vehicle);
     }
 
     return foundVehicle;
@@ -28,11 +28,11 @@ VehiclePtr VehicleManager::registerBicycle(std::string plateNumber, int basePric
 VehiclePtr VehicleManager::registerCar(klasyAut segment, std::string plateNumber, int basePrice,
                                        int engineDisplacement) {
     VehiclePtr foundVehicle = nullptr;
-    foundVehicle = vehicleRep.findByPlateNumber(plateNumber);
+    foundVehicle = vehicleRep.findById(plateNumber);
 
     if (foundVehicle == nullptr){
         VehiclePtr vehicle = std::make_shared<Car>(segment,engineDisplacement,plateNumber, basePrice);
-        vehicleRep.addVehicle(vehicle);
+        vehicleRep.add(vehicle);
     }
 
     return foundVehicle;
@@ -42,11 +42,11 @@ VehiclePtr VehicleManager::registerCar(klasyAut segment, std::string plateNumber
 VehiclePtr VehicleManager::registerMoped(std::string plateNumber, int basePrice, int engineDisplacement) {
 
     VehiclePtr foundVehicle = nullptr;
-    foundVehicle = vehicleRep.findByPlateNumber(plateNumber);
+    foundVehicle = vehicleRep.findById(plateNumber);
 
     if (foundVehicle == nullptr){
         VehiclePtr vehicle = std::make_shared<MotorVehicle>(engineDisplacement,plateNumber, basePrice);
-        vehicleRep.addVehicle(vehicle);
+        vehicleRep.add(vehicle);
     }
 
     return foundVehicle;

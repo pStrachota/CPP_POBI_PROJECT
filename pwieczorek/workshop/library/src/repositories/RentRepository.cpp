@@ -1,6 +1,7 @@
 #include "repositories/RentRepository.h"
 #include "model/Rent.h"
 
+/*
 const unsigned int RentRepository::getSize() const {
     return rentVector.size();
 }
@@ -49,5 +50,22 @@ std::vector<RentPtr> RentRepository::findBy(RentPredicate predicate) {
 bool RentRepository::testId1(const RentPtr &ptr) {
     return ptr->getID() == 1;
 }
+*/
+std::vector<RentPtr> RentRepository::findBy(RentPredicate predicate) {
+    std::vector<RentPtr> found;
+    for (unsigned int i = 0; i < objects.size(); i++) {
+        RentPtr rent = get(i);
+        if ( rent != nullptr && predicate(rent)) {
+            found.push_back(rent);
+        }
+    }
+    return found;
+}
 
-
+std::vector<RentPtr> RentRepository::getAllRents() {
+    std::vector<RentPtr> rents;
+    for(unsigned int i = 0; i < objects.size();i++){
+        rents.push_back(objects[i]);
+    }
+    return rents;
+}

@@ -3,6 +3,10 @@
 
 #include <string>
 
+/**
+ * @brief klasa Address; adres jest przypisany klientowi
+ */
+
 class Address {
 private:
     std::string city;
@@ -12,13 +16,25 @@ public:
     Address();
     Address(const std::string &city, const std::string &street, const std::string &number);
     ~Address();
-
+    /**
+     * @brief getAddressInfo agreguje informacje o adresie
+     * @return string z informacją adresową
+     */
     std::string getAddressInfo();
-    //void setCity(const std::string & ) ;
-    //void setStreet(const std::string & ) ;
-    //void setNumber(const std::string & ) ;
+    /**
+    * @brief getter miasta z adresu
+    * @return string miasto
+    */
     const std::string &getCity() const;
+    /**
+    * @brief getter ulicy z adresu
+    * @return string ulica
+    */
     const std::string &getStreet() const;
+    /**
+    * @brief getter numer domu z adresu
+    * @return string numer domu
+    */
     const std::string &getNumber() const;
 
 };

@@ -6,20 +6,10 @@
 #include "repositories/Repository.h"
 
 
-class VehicleRepository {
-    std::vector<VehiclePtr> vehicleVector;
+class VehicleRepository : public Repository<Vehicle>{
 public:
-    VehiclePtr getVehicle(unsigned int index);
-    void addVehicle(VehiclePtr);
-
-    void removeVehicle(VehiclePtr);
-    std::string getReport();
-    const unsigned int getSize() const;
-    bool testPlate(const VehiclePtr &vehicle);
-    VehiclePtr findByPlateNumber(std::string plate);
-    //pozostawic
     std::vector<VehiclePtr>  findBy(VehiclePredicate);
-
+    std::vector<VehiclePtr>  findAllVehicles();
 };
 
 

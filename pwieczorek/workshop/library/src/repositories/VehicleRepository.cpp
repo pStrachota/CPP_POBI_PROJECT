@@ -1,7 +1,7 @@
 #include "repositories/VehicleRepository.h"
 #include "model/Vehicle.h"
 #include <algorithm>
-
+/*
 VehiclePtr VehicleRepository::getVehicle(unsigned int index) {
     if ( index > (vehicleVector.size()-1)) return nullptr;
     return vehicleVector[index];
@@ -54,4 +54,23 @@ std::vector<VehiclePtr> VehicleRepository::findBy(VehiclePredicate predicate) {
 
 bool VehicleRepository::testPlate(const VehiclePtr &vehicle) {
     return vehicle->getPlateNumber() == "123";
+}
+ */
+
+std::vector<VehiclePtr> VehicleRepository::findBy(VehiclePredicate predicate) {
+    std::vector<VehiclePtr> found;
+    for (unsigned int i = 0; i < objects.size(); i++) {
+        VehiclePtr vehicle = get(i);
+        if (vehicle != nullptr && predicate(vehicle)) {
+            found.push_back(vehicle);
+        }
+    }
+    return found;
+}
+
+std::vector<VehiclePtr> VehicleRepository::findAllVehicles() {
+    VehiclePredicate predicator = [](VehiclePtr ptr) {
+        return true;
+    };
+    return VehicleRepository::findBy(predicator);
 }

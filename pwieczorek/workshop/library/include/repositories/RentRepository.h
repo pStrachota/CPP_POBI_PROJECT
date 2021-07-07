@@ -5,20 +5,10 @@
 #include <string>
 #include "repositories/Repository.h"
 
-class RentRepository {
-private:
-    std::vector<RentPtr> rentVector;
+class RentRepository : public Repository<Rent>{
 public:
-    RentPtr getRent(unsigned int index);
-    void addRent(RentPtr);
-
-    void removeRent(RentPtr);
-    std::string getReport();
-    const unsigned int getSize() const;
     std::vector<RentPtr> findBy(RentPredicate);
     std::vector<RentPtr> getAllRents();
-    bool testId1(const RentPtr &ptr);
-
 };
 
 

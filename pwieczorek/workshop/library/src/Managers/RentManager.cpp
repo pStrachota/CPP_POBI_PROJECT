@@ -17,8 +17,8 @@ std::vector<RentPtr> RentManager::findAllRents() {
 RentPtr RentManager::getVehicleRent(VehiclePtr vehicle) {
     for (int i = 0; i < currentRents.getSize(); i++)
     {
-        if ((currentRents.getRent(i) != nullptr) && (currentRents.getRent(i)->getVehicle() == vehicle)){
-            return currentRents.getRent(i);
+        if ((currentRents.get(i) != nullptr) && (currentRents.get(i)->getVehicle() == vehicle)){
+            return currentRents.get(i);
         }
     }
     return nullptr;
@@ -28,8 +28,8 @@ std::vector<RentPtr> RentManager::getAllClientRents(ClientPtr client) {
     std::vector<RentPtr> found;
     for (int i = 0; i < currentRents.getSize(); i++)
     {
-        if ((currentRents.getRent(i) != nullptr) && (currentRents.getRent(i)->getClient() == client)){
-            found.push_back(currentRents.getRent(i));
+        if ((currentRents.get(i) != nullptr) && (currentRents.get(i)->getClient() == client)){
+            found.push_back(currentRents.get(i));
         }
     }
     return found;
@@ -38,8 +38,8 @@ std::vector<RentPtr> RentManager::getAllClientRents(ClientPtr client) {
 double RentManager::checkClientRentBalance(ClientPtr client) {
     double sum = 0;
     for (int i = 0; i < archiveRents.getSize(); i++){
-        if ((archiveRents.getRent(i) != nullptr) && (archiveRents.getRent(i)->getClient() == client)){
-            sum += archiveRents.getRent(i)->getRentCost();
+        if ((archiveRents.get(i) != nullptr) && (archiveRents.get(i)->getClient() == client)){
+            sum += archiveRents.get(i)->getRentCost();
         }
     }
     return sum;
@@ -52,17 +52,17 @@ RentPtr RentManager::rentVehicle(ClientPtr client, VehiclePtr vehicle, pt::ptime
         ID = gen();
         bool found = false;
         for(int i = 0; i<currentRents.getSize();i++){
-            if(currentRents.getRent(i)->getId() == ID) found = true;
+            if(currentRents.get(i)->getId() == ID) found = true;
         }
         for(int i = 0; i<archiveRents.getSize() && !found ;i++){
-            if(archiveRents.getRent(i)->getId() == ID) found = true;
+            if(archiveRents.get(i)->getId() == ID) found = true;
         }
         if(found) break;
     }
 
-    if (client->isArchive() == false && (client->getMaxVehicles() < getAllClientRents(client).size())){
+    if ( !client->isArchive() && (client->getMaxVehicles() < getAllClientRents(client).size())){
         RentPtr rent = std::make_shared<Rent>(ID, client, vehicle, beginTime);
-        currentRents.addRent(rent);
+        currentRents.add(rent);
         return rent;
     }
     return nullptr;
@@ -71,9 +71,9 @@ RentPtr RentManager::rentVehicle(ClientPtr client, VehiclePtr vehicle, pt::ptime
 void RentManager::returnVehicle(VehiclePtr vehicle) {
     for (int i = 0; i < currentRents.getSize(); i++)
     {
-        if ((currentRents.getRent(i) != nullptr) && (currentRents.getRent(i)->getVehicle() == vehicle)){
-            currentRents.getRent(i)->endRent(pt::not_a_date_time);
-            archiveRents.addRent(currentRents.getRent(i));
+        if ((currentRents.get(i) != nullptr) && (currentRents.get(i)->getVehicle() == vehicle)){
+            currentRents.get(i)->endRent(pt::not_a_date_time);
+            archiveRents.add(currentRents.get(i));
             currentRents.getAllRents().erase(currentRents.getAllRents().begin() + i);
         }
     }

@@ -24,8 +24,8 @@ BOOST_AUTO_TEST_CASE(AddVehicleToRepositoryPositiveTest)
         {
             VehicleRepository *rRep = new VehicleRepository;
             VehiclePtr tVehicle = std::make_shared<Vehicle>(numerRejestracyjny,cenaBazowa);
-            rRep->addVehicle(tVehicle);
-            BOOST_TEST(rRep->getVehicle(0) == tVehicle);
+            rRep->add(tVehicle);
+            BOOST_TEST(rRep->get(0) == tVehicle);
             delete rRep;
 
         }
@@ -34,8 +34,8 @@ BOOST_AUTO_TEST_CASE(AddVehicleToRepositoryNegativeTest)
         {
             VehicleRepository *rRep = new VehicleRepository;
             VehiclePtr tVehicle = std::make_shared<Vehicle>(numerRejestracyjny,cenaBazowa);
-            rRep->addVehicle(tVehicle);
-            rRep->addVehicle(nullptr);
+            rRep->add(tVehicle);
+            rRep->add(nullptr);
             BOOST_TEST(rRep->getSize() == 1);
             delete rRep;
         }
@@ -45,10 +45,10 @@ BOOST_AUTO_TEST_CASE(RemoveVehicleFromRepositoryPositiveTest)
             VehicleRepository *rRep = new VehicleRepository;
             VehiclePtr tVehicle = std::make_shared<Vehicle>(numerRejestracyjny,cenaBazowa);
             VehiclePtr tVehicle2 = std::make_shared<Vehicle>(numerRejestracyjny,cenaBazowa);
-            rRep->addVehicle(tVehicle);
-            rRep->addVehicle(tVehicle2);
-            rRep->removeVehicle(tVehicle);
-            BOOST_TEST(rRep->getVehicle(0) == tVehicle2);
+            rRep->add(tVehicle);
+            rRep->add(tVehicle2);
+            rRep->remove(tVehicle);
+            BOOST_TEST(rRep->get(0) == tVehicle2);
             BOOST_TEST(rRep->getSize() == 1);
             delete rRep;
         }
@@ -57,8 +57,8 @@ BOOST_AUTO_TEST_CASE(RemoveVehicleFromRepositoryNegativeTest)
         {
             VehicleRepository *rRep = new VehicleRepository;
             VehiclePtr tVehicle = std::make_shared<Vehicle>(numerRejestracyjny,cenaBazowa);
-            rRep->addVehicle(tVehicle);
-            rRep->removeVehicle(nullptr);
+            rRep->add(tVehicle);
+            rRep->remove(nullptr);
             BOOST_TEST(rRep->getSize() == 1);
             delete rRep;
         }
@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE(GetVehicleRepositorySizeTest)
         {
             VehicleRepository *rRep = new VehicleRepository;
             VehiclePtr tVehicle = std::make_shared<Vehicle>(numerRejestracyjny,cenaBazowa);
-            rRep->addVehicle(tVehicle);
+            rRep->add(tVehicle);
             BOOST_TEST(rRep->getSize() == 1);
             delete rRep;
         }

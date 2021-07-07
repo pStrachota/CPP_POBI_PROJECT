@@ -12,7 +12,7 @@ ClientPtr ClientManager::registerClient( std::string &firstName, std::string las
     foundClient = getClient(personalID);
     if (foundClient == nullptr){
         ClientPtr newClient = std::make_shared<Client>(firstName, lastName, personalID,address,clientType);
-        clientRep.addClient(newClient);
+        clientRep.add(newClient);
         return newClient;
     }
     else return foundClient;
@@ -21,7 +21,7 @@ ClientPtr ClientManager::registerClient( std::string &firstName, std::string las
 
 
 ClientPtr ClientManager::getClient(std::string personalID) {
-    return clientRep.findByPersonalId(personalID);
+    return clientRep.findById(personalID);
 }
 
 void ClientManager::unregisterClient(ClientPtr client) {

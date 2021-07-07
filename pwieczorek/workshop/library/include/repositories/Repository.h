@@ -19,12 +19,12 @@ void add(std::shared_ptr<T> object){
 
 void remove(std::shared_ptr<T> object){
     for (int i = 0; i<objects.size();i++){
-        if (objects[i] == object) objects.erase(objects.begin()+1);
+        if (objects[i] == object) objects.erase(objects.begin()+i);
     }
 }
 
-std::shared_ptr<T> get(unsigned int index){
-    if (index >= 0 && index - 1 <= objects.size()) return objects[index];
+std::shared_ptr<T> get(unsigned int index) const{
+    if (index < objects.size()) return objects[index];
     else return nullptr;
 }
 

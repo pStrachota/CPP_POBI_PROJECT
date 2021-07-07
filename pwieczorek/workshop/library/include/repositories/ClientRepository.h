@@ -6,25 +6,10 @@
 #include "repositories/Repository.h"
 
 
-class ClientRepository {
-private:
-    std::vector<ClientPtr> clientVector;
+class ClientRepository : public Repository<Client>{
 public:
-    ClientPtr getClient(unsigned int index);
-    void addClient(ClientPtr);
-    const unsigned int getSize() const;
-
-
-    void removeClient(ClientPtr);
-    std::string getReport();
-
-
-    ClientPtr findByPersonalId(std::string personalId);
-
-    bool testId1(const ClientPtr &ptr);
-
-    //wymaga pozostawienia
     std::vector<ClientPtr> findBy(ClientPredicate);
+    std::vector<ClientPtr> findAllClients();
 };
 
 
