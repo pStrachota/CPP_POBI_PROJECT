@@ -14,28 +14,13 @@
 
 class universityEmployee : public ClientType{
 public:
-    /**
-* @brief getMaxDays zwaca maksymalna liczbe dni wypozyczen ksiazki lub artyukulu
- * dla pracownika uczelni wynosi: 30 dni
-* @return int
-*/
+  
     int getMaxDays() const override;
-    /**
-       * @brief getMaxitems zwaca maksymalna liczbe wypozyczen danego typu klienta
-       * dla pracownika uczelni wynosi: 3 przedmioty
-       * @return int
-       */
+   
     int getMaxItems() const override;
-    /**
-          * @brief getter dla kary za przekroczenie wypozyczenia
-          * dla pracownika uczelni wynosi: 20gr za każdy przekroczony dzień
-          * @return double
-          */
+   
     double getPenalty() const override;
-    /**
-         * @brief getTypeInfo zwraca informacje o typie klienta
-         * @return wartosc typu string
-         */
+    
     std::string getTypeInfo() const override;
 
     virtual ~universityEmployee();
