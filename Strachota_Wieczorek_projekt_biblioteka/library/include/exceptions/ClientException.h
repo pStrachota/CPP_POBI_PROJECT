@@ -25,51 +25,35 @@ public:
  * @brief z głownej klasy wyjatkow dziedzicza poszczegolne typy wyjatkow
  */
 
-/**
- * expeptionFirstName - "puste imie"
- */
-
 class exceptionFirstName : public ClientException {
 public:
     explicit exceptionFirstName(const std::string &message);
 };
-
-/**
-     * exceptionLastName - "puste" nazwisko
-     */
 
 class exceptionLastName : public ClientException {
 public:
     explicit exceptionLastName(const std::string &message);
 
 };
-/**
-     * exceptionPersonalId - "pusty" pesel
-     */
+
 class exceptionPersonalID : public ClientException {
 public:
     explicit exceptionPersonalID(const std::string &message);
 
 };
-/**
-    * exceptionAddress - nullptr zamiast wskaznika na adres
-    */
+
 class exceptionAddress : public ClientException {
 public:
     explicit exceptionAddress(const std::string &message);
 
 };
-/**
-   * exceptionClientType - nullptr zamiast wskaznika na typ klienta
-   */
+
 class exceptionClientType : public ClientException {
 public:
     explicit exceptionClientType(const std::string &message);
 
 };
-/**
-   * exceptionCannotOpenFile - nie udalo sie otworzyc pliku do zapisu
-   */
+
 class exceptionCannotOpenFile : public ClientException {
 public:
     explicit exceptionCannotOpenFile(const std::string &message);
