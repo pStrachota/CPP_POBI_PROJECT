@@ -22,7 +22,7 @@ int main() {
     ClientTypePtr testClientTypeStudent = std::make_shared<Student>();
     AddressPtr testaddress1 = std::make_shared<Address>("London", "Accacia Avenue", "22");
     pt::ptime testDate1 = pt::ptime(gr::date(2021,3,1), pt::hours(12) + pt::minutes(30));
-    ClientPtr c1 = std::make_shared<Client>("Piotrus", "Strachota", "420", testaddress1, testClientTypeStudent);
+    ClientPtr c1 = std::make_shared<Client>("Piotr", "Strachota", "100", testaddress1, testClientTypeStudent);
 
     RentableItemPtr book = std::make_shared<Book>("123", "Edison", "Harry Potter","Zodiac");
     RentableItemPtr article = std::make_shared<Article>("777", "Watts", "Harry Potter 2","Harvard");
@@ -45,7 +45,7 @@ int main() {
     k.registerArticle("123", "Edison", "Harry Potter","Zodiac");
     k.registerArticle("777", "Watts", "Harry Potter 2","Harvard");
 
-    c.registerClient("Piotrus", "Strachota", "420", testaddress1, testClientTypeStudent);
+    c.registerClient("Piotr", "Strachota", "100", testaddress1, testClientTypeStudent);
 
     std::cout << "---------------------------------------" << std::endl;
 
