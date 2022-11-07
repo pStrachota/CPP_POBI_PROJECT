@@ -45,8 +45,7 @@ public:
                 if (objects[i] == delObject) {
                     objects.erase(objects.begin()+i);
                 }
-            }
-            //  objects.erase(std::remove(objects.begin(), objects.end(), delObject), objects.end());
+            }            
         }
     }
 
@@ -84,16 +83,6 @@ public:
     const unsigned int objectSize() const {
         return objects.size();
     }
-
-    /* std::vector<T> findAllTest() {
-         std::vector<T> found;
-         for (int i = 0; i < objects.size(); i++) {
-             if (objects[i] != nullptr) {
-                 found.push_back(objects[i]);
-             }
-         }
-         return found;
-     }*/
 
     /**
      * @brief findById wyszukuje na podstawie (zaleznej od klasy) wlasciwosci
