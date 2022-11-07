@@ -18,15 +18,9 @@ private:
     std::string publishingHouse;
 public:
     Book(const std::string &serialNumber, const std::string &author, const std::string &title, const std::string &publishingHouse);
-    /**
-   * @brief getInfo konkatenuje informacje ksiazce
-   * @return string zawierający informacje o ksiazce
-   */
+   
     std::string getInfo() const override;
-    /**
-   * @brief getter dla wydawnictwa
-   * @return string zwraza informacje o wydawnictwie
-   */
+    
     const std::string &getPublishingHouse() const;
 };
 
