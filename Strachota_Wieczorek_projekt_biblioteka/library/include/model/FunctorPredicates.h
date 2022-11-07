@@ -38,35 +38,6 @@ public:
     }
 };
 
-//class AuthorPredicate
-//{
-//private:
-//    std::regex match;
-//public:
-//    AuthorPredicate(std::regex bmatch) : match(bmatch) {}
-//
-//    bool operator()(RentableItemPtr &ptr)
-//    {
-//        return (regex_match(ptr->getAuthor(), match));
-//    }
-//};
-
-
-//class TitlePredicate
-//{
-//private:
-//    std::regex match;
-//public:
-//    TitlePredicate(std::regex bmatch) : match(bmatch) {}
-//
-//    bool operator()(RentableItemPtr &ptr)
-//    {
-//        return (regex_match(ptr->getTitle(), match));
-//    }
-//};
-
-
-
 class IdPredicate
 {
 private:
@@ -80,12 +51,5 @@ public:
         return ptr->getId() == id;
     }
 };
-
-
-
-
-
-
-
 
 #endif //STRACHOTA_WIECZOREK_PROJEKT_BIBLIOTEKA_FUNCTORPREDICATES_H
