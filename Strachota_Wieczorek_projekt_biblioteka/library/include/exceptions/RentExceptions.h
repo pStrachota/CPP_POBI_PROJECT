@@ -19,18 +19,10 @@ public:
  * @brief z głownej klasy wyjatkow dziedzicza poszczegolne typy wyjatkow
  */
 
-/**
- * exceptionBeginTime - " niepoprawna data"
- */
-
 class exceptionBeginTime : public RentException {
 public:
     explicit exceptionBeginTime(const std::string &message);
 };
-
-/**
- * exceptionClient - " nullptr zamiast poprawnego wskaznika"
- */
 
 class exceptionClient : public RentException {
 public:
@@ -38,19 +30,11 @@ public:
 
 };
 
-/**
- * exceptionRentableItem - " nullptr zamiast poprawnego wskaznika"
- */
-
 class exceptionRentableItem : public RentException {
 public:
     explicit exceptionRentableItem(const std::string &message);
 
 };
-
-/**
- * exceptionUnableToOpenFile - " brak mozliwosci otworzenia pliku"
- */
 
 class exceptionUnableToOpenFile : public RentException {
 public:
