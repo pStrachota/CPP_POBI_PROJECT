@@ -24,7 +24,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-One of the biggest repository on my Github account. This project was made for object orientented class.
+This project was made for object orientented class.
 We spend first half of the semester on creating workshop, during which we got to know more advanced features 
 about C++.
 
