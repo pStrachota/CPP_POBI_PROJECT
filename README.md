@@ -7,7 +7,7 @@
 <h3 align="center">Book rental POBI project</h3>
 
   <p align="center">
-   Cpp book rental project for object-oriented class in TUL.
+   Cpp library project for object-oriented class (POBI) in TUL.
   </p>
 </div>
 
